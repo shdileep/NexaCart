@@ -39,16 +39,6 @@ export default function ShoppingCart() {
   const [upiPaymentVerifying, setUpiPaymentVerifying] = React.useState(false);
   const [upiOrderTimer, setUpiOrderTimer] = React.useState(30);
 
-  React.useEffect(() => {
-    let timer;
-    if (showUpiModal && upiOrderTimer > 0 && !upiPaymentVerifying) {
-      timer = setTimeout(() => setUpiOrderTimer(upiOrderTimer - 1), 1000);
-    } else if (showUpiModal && upiOrderTimer === 0 && !upiPaymentVerifying) {
-      handleUpiVerification();
-    }
-    return () => clearTimeout(timer);
-  }, [showUpiModal, upiOrderTimer, upiPaymentVerifying]);
-
   const handleUpiScanAndPay = () => {
     if (!currentUser) {
       alert('Please log in to checkout.');
@@ -114,6 +104,16 @@ export default function ShoppingCart() {
       }
     }, 2000);
   };
+
+  React.useEffect(() => {
+    let timer;
+    if (showUpiModal && upiOrderTimer > 0 && !upiPaymentVerifying) {
+      timer = setTimeout(() => setUpiOrderTimer(upiOrderTimer - 1), 1000);
+    } else if (showUpiModal && upiOrderTimer === 0 && !upiPaymentVerifying) {
+      handleUpiVerification();
+    }
+    return () => clearTimeout(timer);
+  }, [showUpiModal, upiOrderTimer, upiPaymentVerifying]);
 
   const loadCartData = async () => {
     if (!currentUser) return;
