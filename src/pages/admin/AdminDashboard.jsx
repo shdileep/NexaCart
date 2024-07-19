@@ -212,7 +212,7 @@ export default function AdminDashboard() {
                 <p className="font-body-md text-body-md text-on-surface-variant">Transactional volume up to July 2026</p>
               </div>
               <div className="bg-surface-container rounded-lg font-label-sm text-label-sm px-4 py-2">
-                Total: ₹{totalRevenue.toLocaleString()}
+                Total: ₹{stats.totalRevenue.toLocaleString()}
               </div>
             </div>
             
