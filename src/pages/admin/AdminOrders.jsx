@@ -9,7 +9,11 @@ export default function AdminOrders() {
   const [showDetailModal, setShowDetailModal] = React.useState(false);
 
   React.useEffect(() => {
-    setOrders(getOrders());
+    async function loadOrders() {
+      const allOrders = await getOrders();
+      setOrders(allOrders);
+    }
+    loadOrders();
   }, []);
 
   const handleOpenOrderDetail = (order) => {
@@ -102,7 +106,7 @@ export default function AdminOrders() {
                         </div>
                       </td>
                       <td className="px-6 py-5 text-on-surface-variant">{ord.productTitle}</td>
-                      <td className="px-6 py-5 font-bold text-on-surface">₹{ord.amount.toLocaleString()}</td>
+                      <td className="px-6 py-5 font-bold text-on-surface">₹{parseFloat(ord.amount).toLocaleString()}</td>
                       <td className="px-6 py-5">
                         <span className={`px-3 py-1 text-[11px] font-bold rounded-full uppercase ${
                           ord.status === 'Delivered' ? 'bg-green-100 text-green-800' :

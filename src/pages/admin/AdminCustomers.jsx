@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Sidebar from '../../components/Sidebar';
-import { getOrders, updateUserBlockStatus, updateOrder } from '../../utils/auth';
+import { getOrders, updateUserBlockStatus, updateOrder, getAdminUsersList } from '../../utils/auth';
 
 export default function AdminCustomers() {
   const navigate = useNavigate();
@@ -15,20 +15,21 @@ export default function AdminCustomers() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [statusFilter, setStatusFilter] = React.useState('');
 
-  const loadData = () => {
-    const allUsers = JSON.parse(localStorage.getItem('mock_users')) || [];
+  const loadData = async () => {
+    const allUsers = await getAdminUsersList();
     const customers = allUsers.filter(u => u.role === 'customer');
     setUsers(customers);
-    setOrders(getOrders());
+    const ords = await getOrders();
+    setOrders(ords);
   };
 
   React.useEffect(() => {
     loadData();
   }, []);
 
-  const handleBlockUnblock = (userId, currentBlocked) => {
-    updateUserBlockStatus(userId, !currentBlocked);
-    loadData();
+  const handleBlockUnblock = async (userId, currentBlocked) => {
+    await updateUserBlockStatus(userId, !currentBlocked);
+    await loadData();
   };
 
   const handleViewOrders = (customer) => {
@@ -42,11 +43,11 @@ export default function AdminCustomers() {
     setActiveModal('editOrderStatus');
   };
 
-  const handleSaveOrderStatus = () => {
+  const handleSaveOrderStatus = async () => {
     if (selectedOrder) {
-      updateOrder(selectedOrder.id, { status: statusVal });
+      await updateOrder(selectedOrder.id, { status: statusVal });
       setActiveModal('viewOrders');
-      loadData();
+      await loadData();
     }
   };
 

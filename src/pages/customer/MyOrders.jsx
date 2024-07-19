@@ -14,10 +14,13 @@ export default function MyOrders() {
   React.useEffect(() => {
     if (currentCustomer) {
       // Load user-specific orders
-      const allOrders = getOrders();
-      const userOrders = allOrders.filter(o => o.customerId === currentCustomer.id);
-      setOrders(userOrders);
-      setProducts(getProducts());
+      async function loadData() {
+        const userOrders = await getOrders();
+        setOrders(userOrders);
+        const prods = await getProducts();
+        setProducts(prods);
+      }
+      loadData();
     }
   }, [currentCustomer?.id]);
 

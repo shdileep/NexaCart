@@ -9,22 +9,23 @@ export default function AdminProducts() {
   const [categoryFilter, setCategoryFilter] = React.useState('');
   const [statusFilter, setStatusFilter] = React.useState('');
 
-  const loadData = () => {
-    setProducts(getProducts());
+  const loadData = async () => {
+    const prods = await getProducts();
+    setProducts(prods);
   };
 
   React.useEffect(() => {
     loadData();
   }, []);
 
-  const handleApprove = (productId) => {
-    approveProduct(productId);
-    loadData();
+  const handleApprove = async (productId) => {
+    await approveProduct(productId);
+    await loadData();
   };
 
-  const handleDelete = (productId) => {
-    deleteProduct(productId);
-    loadData();
+  const handleDelete = async (productId) => {
+    await deleteProduct(productId);
+    await loadData();
   };
 
   // KPIs
@@ -204,7 +205,7 @@ export default function AdminProducts() {
                             <span className={`text-sm font-medium ${textClass}`}>{stockStatus}</span>
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-sm font-semibold text-primary">₹{prod.price.toLocaleString()}</td>
+                        <td className="px-6 py-4 text-sm font-semibold text-primary">₹{parseFloat(prod.price).toLocaleString()}</td>
                         <td className="px-6 py-4 text-sm font-medium text-on-surface-variant">{prod.sales} units</td>
                         <td className="px-6 py-4 text-right">
                           <div className="flex justify-end gap-2">

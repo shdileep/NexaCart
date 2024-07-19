@@ -1,9 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getCart } from '../utils/auth';
 
-export default function CustomerHeader({ cartCount = 2 }) {
+export default function CustomerHeader() {
   const navigate = useNavigate();
   const [searchVal, setSearchVal] = React.useState('');
+  const [cartCount, setCartCount] = React.useState(0);
+
+  React.useEffect(() => {
+    async function loadCart() {
+      const items = await getCart();
+      const count = items.reduce((acc, item) => acc + item.qty, 0);
+      setCartCount(count);
+    }
+    loadCart();
+  }, []);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();

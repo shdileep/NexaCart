@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import CustomerHeader from '../../components/CustomerHeader';
 import CustomerFooter from '../../components/CustomerFooter';
-import { getProducts, getCurrentUser, logout } from '../../utils/auth';
+import { getProducts, getCurrentUser, logout, addToCart } from '../../utils/auth';
 
 export default function CustomerDashboard() {
   const navigate = useNavigate();
@@ -20,9 +20,12 @@ export default function CustomerDashboard() {
     }
 
     // 2. Fetch approved products
-    const allProds = getProducts();
-    const approvedProds = allProds.filter(p => p.status === 'approved');
-    setProducts(approvedProds);
+    async function loadProducts() {
+      const allProds = await getProducts();
+      const approvedProds = allProds.filter(p => p.status === 'approved');
+      setProducts(approvedProds);
+    }
+    loadProducts();
   }, [currentUser?.id]);
 
   React.useEffect(() => {
@@ -134,33 +137,45 @@ export default function CustomerDashboard() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-gutter pb-8">
             {products.map((prod) => (
               <div key={prod.id} className="group fade-up border border-outline-variant bg-white p-4 rounded-xl flex flex-col justify-between">
-                <div className="relative overflow-hidden bg-white rounded-lg mb-4 cursor-pointer" onClick={() => navigate('/customer/cart')}>
+                <div className="relative overflow-hidden bg-white rounded-lg mb-4 cursor-pointer" onClick={() => navigate('/customer/product/' + prod.id)}>
                   <div className="h-64 overflow-hidden rounded-lg">
                     <img 
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
-                      src={getProductImage(prod.title, prod.category)}
+                      src={prod.image || (prod.images && prod.images[0]) || getProductImage(prod.title, prod.category)}
                       alt={prod.title}
                     />
                   </div>
                   <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pointer-events-none group-hover:pointer-events-auto">
                     <button 
-                      onClick={(e) => {
+                      onClick={async (e) => {
                         e.stopPropagation();
+                        await addToCart(prod.id, 1);
                         navigate('/customer/cart');
                       }}
                       className="w-full py-3 bg-primary text-white font-semibold rounded-lg shadow-lg hover:shadow-primary/20 transition-all cursor-pointer"
                     >
-                      Buy Now / Cart
+                      Buy Now / Add to Cart
                     </button>
                   </div>
                 </div>
                 <div className="space-y-1">
                   <div className="flex justify-between items-start">
-                    <h3 onClick={() => navigate('/customer/cart')} className="font-body-md text-primary font-bold truncate cursor-pointer hover:underline">{prod.title}</h3>
+                    <h3 onClick={() => navigate('/customer/product/' + prod.id)} className="font-body-md text-primary font-bold truncate cursor-pointer hover:underline">{prod.title}</h3>
                   </div>
-                  <p className="text-label-sm text-on-surface-variant uppercase font-label-sm">{prod.category}</p>
-                  <div className="flex items-center gap-3 mt-2">
-                    <span className="text-headline-md text-primary font-bold">₹{prod.price.toLocaleString()}</span>
+                  <div className="flex justify-between items-center text-xs text-on-surface-variant font-medium">
+                    <span>{prod.storeName || prod.store_name || 'Lumina Tech Systems'}</span>
+                    {prod.rating && (
+                      <span className="flex items-center gap-0.5 text-primary bg-surface-container px-1 py-0.5 rounded text-[10px]">
+                        {prod.rating} ★
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[10px] text-on-surface-variant uppercase font-label-sm tracking-wider">{prod.category}</p>
+                  <div className="flex items-baseline justify-between mt-2">
+                    <span className="text-headline-md text-primary font-bold">₹{parseFloat(prod.price).toLocaleString()}</span>
+                    {prod.discount > 0 && (
+                      <span className="text-[10px] text-green-600 font-bold bg-green-50 px-1.5 py-0.5 rounded">{prod.discount}% OFF</span>
+                    )}
                   </div>
                 </div>
               </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import SellerSidebar from '../../components/SellerSidebar';
 import SellerHeader from '../../components/SellerHeader';
-import { getProducts, getOrders, getCurrentUser, getSellerRating } from '../../utils/auth';
+import { getProducts, getOrders, getCurrentUser, getReviews } from '../../utils/auth';
 
 export default function SellerDashboard() {
   const navigate = useNavigate();
@@ -19,14 +19,14 @@ export default function SellerDashboard() {
 
   const currentSeller = getCurrentUser();
 
-  const loadData = () => {
+  const loadData = async () => {
     if (!currentSeller) return;
 
-    const allProds = getProducts();
+    const allProds = await getProducts();
     // Filter active (non-deleted) products for this seller
-    const sellerProds = allProds.filter(p => p.sellerId === currentSeller.id && p.status !== 'deleted');
+    const sellerProds = allProds.filter(p => p.seller_id === currentSeller.id && p.status !== 'deleted');
     
-    const allOrders = getOrders();
+    const allOrders = await getOrders();
     // Filter orders belonging to this seller's products
     const filteredOrders = allOrders.filter(o => sellerProds.some(sp => sp.id === o.productId));
     setSellerOrders(filteredOrders);
@@ -34,14 +34,13 @@ export default function SellerDashboard() {
     const totalRev = filteredOrders.reduce((sum, o) => sum + o.amount, 0);
 
     // Dynamic Growth Calculation
-    // Comparing past 30 days to preceding 30 days
     const now = new Date();
     const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
     const sixtyDaysAgo = new Date(now.getTime() - 60 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
 
     // Products
-    const prodsCurrent = sellerProds.filter(p => p.uploadDate >= thirtyDaysAgo).length;
-    const prodsPrevious = sellerProds.filter(p => p.uploadDate >= sixtyDaysAgo && p.uploadDate < thirtyDaysAgo).length;
+    const prodsCurrent = sellerProds.filter(p => p.created_at >= thirtyDaysAgo).length;
+    const prodsPrevious = sellerProds.filter(p => p.created_at >= sixtyDaysAgo && p.created_at < thirtyDaysAgo).length;
 
     // Orders
     const ordersCurrent = filteredOrders.filter(o => o.date >= thirtyDaysAgo).length;
@@ -53,12 +52,18 @@ export default function SellerDashboard() {
 
     const calculateGrowth = (current, previous) => {
       if (current === 0 && previous === 0) return null;
-      if (previous === 0) return 100; // 100% growth when going from zero to some activity
+      if (previous === 0) return 100;
       const val = ((current - previous) / previous) * 100;
       return parseFloat(val.toFixed(1));
     };
 
-    const ratingVal = getSellerRating(currentSeller.id);
+    const allReviews = await getReviews();
+    const sellerReviews = allReviews.filter(r => sellerProds.some(sp => sp.id === r.productId));
+    let ratingVal = null;
+    if (sellerReviews.length > 0) {
+      const totalRating = sellerReviews.reduce((sum, r) => sum + r.rating, 0);
+      ratingVal = (totalRating / sellerReviews.length).toFixed(1);
+    }
 
     setStats({
       products: sellerProds.length,
