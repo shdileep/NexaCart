@@ -1,0 +1,393 @@
+<!DOCTYPE html><html lang="en" class="light" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Hanken+Grotesk:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#b9c7e0",
+                    "surface": "#f7f9fb",
+                    "tertiary": "#000000",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#7c839b",
+                    "on-primary-fixed": "#131b2e",
+                    "tertiary-fixed": "#d3e4fe",
+                    "primary": "#000000",
+                    "primary-container": "#131b2e",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#3a485c",
+                    "tertiary-container": "#0b1c30",
+                    "surface-bright": "#f7f9fb",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#eceef0",
+                    "on-surface": "#191c1e",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "inverse-primary": "#bec6e0",
+                    "secondary-container": "#d5e3fd",
+                    "surface-dim": "#d8dadc",
+                    "primary-fixed-dim": "#bec6e0",
+                    "surface-variant": "#e0e3e5",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#565e74",
+                    "inverse-surface": "#2d3133",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-fixed": "#d5e3fd",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#191c1e",
+                    "outline": "#76777d",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "on-surface-variant": "#45464d",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "secondary": "#515f74",
+                    "outline-variant": "#c6c6cd",
+                    "on-secondary-container": "#57657b",
+                    "primary-fixed": "#dae2fd",
+                    "on-secondary-fixed": "#0d1c2f",
+                    "background": "#f7f9fb",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "on-tertiary-container": "#75859d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "unit": "4px",
+                    "margin-desktop": "64px",
+                    "container-max": "1440px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "display-lg-mobile": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "label-sm": ["JetBrains Mono"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    }catch(_e){}</script><meta charset="utf-8"></head><body class="bg-surface font-body-md text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full h-[80px] border-b border-outline-variant z-50 bg-white"><div class="flex justify-between items-center h-full px-margin-desktop max-w-container-max mx-auto gap-gutter"><div class="flex items-center gap-8"><a href="#" class="flex items-center gap-3 group"><div class="w-10 h-10 flex items-center justify-center group-hover:scale-110 transition-all duration-300"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcz5Ask9bLyohEW6UHpMdob4taTSvvB2pSpMkTuOKut_6XBGAmSxS9f8qWrxe1ifg9Lxng_S3ZC5nKyXzHrpzTWdpW-0sv0swB1K708sA_hMLOdtILlIh4Ig2X9fFYSYY9G1i3KdYzY_k9_F5mBKVvQ3AyQSMUfxef1R_Vwh4lKTR_ALdte3ZqlGVcS8TnZccqalu9UZBFNzj9FyzDFdyxsYA9k6r0gIq7SV7OUslWvEMzPU7YaFvgvWXIaZT1UumxvQ9GfFb3fPk" alt="NexaCart Logo" class="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"></div><span class="text-headline-md font-headline-md font-bold text-primary">NexaCart</span></a></div><div class="flex-1 max-w-xl px-8"><div class="relative group"><input type="text" placeholder="Search premium items..." class="w-full bg-surface-container-low border-none rounded-lg px-4 py-2 focus:ring-1 focus:ring-primary transition-all"><span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant">search</span></div></div><nav class="flex items-center gap-6"><a class="font-body-md text-on-secondary-container hover:text-primary transition-colors duration-200" href="#">Home</a><a class="font-body-md text-on-secondary-container hover:text-primary transition-colors duration-200" href="#">Categories</a><button class="active:scale-95 transition-transform"><span class="material-symbols-outlined">favorite</span></button><button class="active:scale-95 transition-transform relative"><span class="material-symbols-outlined">shopping_cart</span><span class="absolute -top-2 -right-2 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span></button><a class="font-body-md text-on-secondary-container hover:text-primary transition-colors duration-200" href="#">Orders</a><button class="active:scale-95 transition-transform"><span class="material-symbols-outlined">notifications</span></button><button class="active:scale-95 transition-transform"><span class="material-symbols-outlined">account_circle</span></button></nav></div></nav>
+<!-- Main Content -->
+<main class="mt-[80px]">
+<!-- Category Bar -->
+<div class="bg-surface-container-lowest border-b border-outline-variant">
+<div class="max-w-container-max mx-auto px-margin-desktop overflow-x-auto no-scrollbar py-4">
+<div class="flex items-center gap-12 whitespace-nowrap">
+<a href="#" class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary relative group">
+                        Electronics
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-secondary-fixed scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+</a>
+<a href="#" class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary relative group">
+                        Fashion
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-secondary-fixed scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+</a>
+<a href="#" class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary relative group">
+                        Mobiles
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-secondary-fixed scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+</a>
+<a href="#" class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary relative group">
+                        Home &amp; Living
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-secondary-fixed scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+</a>
+<a href="#" class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary relative group">
+                        Beauty
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-secondary-fixed scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+</a>
+<a href="#" class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary relative group">
+                        Accessories
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-secondary-fixed scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+</a>
+<a href="#" class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary relative group">
+                        Gadgets
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-secondary-fixed scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+</a>
+</div>
+</div>
+</div>
+<!-- Hero Slider (Conceptual representation of auto-sliding banner) -->
+<section class="relative h-[600px] w-full overflow-hidden">
+<div class="absolute inset-0 transition-opacity duration-1000 ease-in-out" id="hero-image">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLuHJG9R-65sDgoz5wN_O5DwH-cACCSGwwmf06Vrpl0zcv-bJCP2P-7B4-6XHrLm-xvPRHHwpL_Am9kkT9No_vlmjPPys-HZfxVKh9cf0F7glQTkZUB-XdeiEnSfBjwlyNrjYtNkkDfLt5WLJyv811M0haw7vlDW7vCtzF_FcbXUxmlWG_n4uczgCNCpiccoaG7SzBcO1juIaKJY6Zwdb2qrKJVFPm5IhvDuYFn7cDiANuSKh9lFvUSRGQs')">
+<div class="absolute inset-0 hero-gradient"></div>
+<div class="relative h-full flex flex-col justify-center px-margin-desktop max-w-container-max mx-auto text-on-primary">
+<span class="font-label-sm text-label-sm uppercase tracking-widest mb-4 animate-pulse">Exclusive Seasonal Offer</span>
+<h1 class="font-display-lg text-display-lg max-w-2xl mb-6">Summer Sale<br><span class="text-secondary-fixed">80% OFF</span></h1>
+<p class="font-body-lg text-body-lg max-w-xl mb-10 opacity-90">Experience institutional-grade reliability with our curated collection of summer essentials. Limited time only.</p>
+<div class="flex gap-4">
+<button class="rounded-full px-10 py-4 bg-gradient-to-b from-[#1e293b] to-[#0f172a] border-t border-slate-700 text-white font-semibold hover:scale-105 transition-all duration-300 shadow-xl">Shop Collection</button>
+<button class="rounded-full px-10 py-4 glass-effect text-primary font-semibold hover:bg-white/90 transition-all duration-300">Learn More</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recommended For You (AI-Based Carousel) -->
+<section class="py-16 max-w-container-max mx-auto px-margin-desktop">
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="font-headline-md text-headline-md mb-2">Recommended For You</h2>
+<p class="text-on-surface-variant">Based on your recent architectural interests and browsing history.</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="flex gap-gutter overflow-x-auto no-scrollbar pb-8">
+<!-- Product Card 1 -->
+<div class="min-w-[280px] group fade-up">
+<div class="relative overflow-hidden bg-white border border-outline-variant rounded-lg mb-4 cursor-pointer">
+<div class="absolute top-4 left-4 z-10">
+<span class="bg-error text-white font-label-sm text-[10px] px-2 py-1 rounded">77% OFF</span>
+</div>
+<div class="h-80 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A professional studio product shot of a high-end minimalist smartwatch on a sleek black pedestal. The lighting is crisp and dramatic, highlighting the brushed aluminum finish and deep sapphire crystal screen. The background is a soft, neutral grey to maintain a high-fashion commerce aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7gRr7OdzPV3z83yJsrXRtDKrpz6JeQBD8qwHxVpCXuZNecEQkvV-_l5ka4yc3sXeKz14n6ca07ikvv1T3N9Sl9hezV52uUEv-2PNxFK8adNCSmYHS0FOm-JyPq8aR1REU5ol0yb88BbFzP53WlfkG-3mdQ28XSOxYc8AriaqfnxEX1dKOcY5hA-jIR2BUf0EgVkhs2xa-93wrNz2BjwWTyAhi0hd7D8WSL0tAZXdeCGKTjWoV9XMmabXCWaPzowIY97AfxMmwXXc">
+</div>
+<div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<div class="flex flex-col gap-2 p-4 w-full mt-auto translate-y-10 group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full py-3 bg-primary text-white font-semibold rounded-lg shadow-lg hover:shadow-primary/20 active:scale-95 transition-all">Add to Cart</button>
+<button class="w-full py-3 glass-effect text-primary font-semibold rounded-lg hover:bg-white transition-all">Quick View</button>
+</div>
+</div>
+</div>
+<div class="space-y-1 px-1">
+<div class="flex justify-between items-start">
+<h3 class="font-body-md text-primary font-medium truncate">Nexa Watch Pro Series 8</h3>
+<span class="flex items-center gap-1 text-label-sm"><span class="material-symbols-outlined text-sm text-yellow-500" style="font-variation-settings: 'FILL' 1;">star</span> 4.9</span>
+</div>
+<p class="text-label-sm text-on-surface-variant uppercase font-label-sm">Tech &amp; Gadgets</p>
+<div class="flex items-center gap-3 mt-2">
+<span class="text-headline-md text-primary">$129.00</span>
+<span class="text-body-md text-on-surface-variant line-through">$549.00</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="min-w-[280px] group fade-up">
+<div class="relative overflow-hidden bg-white border border-outline-variant rounded-lg mb-4 cursor-pointer">
+<div class="absolute top-4 left-4 z-10">
+<span class="bg-error text-white font-label-sm text-[10px] px-2 py-1 rounded">77% OFF</span>
+</div>
+<div class="h-80 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A premium pair of over-ear noise-canceling headphones in matte midnight blue, presented in a clean architectural composition. The lighting is soft and diffused, creating subtle highlights on the leather ear cushions and high-grade plastic frame. Modern minimalism style with deep corporate blues and neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJLEdugLzTFKGPe8etQ4RUTvE7ZXX32p1u0KZX0ADq3tSz-ClYWrF8oz5u-K-If-vzExKQx2bqqkl7QiYbnXya1FjHUk3-UpNa000_3yFd-1eJ4DTsRfEIwjgnR0vplW-e6_ahBqAWiBv4X_4qi_dPj5aqpVTDqZLxBGTjQGJ3d7ku21aScShZxtUdonoWz9XeYcNOoie9A1LGPnO__92RK7vfDCm_cQLr5b7mKUg2wl3duAOcNhCaQRk_BoHQTNPnebzT4_mRnaU">
+</div>
+<div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<div class="flex flex-col gap-2 p-4 w-full mt-auto translate-y-10 group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full py-3 bg-primary text-white font-semibold rounded-lg shadow-lg hover:shadow-primary/20 active:scale-95 transition-all">Add to Cart</button>
+<button class="w-full py-3 glass-effect text-primary font-semibold rounded-lg hover:bg-white transition-all">Quick View</button>
+</div>
+</div>
+</div>
+<div class="space-y-1 px-1">
+<div class="flex justify-between items-start">
+<h3 class="font-body-md text-primary font-medium truncate">Aura HD Wireless Audio</h3>
+<span class="flex items-center gap-1 text-label-sm"><span class="material-symbols-outlined text-sm text-yellow-500" style="font-variation-settings: 'FILL' 1;">star</span> 4.8</span>
+</div>
+<p class="text-label-sm text-on-surface-variant uppercase font-label-sm">Audio &amp; Sound</p>
+<div class="flex items-center gap-3 mt-2">
+<span class="text-headline-md text-primary">$89.00</span>
+<span class="text-body-md text-on-surface-variant line-through">$380.00</span>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="min-w-[280px] group fade-up">
+<div class="relative overflow-hidden bg-white border border-outline-variant rounded-lg mb-4 cursor-pointer">
+<div class="absolute top-4 left-4 z-10">
+<span class="bg-error text-white font-label-sm text-[10px] px-2 py-1 rounded">77% OFF</span>
+</div>
+<div class="h-80 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A sleek, professional leather messenger bag in deep espresso brown, positioned against a light stone wall. The bag's texture is rich and detailed, showing high-quality stitching and metal hardware. The lighting is cinematic, casting soft shadows that emphasize its shape. Sophisticated enterprise fashion aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYRsBD9iXUmGMkxuRKbaLdaxUadkgNLc3dTkSND2kHGB-4nOb8FG4kvrqkiadhbl6-JRmyWocNEGhdqCum6dTNewnlGi0l1v3pQj9Peu3J9mAQ7Zx1CMgKfp1sdzHHAwOs38d6vyJG0ZBaQJnJUPNBVPuFnwIiCOi5t4l41xf_Ip9WG8vVnAFo0Gvx3QhoasFu5LI25H1xeFg8CQyILnGq2ufvzvl8CGvWSHLf6LTPKVo0BkFgTzq4uHBnlRMQy-hodp8gOhcxyLc">
+</div>
+<div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<div class="flex flex-col gap-2 p-4 w-full mt-auto translate-y-10 group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full py-3 bg-primary text-white font-semibold rounded-lg shadow-lg hover:shadow-primary/20 active:scale-95 transition-all">Add to Cart</button>
+<button class="w-full py-3 glass-effect text-primary font-semibold rounded-lg hover:bg-white transition-all">Quick View</button>
+</div>
+</div>
+</div>
+<div class="space-y-1 px-1">
+<div class="flex justify-between items-start">
+<h3 class="font-body-md text-primary font-medium truncate">Executive Leather Satchel</h3>
+<span class="flex items-center gap-1 text-label-sm"><span class="material-symbols-outlined text-sm text-yellow-500" style="font-variation-settings: 'FILL' 1;">star</span> 4.7</span>
+</div>
+<p class="text-label-sm text-on-surface-variant uppercase font-label-sm">Fashion Accessories</p>
+<div class="flex items-center gap-3 mt-2">
+<span class="text-headline-md text-primary">$159.00</span>
+<span class="text-body-md text-on-surface-variant line-through">$690.00</span>
+</div>
+</div>
+</div>
+<!-- Product-->
+<div class="min-w-[280px] group fade-up">
+<div class="relative overflow-hidden bg-white border border-outline-variant rounded-lg mb-4 cursor-pointer">
+<div class="absolute top-4 left-4 z-10">
+<span class="bg-error text-white font-label-sm text-[10px] px-2 py-1 rounded">77% OFF</span>
+</div>
+<div class="h-80 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A modern minimalist espresso machine in brushed stainless steel, sitting on a white marble countertop. Vapor rises elegantly from a double shot of espresso in a small ceramic cup. Soft natural light spills across the scene, creating a clean, luxury kitchen vibe. Neutral colors and high-end materials." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpNOT4lP02AZ2lp_rF1O640VgwfEWYjbmsofMCohPhItcWgjzP0AdeOqobqyDEYz5dh6yLP688dFS2YsyX6uWZZB7AWuXFOMO_rJdQpCa0BX663pzBGyAx6P8Gapi7mnBDZ_QQEHUS_u8WO89ceoHiX7RPhK3QiR4GwJ-STlQx5emniAexMIqT-o16c-9dOvjk3E1pgxmK9rnU1disF2-jv5NafoqB7-g4YS2eI7HNycMPPeRwAqfls_DUA4fXc7fwgma6GaDI3A4">
+</div>
+<div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<div class="flex flex-col gap-2 p-4 w-full mt-auto translate-y-10 group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full py-3 bg-primary text-white font-semibold rounded-lg shadow-lg hover:shadow-primary/20 active:scale-95 transition-all">Add to Cart</button>
+<button class="w-full py-3 glass-effect text-primary font-semibold rounded-lg hover:bg-white transition-all">Quick View</button>
+</div>
+</div>
+</div>
+<div class="space-y-1 px-1">
+<div class="flex justify-between items-start">
+<h3 class="font-body-md text-primary font-medium truncate">NexaBrew Elite Coffee Station</h3>
+<span class="flex items-center gap-1 text-label-sm"><span class="material-symbols-outlined text-sm text-yellow-500" style="font-variation-settings: 'FILL' 1;">star</span> 5.0</span>
+</div>
+<p class="text-label-sm text-on-surface-variant uppercase font-label-sm">Home Appliances</p>
+<div class="flex items-center gap-3 mt-2">
+<span class="text-headline-md text-primary">$499.00</span>
+<span class="text-body-md text-on-surface-variant line-through">$2,100.00</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Fashion Bento -->
+<section class="bg-surface-container py-20">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter h-[600px]">
+<div class="relative rounded-xl overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLuyqla4zIj7jZqWCV7ZVOLW81iteKJrN_ruAJCQtudaoyQYE2w2JuBUPwY2eizCWM31ztx5_NHKIKx55LrMnMgqFLVXkZTiy37Bqdd-4REsuxMsYuWFDVEygPaFtnSDO-9iZuuOdoKffPA_VXgInc5GBj8_PHKDgY2qXV04zeEg1Cc7fpYwwnOfww2g8pJE9E8NxlbTJ1iE5-jREp6bNDiKYLN_RGXAsLw3II5lFAtZCjZoqn8C8JykHIc')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-10 left-10 text-white">
+<h2 class="font-display-lg text-headline-md mb-4">Curated Fashion</h2>
+<p class="font-body-lg mb-6 max-w-md">Discover this season's most sought-after silhouettes and archival pieces.</p>
+<button class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition-all">Explore Curated</button>
+</div>
+</div>
+<div class="grid grid-rows-2 gap-gutter">
+<div class="relative rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A high-end editorial fashion shot of a woman in a structural white blazer walking through a modern glass-and-steel building. The lighting is sharp and high-contrast, emphasizing architectural lines. The aesthetic is clean, minimal, and highly professional, reflecting a luxury lifestyle brand for high-achieving individuals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk66ciSlD-4nOwh7yZuxrSO-wsECnTQbGll26QXmhCLqTXyCY3caoMTk_DXtaH-fZyERbtUvEtDaFxHqZRbMKddUYCv3BX9B67YEWgdMaKQSF3_nuSr9zumJhwpjUWp8VcmeoS7TJv3-fkMZSZxB6FejzEU1RBgTw9rsTGxSwQ2BnDPzV106Lj93nmU8EPoGNJzdEoMt0OlxJRxAU8faXnyABoI8aHZfYfbMxHdcFjFIF4xwvkEz79TvvEu_wh1Q-y14O-tNKkelI">
+<div class="absolute inset-0 bg-black/20"></div>
+<div class="absolute inset-0 flex flex-col justify-center p-10">
+<h3 class="text-white font-headline-md text-headline-md mb-2">Modern Tailoring</h3>
+<a class="text-white font-label-sm underline underline-offset-4" href="#">Shop Blazers</a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant flex flex-col justify-center items-center text-center group">
+<span class="material-symbols-outlined text-4xl mb-4 text-primary group-hover:scale-110 transition-transform">workspace_premium</span>
+<h4 class="font-headline-md mb-1">Authentic</h4>
+<p class="text-on-surface-variant font-body-md">Verified luxury goods only.</p>
+</div>
+<div class="bg-primary text-on-primary p-8 rounded-xl flex flex-col justify-center items-center text-center group">
+<span class="material-symbols-outlined text-4xl mb-4 text-white group-hover:rotate-12 transition-transform">bolt</span>
+<h4 class="font-headline-md mb-1">Priority</h4>
+<p class="opacity-80 font-body-md">Same-day executive delivery.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recently Viewed -->
+<section class="py-20 max-w-container-max mx-auto px-margin-desktop">
+<h2 class="font-headline-md text-headline-md mb-10">Recently Viewed</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Mini Product 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-square bg-surface-container-low rounded-lg overflow-hidden border border-outline-variant mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up of a minimalist silver fountain pen with an intricate nib, resting on a leather-bound notebook. Soft shadows and focus on the metallic sheen of the pen. Professional and sophisticated vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWuZ-_p8kBz7f_YcEwN0-X_8XCmDMr70A-V844vlKtgsMqEB0IrWuTJ8d2pE_0OdLVlHf5lfLwVz9WMYfTFQLswj6KffXCgN3sG0qIyySdzeQBdG4AnEmntykARLh1qtA63lRgbZ1pZ7EDYNw8EDXxjHWAJgEykmuprNQDHTsFnUWUt5IlASykRBO1twr24vb3lgeJNPnFIoYPSSd8WWf3NFvh9DSF3KmPOwmfcgm2AsmWtnMXP7UdLiy1j2Wnl4Ty8THV69-k89g">
+</div>
+<p class="font-label-sm text-on-surface-variant">Signature Series</p>
+<p class="font-body-md font-medium">Precision Ink Pen</p>
+<p class="font-headline-md mt-1">$45.00</p>
+</div>
+<!-- Mini Product 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-square bg-surface-container-low rounded-lg overflow-hidden border border-outline-variant mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A pair of clean white minimalist sneakers with subtle grey accents, shot in high-key lighting. The style is urban-professional and sleek. High contrast and bright background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgM_PgH0wbK780A2I5nVVLwGWBzGEbd6Nr41sOZnYtu4Cacg-ip7AndgmAJFGvu5uFyibq_wbs6aVTMzBH0AbHagVE7jSETjSO38x8_UeK6AAIyvvuBf6K7RAOVtyBSRhwjKG_2J-LCrs-gcgxu1m7pySe6SLMfy2m5PYzisgmVmL2Vf0ibNHoOUS4AAGrHJQAYSLjuCb-jU-auzDmQK3BHNHUYtOZMxn_yytchhseu4v49RdY9nDxPaWHUp7g5QrlNm2V8xPTBh0">
+</div>
+<p class="font-label-sm text-on-surface-variant">Active Luxury</p>
+<p class="font-body-md font-medium">CloudStep Zero</p>
+<p class="font-headline-md mt-1">$190.00</p>
+</div>
+<!-- Mini Product 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-square bg-surface-container-low rounded-lg overflow-hidden border border-outline-variant mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A stack of high-quality linen textures in muted earth tones: sage, cream, and charcoal. The lighting is soft and natural, emphasizing the organic feel of the fabric. High-end home goods aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-TMt7qnQsbl-gfDpt5owTJziLmRgua6Dk9NwHInamnbnexR3ubtcpgZmfJAIyUheCe4fKNMAUl1C38PwVGtCkoicNlgZQogJ1wI65h42AQfxc4LVa-ypYFj358L4F-dh4fRGxF87StROXpjCkJDHgPbP8biVcVr-xgCPWAVc2spg_xZuLcIJWcYnXwryXEGJSPDT9qeC0dWeQvuqqLS2d8lKg6wOcQzo-wqXB-qUVlwKCYJQr9xuvTTPlVVRQkOFptklcMqOEAmY">
+</div>
+<p class="font-label-sm text-on-surface-variant">Home Textile</p>
+<p class="font-body-md font-medium">Raw Linen Duvet Set</p>
+<p class="font-headline-md mt-1">$280.00</p>
+</div>
+<!-- Mini Product 4 -->
+<div class="group cursor-pointer">
+<div class="aspect-square bg-surface-container-low rounded-lg overflow-hidden border border-outline-variant mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A sleek black matte electric toothbrush standing on a circular charging base. The design is modern and sculptural. Soft ambient lighting creates a high-tech health and beauty vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbEF5ef5uM9ZHXtE4-rxB9w6ufX1_Lo_Yd_ZpYJRW1Zzixu9F-SSAHjsigu2PVkQWIlXGzT4PS2rAZiVN3sBWu9HcLCKXi0-DZRKaIuEj-7usO_T0wQdxS-54YZ-tvMc_he2-lHmVmBMrKVXRD32QOIYHB6t2GFozxgsMqB_GrFo21F0RhIbrWsoGnBfkg9xFH5coDvAiXu1OOOW214q7Uc5I5rRRGoN1p9C_kfahBkiBtocXuZrJ_vF8S5q6ezy0--x-2D5Ve_r8">
+</div>
+<p class="font-label-sm text-on-surface-variant">Personal Care</p>
+<p class="font-body-md font-medium">Sonic Elite Brush</p>
+<p class="font-headline-md mt-1">$120.00</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container border-t border-outline-variant w-full py-12"><div class="max-w-container-max mx-auto px-margin-desktop">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16"><div class="flex flex-col gap-6"><div class="flex items-center gap-3"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcz5Ask9bLyohEW6UHpMdob4taTSvvB2pSpMkTuOKut_6XBGAmSxS9f8qWrxe1ifg9Lxng_S3ZC5nKyXzHrpzTWdpW-0sv0swB1K708sA_hMLOdtILlIh4Ig2X9fFYSYY9G1i3KdYzY_k9_F5mBKVvQ3AyQSMUfxef1R_Vwh4lKTR_ALdte3ZqlGVcS8TnZccqalu9UZBFNzj9FyzDFdyxsYA9k6r0gIq7SV7OUslWvEMzPU7YaFvgvWXIaZT1UumxvQ9GfFb3fPk" alt="NexaCart Logo" class="h-8 w-auto grayscale"><span class="font-headline-md text-headline-md font-bold text-primary">NexaCart</span></div><p class="text-on-surface-variant font-body-md max-w-xs">Redefining high-volume enterprise commerce with uncompromising precision and elite service.</p></div><div class=""><h5 class="font-label-sm text-primary mb-6 uppercase tracking-wider">Company</h5><ul class="space-y-4"><li class=""><a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a></li><li class=""><a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Careers</a></li><li class=""><a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Press</a></li></ul></div><div class=""><h5 class="font-label-sm text-primary mb-6 uppercase tracking-wider">Help</h5><ul class="space-y-4"><li class=""><a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping Info</a></li><li class=""><a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Returns</a></li><li class=""><a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a></li></ul></div><div class=""><h5 class="font-label-sm text-primary mb-6 uppercase tracking-wider">Legal</h5><ul class="space-y-4"><li class=""><a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a></li><li class=""><a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a></li><li class=""><a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Cookie Policy</a></li></ul></div><div class=""><h5 class="font-label-sm text-primary mb-6 uppercase tracking-wider">Stay Updated</h5><div class="flex gap-2 mb-4"><input class="bg-surface-container-high border border-outline-variant px-4 py-2 rounded-lg w-full text-body-sm focus:ring-1 focus:ring-primary outline-none" placeholder="Professional Email" type="email"><button class="bg-primary text-white px-4 py-2 rounded-lg text-label-sm font-semibold hover:opacity-90 active:scale-95 transition-all">Subscribe</button></div><p class="text-[10px] text-on-surface-variant">Get exclusive insights and early access to seasonal collections.</p></div></div>
+  <div class="pt-8 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-6">
+    <p class="text-[10px] text-on-surface-variant">© 2024 NexaCart Enterprise. All rights reserved.</p>
+    <div class="flex gap-6">
+      <span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">public</span>
+      <span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">share</span>
+      <span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">language</span>
+    </div>
+  </div>
+</div></footer>
+<!-- Scripts for Interactions -->
+<script>
+        // Intersection Observer for fade-up animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Sticky Nav subtle shadow on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+
+</body></html>

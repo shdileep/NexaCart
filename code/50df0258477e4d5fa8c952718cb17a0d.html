@@ -1,0 +1,479 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>NexaCart | Marketing &amp; Coupons</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#000000",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#7c839b",
+                    "secondary-fixed-dim": "#b9c7e0",
+                    "surface": "#f7f9fb",
+                    "primary": "#000000",
+                    "on-primary-fixed": "#131b2e",
+                    "tertiary-fixed": "#d3e4fe",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "error": "#ba1a1a",
+                    "primary-container": "#131b2e",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#0b1c30",
+                    "surface-bright": "#f7f9fb",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#eceef0",
+                    "on-surface": "#191c1e",
+                    "on-secondary-fixed-variant": "#3a485c",
+                    "surface-variant": "#e0e3e5",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#565e74",
+                    "inverse-surface": "#2d3133",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "inverse-primary": "#bec6e0",
+                    "secondary-container": "#d5e3fd",
+                    "surface-dim": "#d8dadc",
+                    "primary-fixed-dim": "#bec6e0",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-fixed": "#d5e3fd",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "on-surface-variant": "#45464d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#191c1e",
+                    "outline": "#76777d",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "on-tertiary-container": "#75859d",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "secondary": "#515f74",
+                    "outline-variant": "#c6c6cd",
+                    "on-secondary-container": "#57657b",
+                    "primary-fixed": "#dae2fd",
+                    "on-secondary-fixed": "#0d1c2f",
+                    "background": "#f7f9fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "margin-desktop": "64px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-sm": ["JetBrains Mono"],
+                    "display-lg-mobile": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #e2e8f0;
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+        }
+        .sidebar-active {
+            position: relative;
+        }
+        .sidebar-active::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- SideNavBar -->
+<aside class="w-[260px] h-screen fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant flex flex-col py-8 px-4 z-50">
+<div class="mb-10 px-2">
+<div class="w-10 h-10 mb-2 transition-all duration-300 grayscale hover:grayscale-0">
+  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnteyIgGlb9CPQ446M8bdDtPoJ8sclYl_Eo92ctA3FOHlmPzHDREGYene3LQengx4C0-Kgx2l0NY_LOcVPppbh2GnZ6rOqq0PVX5hNO1zcMPT9BguDjZSPs9XNX-g5fSGPOgNWDE-Phy52eCCyiy6hCVXntirmIsEnS07zngy8lQDeUIFN1wpwxi0glG6aOPdi9ph5XcSFMl2jf70CM-PBda4emZI4AFGXjf31NQ12VUURCI0q2IPV9UMAnGlhjfbSpFmj4C8dGM4" alt="NexaCart Logo" class="w-full h-full object-contain">
+</div><h1 class="font-headline-md text-headline-md font-bold text-primary">NexaCart</h1>
+<p class="font-label-sm text-label-sm text-on-secondary-container opacity-60">Enterprise Seller</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+<span class="font-body-md">Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="font-body-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+<span class="font-body-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-semibold sidebar-active bg-surface-container-low" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">local_offer</span>
+<span class="font-body-md">Coupons</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="font-body-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="font-body-md">Finance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto flex items-center gap-3 px-2 pt-6 border-t border-outline-variant">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a corporate executive merchant for a high-end e-commerce platform. The subject is a middle-aged individual with a confident and friendly expression, wearing minimalist professional attire. The lighting is soft and directional, against a clean, light gray architectural background, embodying a sophisticated light-mode aesthetic with high-fidelity detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC6pVb1ha6STPLg0tCiSarmkBfQnlG0-8gEQQaKmbplf58RFAxDgXnVAjW5YGMw8zdDFbrs7cv13BbL0DH933Ct8xhyb326pmVNTfaWkAMqvWXVWu44Gsw7hCWs8s4Z3l6DvisTr4rsNEbGTHqxmgGDyMbppm7iq_nwngo_9Njj3QX0HC-pUNG1tvriFGVYujzMzl8SZls87gzsdOPZOajwmOvATJr03tggl-0E9GiUZ0og_ayCgMUXio6S04td4SQvYITKYNUiG4">
+</div>
+<div class="overflow-hidden">
+<p class="font-body-md font-semibold truncate text-on-surface">Alex Thompson</p>
+<p class="font-label-sm text-[10px] text-on-secondary-container truncate">Merchant Admin</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[260px] min-h-screen relative">
+<!-- TopNavBar -->
+<header class="h-[80px] fixed top-0 right-0 left-[260px] bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-gutter z-40">
+<div class="flex items-center gap-4 w-1/3">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-secondary-container">search</span>
+<input class="w-full bg-surface border border-outline-variant rounded-lg py-2 pl-10 pr-4 text-body-md focus:outline-none focus:border-primary transition-all" placeholder="Search promotions..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</header>
+<div class="pt-[100px] px-gutter pb-12 max-w-container-max mx-auto">
+<!-- Hero / Title Section -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-display-lg text-display-lg text-primary mb-2">Marketing &amp; Coupons</h2>
+<p class="text-on-secondary-container max-w-2xl">Drive conversions and reward loyalty with precise promotional tools. Manage your merchant campaign ecosystem from a single dashboard.</p>
+</div>
+<button class="px-6 py-3 bg-gradient-to-b from-[#1e293b] to-[#0f172a] text-white rounded-full font-semibold hover:opacity-90 transition-all flex items-center gap-2 shadow-lg" onclick="document.getElementById('create_coupon_modal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="">Create New Coupon</span>
+</button>
+</div>
+<!-- Bento Grid Analytics -->
+<div class="grid grid-cols-12 gap-6 mb-12">
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 opacity-5 pointer-events-none">
+
+</div>
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Coupon Usage Rate</h3>
+<p class="font-label-sm text-on-secondary-container uppercase tracking-widest mt-1">Last 30 Days</p>
+</div>
+<div class="text-right">
+<span class="text-display-lg font-bold text-primary">24.8%</span>
+<div class="flex items-center justify-end text-green-600 font-semibold gap-1 text-label-sm">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="">+4.2%</span>
+</div>
+</div>
+</div>
+<!-- Placeholder for Chart -->
+<div class="h-48 w-full bg-surface-container-low rounded flex items-end justify-between px-4 pb-4 gap-2">
+<div class="w-full bg-primary-container h-[20%] opacity-20 rounded-t"></div>
+<div class="w-full bg-primary-container h-[35%] opacity-30 rounded-t"></div>
+<div class="w-full bg-primary-container h-[25%] opacity-20 rounded-t"></div>
+<div class="w-full bg-primary-container h-[55%] opacity-40 rounded-t"></div>
+<div class="w-full bg-primary-container h-[45%] opacity-30 rounded-t"></div>
+<div class="w-full bg-primary-container h-[75%] opacity-60 rounded-t"></div>
+<div class="w-full bg-primary h-[90%] rounded-t shadow-lg shadow-primary/20"></div>
+<div class="w-full bg-primary-container h-[60%] opacity-40 rounded-t"></div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<div class="flex-1 glass-card rounded-xl p-6">
+<div class="flex items-center gap-3 mb-4">
+<div class="p-2 bg-tertiary-container rounded-lg">
+<span class="material-symbols-outlined text-white">payments</span>
+</div>
+<span class="font-label-sm text-on-secondary-container">Revenue via Promotions</span>
+</div>
+<p class="text-display-lg font-bold text-primary">$142,500</p>
+<p class="text-on-secondary-container font-body-md mt-2">Driven by 12 active campaigns</p>
+</div>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<div class="flex items-center gap-3 mb-4">
+<div class="p-2 bg-surface-container rounded-lg text-primary">
+<span class="material-symbols-outlined">group</span>
+</div>
+<span class="font-label-sm text-on-secondary-container">Average Order Value (Coupons)</span>
+</div>
+<p class="text-display-lg font-bold text-primary">$84.20</p>
+<p class="text-on-secondary-container font-body-md mt-2">15% higher than non-coupon orders</p>
+</div>
+</div>
+</div>
+<!-- Coupon Management Section -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="px-6 py-5 border-b border-outline-variant flex justify-between items-center bg-surface-container-low/30">
+<div class="flex gap-4">
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-semibold text-body-md">All Coupons</button>
+<button class="px-4 py-2 text-on-secondary-container hover:bg-surface-container rounded-lg font-medium text-body-md transition-colors">Active</button>
+<button class="px-4 py-2 text-on-secondary-container hover:bg-surface-container rounded-lg font-medium text-body-md transition-colors">Scheduled</button>
+<button class="px-4 py-2 text-on-secondary-container hover:bg-surface-container rounded-lg font-medium text-body-md transition-colors">Expired</button>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-on-secondary-container">Filter by:</span>
+<select class="bg-transparent border-none focus:ring-0 font-semibold text-body-md text-primary">
+<option>Most Recent</option>
+<option>Highest Discount</option>
+<option>Usage Count</option>
+</select>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="font-label-sm text-on-secondary-container border-b border-outline-variant uppercase tracking-wider">
+<th class="px-6 py-4 font-medium">Coupon Details</th>
+<th class="px-6 py-4 font-medium">Discount</th>
+<th class="px-6 py-4 font-medium">Usage</th>
+<th class="px-6 py-4 font-medium">Expiry</th>
+<th class="px-6 py-4 font-medium">Status</th>
+<th class="px-6 py-4 font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Coupon Row 1 -->
+<tr class="hover:bg-surface transition-colors">
+<td class="px-6 py-6">
+<div>
+<p class="font-label-sm text-primary font-bold text-lg mb-1">SUMMER2024</p>
+<p class="text-on-secondary-container text-body-md opacity-70">Sitewide Summer Sale Campaign</p>
+</div>
+</td>
+<td class="px-6 py-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-tertiary-fixed text-on-tertiary-fixed">
+                                        25% OFF
+                                    </span>
+</td>
+<td class="px-6 py-6">
+<div class="flex flex-col gap-1">
+<div class="w-24 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4"></div>
+</div>
+<p class="font-label-sm text-[10px] text-on-secondary-container">750 / 1000 Used</p>
+</div>
+</td>
+<td class="px-6 py-6 font-label-sm text-on-secondary-container">
+                                    Aug 31, 2024
+                                </td>
+<td class="px-6 py-6">
+<span class="flex items-center gap-1.5 text-green-600 font-semibold text-body-md">
+<span class="w-2 h-2 rounded-full bg-green-600"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-6 text-right">
+<button class="text-on-secondary-container hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<!-- Coupon Row 2 -->
+<tr class="hover:bg-surface transition-colors">
+<td class="px-6 py-6">
+<div>
+<p class="font-label-sm text-primary font-bold text-lg mb-1">WELCOME50</p>
+<p class="text-on-secondary-container text-body-md opacity-70">First-time Customer Bonus</p>
+</div>
+</td>
+<td class="px-6 py-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-tertiary-fixed text-on-tertiary-fixed">
+                                        $50.00 OFF
+                                    </span>
+</td>
+<td class="px-6 py-6">
+<div class="flex flex-col gap-1">
+<div class="w-24 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[95%]"></div>
+</div>
+<p class="font-label-sm text-[10px] text-on-secondary-container">4,821 / 5,000 Used</p>
+</div>
+</td>
+<td class="px-6 py-6 font-label-sm text-on-secondary-container">
+                                    No Expiry
+                                </td>
+<td class="px-6 py-6">
+<span class="flex items-center gap-1.5 text-green-600 font-semibold text-body-md">
+<span class="w-2 h-2 rounded-full bg-green-600"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-6 text-right">
+<button class="text-on-secondary-container hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<!-- Coupon Row 3 -->
+<tr class="hover:bg-surface transition-colors bg-surface-container-low/10">
+<td class="px-6 py-6 opacity-60">
+<div>
+<p class="font-label-sm text-primary font-bold text-lg mb-1">WINTER23</p>
+<p class="text-on-secondary-container text-body-md opacity-70 line-through">Winter Seasonal Clearance</p>
+</div>
+</td>
+<td class="px-6 py-6 opacity-60">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-surface-container-highest text-on-surface-variant">
+                                        40% OFF
+                                    </span>
+</td>
+<td class="px-6 py-6 opacity-60">
+<div class="flex flex-col gap-1">
+<div class="w-24 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-on-secondary-container w-full"></div>
+</div>
+<p class="font-label-sm text-[10px] text-on-secondary-container">2,000 / 2,000 Used</p>
+</div>
+</td>
+<td class="px-6 py-6 font-label-sm text-on-secondary-container opacity-60">
+                                    Dec 31, 2023
+                                </td>
+<td class="px-6 py-6">
+<span class="flex items-center gap-1.5 text-on-secondary-container font-semibold text-body-md">
+<span class="w-2 h-2 rounded-full bg-on-secondary-container"></span>
+                                        Expired
+                                    </span>
+</td>
+<td class="px-6 py-6 text-right">
+<button class="text-on-secondary-container hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 bg-surface-container-low/30 border-t border-outline-variant flex items-center justify-between">
+<p class="font-label-sm text-on-secondary-container">Showing 1-10 of 42 promotions</p>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant rounded hover:bg-surface transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="p-2 border border-outline-variant rounded hover:bg-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Create Coupon Modal -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4" id="create_coupon_modal">
+<div class="absolute inset-0 bg-primary/40 backdrop-blur-sm" onclick="this.parentElement.classList.add('hidden')"></div>
+<div class="relative bg-surface-container-lowest w-full max-w-2xl rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+<div class="p-8 border-b border-outline-variant flex justify-between items-center bg-surface">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Create New Coupon</h2>
+<p class="text-on-secondary-container text-body-md">Set up your promotional rules and constraints.</p>
+</div>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors" onclick="document.getElementById('create_coupon_modal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="p-8 grid grid-cols-2 gap-6">
+<div class="col-span-2">
+<label class="block font-label-sm text-on-secondary-container uppercase mb-2">Coupon Code</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg p-3 font-label-sm focus:ring-0 focus:border-primary uppercase" placeholder="e.g. SUMMER_VIBES_20" type="text">
+</div>
+<div class="col-span-1">
+<label class="block font-label-sm text-on-secondary-container uppercase mb-2">Discount Type</label>
+<select class="w-full bg-surface border border-outline-variant rounded-lg p-3 font-body-md focus:ring-0 focus:border-primary">
+<option>Percentage (%)</option>
+<option>Fixed Amount ($)</option>
+<option>Free Shipping</option>
+</select>
+</div>
+<div class="col-span-1">
+<label class="block font-label-sm text-on-secondary-container uppercase mb-2">Value</label>
+<div class="relative">
+<input class="w-full bg-surface border border-outline-variant rounded-lg p-3 font-body-md focus:ring-0 focus:border-primary pr-10" placeholder="20" type="number">
+<span class="absolute right-4 top-1/2 -translate-y-1/2 font-semibold text-primary">%</span>
+</div>
+</div>
+<div class="col-span-1">
+<label class="block font-label-sm text-on-secondary-container uppercase mb-2">Expiry Date</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg p-3 font-body-md focus:ring-0 focus:border-primary" type="date">
+</div>
+<div class="col-span-1">
+<label class="block font-label-sm text-on-secondary-container uppercase mb-2">Usage Limit</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg p-3 font-body-md focus:ring-0 focus:border-primary" placeholder="500" type="number">
+</div>
+<div class="col-span-2 pt-4 flex gap-4">
+<button class="flex-1 px-6 py-3 border border-outline-variant rounded-lg font-semibold hover:bg-surface transition-colors" onclick="document.getElementById('create_coupon_modal').classList.add('hidden')" type="button">Cancel</button>
+<button class="flex-1 px-6 py-3 bg-primary text-on-primary rounded-lg font-semibold hover:opacity-90 transition-all shadow-lg" type="submit">Generate Coupon</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Background Subtle Effect -->
+<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+
+</div>
+<script>
+        // Micro-interaction for table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.transform = 'translateX(4px)';
+                row.style.transition = 'transform 0.2s ease-out';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Close modal on escape key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('create_coupon_modal').classList.add('hidden');
+            }
+        });
+    </script>
+
+
+</body></html>

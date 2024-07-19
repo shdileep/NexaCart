@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Wishlist | NexaCart</title>
+<!-- Google Fonts: Hanken Grotesk & Inter & JetBrains Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#3a485c",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "primary-container": "#131b2e",
+                    "background": "#f7f9fb",
+                    "outline": "#76777d",
+                    "inverse-primary": "#bec6e0",
+                    "on-secondary-container": "#57657b",
+                    "surface-container-highest": "#e0e3e5",
+                    "tertiary-fixed": "#d3e4fe",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "surface-dim": "#d8dadc",
+                    "secondary-container": "#d5e3fd",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "on-background": "#191c1e",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#191c1e",
+                    "secondary": "#515f74",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2d3133",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-variant": "#e0e3e5",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#000000",
+                    "surface-container-high": "#e6e8ea",
+                    "primary-fixed-dim": "#bec6e0",
+                    "primary": "#000000",
+                    "on-primary-container": "#7c839b",
+                    "surface-tint": "#565e74",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#0b1c30",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f7f9fb",
+                    "on-primary-fixed": "#131b2e",
+                    "error": "#ba1a1a",
+                    "surface-container": "#eceef0",
+                    "primary-fixed": "#dae2fd",
+                    "outline-variant": "#c6c6cd",
+                    "secondary-fixed-dim": "#b9c7e0",
+                    "on-secondary-fixed": "#0d1c2f",
+                    "secondary-fixed": "#d5e3fd",
+                    "on-tertiary-container": "#75859d",
+                    "on-surface-variant": "#45464d",
+                    "on-error": "#ffffff",
+                    "surface": "#f7f9fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "display-lg-mobile": ["Hanken Grotesk"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["JetBrains Mono"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #e2e8f0;
+        }
+        .signature-button {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar (Shared Component JSON Mapping) -->
+<header class="fixed top-0 w-full h-[80px] bg-surface-container-lowest z-50 border-b border-outline-variant">
+<div class="flex items-center justify-between px-margin-desktop max-w-container-max mx-auto w-full h-full">
+<!-- Brand Logo -->
+<div class="font-headline-md text-headline-md font-extrabold text-on-surface tracking-tight">
+                NexaCart
+            </div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center space-x-8">
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200" href="#">Shop</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200" href="#">Deals</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200" href="#">Orders</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200" href="#">Support</a>
+</nav>
+<!-- Trailing Icons -->
+<div class="flex items-center space-x-6">
+<button class="text-on-surface-variant hover:text-primary transition-all duration-150 relative">
+<span class="material-symbols-outlined" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all duration-150">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all duration-150">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Breadcrumb -->
+<nav class="flex items-center space-x-2 text-on-surface-variant mb-6 font-label-sm text-label-sm uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">My Account</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-bold">Wishlist</span>
+</nav>
+<!-- Page Title -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+<div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2">My Wishlist</h1>
+<p class="text-secondary font-body-md">You have 4 items saved for later.</p>
+</div>
+<button class="signature-button text-white font-body-md px-8 py-3 rounded-full hover:opacity-90 transition-all flex items-center gap-2 w-fit">
+<span class="material-symbols-outlined">shopping_bag</span>
+                Add All to Cart
+            </button>
+</div>
+<!-- Wishlist Container -->
+<div class="space-y-gutter">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 group hover:border-primary transition-all duration-300">
+<div class="w-full md:w-48 h-48 flex-shrink-0 bg-surface-container rounded overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional, high-resolution product shot of a sleek, minimalist carbon black technical backpack. The lighting is crisp and cool, casting subtle shadows that highlight the architectural fabric textures. Set against a clean light grey studio background, the composition reflects a premium corporate aesthetic with sharp focus and high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUetL6lsOlXAEw_H78EceViJK8NN9ekxrAuKxOllRSmWIkmP6OjwIfKoI-2IfoY_WU-PFWaRRSoaP3tUKmb6_nVu15bFL9VfYxjP86_w5TCAJMFleACE_3AbJicP7U7o0YANaFxKMWb_Pkm3SwrxefxIIhKULLAvhv4OPrnEUZTI4zCXAjKGs-ZDE7svuqVC9YO3jfV9d0XC3MDBJ5DZxtLfUtEwazUGs09QFYzM2g_fHa2JxZLmlns2Pf90ggr-sokjTyAGu1qUM"/>
+</div>
+<div class="flex-grow flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Premium Gear</span>
+<button class="text-on-surface-variant hover:text-error transition-colors flex items-center gap-1 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                            REMOVE
+                        </button>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Architect Series Pro Backpack</h3>
+<div class="flex items-center gap-2 mb-2">
+<div class="flex text-[#fbbf24]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]">star_half</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm">(124 Reviews)</span>
+</div>
+<div class="flex items-baseline gap-3">
+<span class="text-on-surface font-headline-md text-headline-md">₹8,499</span>
+<span class="text-on-surface-variant line-through font-body-md text-body-md">₹12,000</span>
+<span class="text-primary font-bold font-label-sm text-label-sm bg-primary-fixed px-2 py-0.5 rounded">30% OFF</span>
+</div>
+</div>
+<div class="w-full md:w-auto flex flex-col gap-3">
+<button class="signature-button text-white font-body-md px-10 py-3 rounded-full hover:opacity-90 transition-all text-center">Add to Cart</button>
+<button class="bg-white border border-outline-variant text-on-surface font-body-md px-10 py-3 rounded-lg hover:bg-surface-container transition-all text-center">View Details</button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 group hover:border-primary transition-all duration-300">
+<div class="w-full md:w-48 h-48 flex-shrink-0 bg-surface-container rounded overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up studio photography of high-end over-ear noise-canceling headphones in matte silver finish. The design is sleek with metallic accents, resting on a polished dark wood surface. Soft volumetric lighting creates a luxurious atmosphere, emphasizing the premium leather ear cushions and precision-engineered hinges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEJNSqeQ2EUDXlGhQ9O56r4zQKM2s8toVqybE8xGHSCwaU9ZoBp0O97amJ1hmfABrF5i05weiDDzI6ttSOtD6mLaClG6kqqwZL7lPyqsJZSxW-8S8IP0kmjqJw7CCGzRBOujhGTMs0WVwbNnqNZKkf-7h1ic-DlCXEuQmY37LuBwvMuCVoxy7zhO18PZ3r45b7zdO09yDWeUE7L-nW4DYhcgSe1cbaltyRPwVUNOsoh2CTInT4ESKT27f61KxqeD7AaumzWlOsaeI"/>
+</div>
+<div class="flex-grow flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Electronics</span>
+<button class="text-on-surface-variant hover:text-error transition-colors flex items-center gap-1 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                            REMOVE
+                        </button>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">NexaFlow Wireless ANC Headphones</h3>
+<div class="flex items-center gap-2 mb-2">
+<div class="flex text-[#fbbf24]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm">(892 Reviews)</span>
+</div>
+<div class="flex items-baseline gap-3">
+<span class="text-on-surface font-headline-md text-headline-md">₹24,999</span>
+<span class="text-on-surface-variant line-through font-body-md text-body-md">₹32,000</span>
+<span class="text-primary font-bold font-label-sm text-label-sm bg-primary-fixed px-2 py-0.5 rounded">22% OFF</span>
+</div>
+</div>
+<div class="w-full md:w-auto flex flex-col gap-3">
+<button class="signature-button text-white font-body-md px-10 py-3 rounded-full hover:opacity-90 transition-all text-center">Add to Cart</button>
+<button class="bg-white border border-outline-variant text-on-surface font-body-md px-10 py-3 rounded-lg hover:bg-surface-container transition-all text-center">View Details</button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 group hover:border-primary transition-all duration-300">
+<div class="w-full md:w-48 h-48 flex-shrink-0 bg-surface-container rounded overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Elegant luxury analog wristwatch with a midnight blue dial and stainless steel bracelet. The watch is positioned elegantly against a dark marble backdrop with subtle golden reflections. The image uses sharp macro photography to showcase the intricate mechanical movement and the sapphire crystal clarity, maintaining an aura of corporate authority and timeless precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaQ3Z-4_TkKOWRDThlAwOm0XjHe3ukVc6UvGAiHGH7QsXx0keSTCxy1uRSRzW1dVG8c-4rFRJcCn_WqiTw6zz0rK-qB0RruAg0tzjfkiNni27k1h3sDc1oyYB68hRLlyDldlhGecgvZeW65mCql4aXv_Scj_pWBkMoRkWy1Y7N2AS46bQ7gZTPQBcAq2BdYG_cgetmtXixZNDFb9uwUn5lxLC-gsIXPBPDXO7QsltXGIh-d6Fh6_bB2tJEpJIwX9e4fCk5MLAkojM"/>
+</div>
+<div class="flex-grow flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Accessories</span>
+<button class="text-on-surface-variant hover:text-error transition-colors flex items-center gap-1 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                            REMOVE
+                        </button>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Vanguard Precision Chronograph</h3>
+<div class="flex items-center gap-2 mb-2">
+<div class="flex text-[#fbbf24]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]">star_outline</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm">(56 Reviews)</span>
+</div>
+<div class="flex items-baseline gap-3">
+<span class="text-on-surface font-headline-md text-headline-md">₹18,500</span>
+<span class="text-on-surface-variant line-through font-body-md text-body-md">₹24,000</span>
+<span class="text-primary font-bold font-label-sm text-label-sm bg-primary-fixed px-2 py-0.5 rounded">23% OFF</span>
+</div>
+</div>
+<div class="w-full md:w-auto flex flex-col gap-3">
+<button class="signature-button text-white font-body-md px-10 py-3 rounded-full hover:opacity-90 transition-all text-center">Add to Cart</button>
+<button class="bg-white border border-outline-variant text-on-surface font-body-md px-10 py-3 rounded-lg hover:bg-surface-container transition-all text-center">View Details</button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 group hover:border-primary transition-all duration-300">
+<div class="w-full md:w-48 h-48 flex-shrink-0 bg-surface-container rounded overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High-fashion oversized blazer in a neutral oatmeal wool blend, draped over a minimalist mannequin. The studio setting uses warm, diffused lighting and a soft-focus background to emphasize the fabric's drape and tailored quality. The color palette is composed of sophisticated earth tones, reflecting a quiet luxury aesthetic perfect for modern professional environments." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUDn2QMxhyLrb1MughQMKnIk1aIf4CPLHcmHdyjBwy_wjqIH8c7BZlShsAqEUElzachC2U66nagm_cyXhYX46o1_KVHZ6ty4rQnPs1utJnECtTsnW8X7Mhsess-lRmBPGXgTsPtZYGz0CQ_s1svlybuavgp1oZ6R82fm0zycpwXR0L3u5u4GdfaEqf11B6erEmdq5tbn1-YSSTGN5P_YJTnVBiFTwcYwi0n-RtUONcnFgL-Kf53Kng188rbj1T0gbP_91X5j3at48"/>
+</div>
+<div class="flex-grow flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Fashion</span>
+<button class="text-on-surface-variant hover:text-error transition-colors flex items-center gap-1 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                            REMOVE
+                        </button>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Executive Wool Blend Blazer</h3>
+<div class="flex items-center gap-2 mb-2">
+<div class="flex text-[#fbbf24]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm">(210 Reviews)</span>
+</div>
+<div class="flex items-baseline gap-3">
+<span class="text-on-surface font-headline-md text-headline-md">₹12,999</span>
+<span class="text-on-surface-variant line-through font-body-md text-body-md">₹15,000</span>
+<span class="text-primary font-bold font-label-sm text-label-sm bg-primary-fixed px-2 py-0.5 rounded">13% OFF</span>
+</div>
+</div>
+<div class="w-full md:w-auto flex flex-col gap-3">
+<button class="signature-button text-white font-body-md px-10 py-3 rounded-full hover:opacity-90 transition-all text-center">Add to Cart</button>
+<button class="bg-white border border-outline-variant text-on-surface font-body-md px-10 py-3 rounded-lg hover:bg-surface-container transition-all text-center">View Details</button>
+</div>
+</div>
+</div>
+<!-- Pagination/Navigation -->
+<div class="mt-16 flex items-center justify-center space-x-2">
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg hover:bg-surface-container transition-all"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-lg font-label-sm text-label-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg hover:bg-surface-container transition-all font-label-sm text-label-sm">2</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg hover:bg-surface-container transition-all"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</main>
+<!-- Recommendation Section -->
+<section class="bg-surface-container-low py-20 px-margin-mobile md:px-margin-desktop border-t border-outline-variant">
+<div class="max-w-container-max mx-auto">
+<h2 class="font-headline-md text-headline-md mb-8">Recommended for You</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Recommended Item 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-4 group cursor-pointer">
+<div class="h-64 bg-surface-container mb-4 overflow-hidden rounded">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A minimalist tech setup accessory: a premium space grey aluminum wireless mouse charging on a sleek pad. The scene is shot with high-key lighting, bright and professional, showcasing the refined material quality and elegant industrial design of a modern desktop workspace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO_ReRqxMQa9SCMBjM6pXNxpvAYgpTRsMArRBuVLbdHt3aWwBPhcP12h7XeguYK-89B3FZHkzvRBC73YZKgpl-A0ovpehVC8RRUtxte6LoPO-v8kFbRIEwHm3mgiF4PGRAz_r-qC14oyze9k6xKJexaAobPIv8uozV9jcGWYZdyij7C2nKSlFSIZjCNSe5JxZVSEBswaP4SF7lAkcUV28lqNAM8d2RxY3ewyWzgkqbIXLA_usRu1B2zrwynvWRt75kr2AS37Lw1zg"/>
+</div>
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-1">Office Tech</p>
+<h4 class="font-body-md text-body-md text-on-surface font-semibold mb-2">ErgoStream Wireless Mouse</h4>
+<span class="font-headline-md text-headline-md">₹4,499</span>
+</div>
+<!-- Add 3 more for grid density if needed visually -->
+<div class="bg-surface-container-lowest border border-outline-variant p-4 group cursor-pointer">
+<div class="h-64 bg-surface-container mb-4 overflow-hidden rounded">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A modern minimalist leather portfolio case in tan brown, organized with high-end stationery and a slim tablet. Photographed on a clean white desk surface with natural window light creating soft shadows. The overall feel is one of professional organization and premium lifestyle." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzjdTt21XQG0b1BR5pVnXGWfO-9Ql2iAvut5nN8BETVxMBn9drUJfMmkqWcqI5X02XtzKvaRODHTm2D3LixoYHHvCF6COFwcv6I9C30eVc3PGcnAcAorYLC33Nu8mbabpd81Vm-AXAScG_ARayXPI5PiUfMobtMS7f8KlAFGhHWn2g1uTjPgpVnvdYyrcWH2T8q2d9EK5DB22QD3sUpLhL6Z6iC75x3GPYgRJgETMLUdPqTlx3adSEaoxsBkulq9mdZdIehmOj68I"/>
+</div>
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-1">Organization</p>
+<h4 class="font-body-md text-body-md text-on-surface font-semibold mb-2">Director's Leather Portfolio</h4>
+<span class="font-headline-md text-headline-md">₹6,200</span>
+</div>
+<div class="hidden lg:block bg-surface-container-lowest border border-outline-variant p-4 group cursor-pointer">
+<div class="h-64 bg-surface-container mb-4 overflow-hidden rounded">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Sleek silver smart mug with temperature control, displayed in a high-end kitchen setting with minimalist black marble countertops. The photography is professional, emphasizing the integrated digital display and clean geometric silhouette of the product." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXM1Uq0uDPUXn44DTy3LhBWyfIsh-dsp5sgbLCdz96Ey07sTIWkjaYaVotiRS33dujFUurNLf5PBJHkmOQhUdWpn5nVT2WHWC1o2k6jVuRL1OEORp-iEc2gPuiYPCRJorCHDopa0pGTRmlSFRmVc1Xl_Bf9qTmmBHoheo8l6EdH3uO2GEapu1SjoJjAoCCZyt-MW7dzG30Y40pdwTr7KthE2Bee2VFgmq5KCxlxbEWCn3G6r91a60NfBd8KZGhSaIy3Hjdvvh1J_k"/>
+</div>
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-1">Smart Living</p>
+<h4 class="font-body-md text-body-md text-on-surface font-semibold mb-2">ThermalCore Smart Mug</h4>
+<span class="font-headline-md text-headline-md">₹3,850</span>
+</div>
+<div class="hidden lg:block bg-surface-container-lowest border border-outline-variant p-4 group cursor-pointer">
+<div class="h-64 bg-surface-container mb-4 overflow-hidden rounded">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Premium glass and metal essential oil diffuser with a minimalist cylindrical design. Soft amber light glows from within, casting a warm ambiance in a calm, modern spa-inspired room. The focus is on the fine mist and the elegant materiality of the device." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjk-1-8Sa1GyuDpP4HxWr46jrXjVH-wczNIBEoOTKjer56KYM930rGDW-YAeYIeI2iEN6U0gghxyjG4J4NnGMzn46pAyDxjixjmCRwrfSFimOR9OKBC94k_Nw3uQc0ytzCpGe59w7_nAzn1wBimkJasQLarNgmrsotyINRg7MMQxn2voJ15XX0uY8F5WtXMxrDfHnRBJ7QQ5WARSqFKtkriPAEUbOAHJGTwZ89_NsePvFBzyE-4Hrk-FO_j1Gp5e5ziv2Bptp-zCg"/>
+</div>
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-1">Wellness</p>
+<h4 class="font-body-md text-body-md text-on-surface font-semibold mb-2">AuraMist Glass Diffuser</h4>
+<span class="font-headline-md text-headline-md">₹5,900</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer (Shared Component JSON Mapping) -->
+<footer class="w-full bg-surface-container border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto">
+<!-- Footer Branding -->
+<div class="flex flex-col gap-4">
+<div class="font-headline-md text-headline-md font-bold text-on-surface">NexaCart</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">
+                    Elevating enterprise commerce with uncompromising precision and world-class reliability.
+                </p>
+</div>
+<!-- Footer Links Groups -->
+<div class="flex flex-col gap-3">
+<h5 class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-widest mb-2">Discover</h5>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline transition-all duration-200" href="#">New Arrivals</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline transition-all duration-200" href="#">Best Sellers</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline transition-all duration-200" href="#">Premium Collection</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-widest mb-2">Account</h5>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline transition-all duration-200" href="#">Track Orders</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline transition-all duration-200" href="#">Support Center</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline transition-all duration-200" href="#">Privacy Policy</a>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-widest mb-2">Newsletter</h5>
+<p class="font-body-md text-body-md text-on-surface-variant">Stay updated with our latest enterprise solutions.</p>
+<div class="flex">
+<input class="bg-white border border-outline-variant px-4 py-2 w-full focus:outline-none focus:border-primary text-body-md rounded-l-lg" placeholder="Enter email" type="email"/>
+<button class="bg-primary text-white px-4 py-2 rounded-r-lg hover:opacity-90 transition-all">Join</button>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant/30 py-6 px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant">© 2024 NexaCart Enterprise. All rights reserved.</span>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">public</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">verified_user</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">payments</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.add('scale-95');
+                setTimeout(() => this.classList.remove('scale-95'), 100);
+            });
+        });
+
+        // Simulating item removal for UX feel
+        document.querySelectorAll('button:has(.material-symbols-outlined:contains("delete"))').forEach(btn => {
+           btn.addEventListener('click', function() {
+              const card = this.closest('.bg-surface-container-lowest');
+              card.style.opacity = '0';
+              card.style.transform = 'translateX(20px)';
+              setTimeout(() => card.remove(), 300);
+           });
+        });
+    </script>
+</body></html>

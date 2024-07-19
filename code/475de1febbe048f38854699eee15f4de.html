@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NexaCart | Search Results - Televisions</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter, Hanken Grotesk, JetBrains Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Hanken+Grotesk:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-secondary-fixed": "#0d1c2f",
+                "surface-container": "#eceef0",
+                "background": "#f7f9fb",
+                "tertiary-container": "#0b1c30",
+                "primary": "#000000",
+                "on-surface": "#191c1e",
+                "on-primary-container": "#7c839b",
+                "surface-tint": "#565e74",
+                "outline-variant": "#c6c6cd",
+                "on-tertiary": "#ffffff",
+                "surface-container-high": "#e6e8ea",
+                "on-primary": "#ffffff",
+                "on-secondary-container": "#57657b",
+                "on-error-container": "#93000a",
+                "primary-container": "#131b2e",
+                "inverse-primary": "#bec6e0",
+                "on-tertiary-fixed": "#0b1c30",
+                "secondary-fixed": "#d5e3fd",
+                "surface-dim": "#d8dadc",
+                "error": "#ba1a1a",
+                "secondary-fixed-dim": "#b9c7e0",
+                "primary-fixed-dim": "#bec6e0",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed": "#131b2e",
+                "surface-variant": "#e0e3e5",
+                "outline": "#76777d",
+                "inverse-surface": "#2d3133",
+                "on-error": "#ffffff",
+                "tertiary": "#000000",
+                "surface-container-highest": "#e0e3e5",
+                "secondary-container": "#d5e3fd",
+                "tertiary-fixed": "#d3e4fe",
+                "surface": "#f7f9fb",
+                "on-background": "#191c1e",
+                "surface-bright": "#f7f9fb",
+                "secondary": "#515f74",
+                "primary-fixed": "#dae2fd",
+                "surface-container-low": "#f2f4f6",
+                "on-secondary-fixed-variant": "#3a485c",
+                "inverse-on-surface": "#eff1f3",
+                "tertiary-fixed-dim": "#b7c8e1",
+                "on-surface-variant": "#45464d",
+                "on-primary-fixed-variant": "#3f465c",
+                "error-container": "#ffdad6",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary-fixed-variant": "#38485d",
+                "on-tertiary-container": "#75859d"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "container-max": "1440px",
+                "unit": "4px",
+                "margin-mobile": "20px",
+                "margin-desktop": "64px",
+                "gutter": "24px"
+            },
+            "fontFamily": {
+                "label-sm": ["JetBrains Mono"],
+                "headline-md": ["Hanken Grotesk"],
+                "display-lg": ["Hanken Grotesk"],
+                "body-lg": ["Inter"],
+                "display-lg-mobile": ["Hanken Grotesk"],
+                "body-md": ["Inter"]
+            },
+            "fontSize": {
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f7f9fb;
+            font-family: 'Inter', sans-serif;
+            color: #191c1e;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        /* Custom scrollbar for sidebar */
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: #c6c6cd;
+            border-radius: 10px;
+        }
+        /* Logo Hover Effect */
+        .brand-logo {
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        .brand-logo:hover {
+            filter: grayscale(0%);
+        }
+        /* Glass Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="bg-surface-container-lowest h-[80px] w-full flex items-center border-b border-outline-variant z-50 sticky top-0">
+<div class="max-w-container-max mx-auto px-margin-desktop flex justify-between items-center w-full gap-gutter">
+<!-- Brand -->
+<div class="flex items-center gap-8 shrink-0">
+<span class="text-headline-md font-headline-md text-primary tracking-tight brand-logo cursor-pointer">NexaCart</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Home</a>
+<a class="text-secondary hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Categories</a>
+<a class="text-secondary hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Wishlist</a>
+<a class="text-secondary hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Cart</a>
+<a class="text-secondary hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Orders</a>
+</nav>
+</div>
+<!-- Search Area -->
+<div class="flex-1 max-w-2xl relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg py-2.5 pl-12 pr-4 focus:ring-0 focus:border-primary text-body-md font-body-md transition-all" placeholder="Search for TV, Electronics and more..." type="text"/>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-5">
+<button class="flex flex-col items-center text-secondary hover:text-primary transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="text-[10px] font-medium uppercase mt-0.5">Alerts</span>
+</button>
+<button class="flex flex-col items-center text-secondary hover:text-primary transition-all">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium uppercase mt-0.5">Account</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-desktop py-6 flex gap-gutter">
+<!-- Sidebar Filters -->
+<aside class="w-64 shrink-0 flex flex-col gap-6 sidebar-scroll h-[calc(100vh-120px)] overflow-y-auto sticky top-[104px] pr-2">
+<div class="bg-white border border-outline-variant p-4">
+<h2 class="font-headline-md text-[18px] mb-4">Filters</h2>
+<!-- Category -->
+<div class="mb-6">
+<h3 class="text-label-sm font-label-sm text-secondary uppercase mb-2">Categories</h3>
+<div class="flex flex-col gap-2 pl-2">
+<a class="text-body-md text-secondary hover:text-primary flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+                            Home Entertainment
+                        </a>
+<span class="text-body-md font-bold text-primary pl-6">Televisions</span>
+</div>
+</div>
+<!-- Brand Filter -->
+<div class="mb-6 border-t border-surface-container-high pt-4">
+<div class="flex justify-between items-center mb-3">
+<h3 class="text-label-sm font-label-sm text-secondary uppercase">Brand</h3>
+<span class="material-symbols-outlined text-outline cursor-pointer">keyboard_arrow_up</span>
+</div>
+<div class="relative mb-3">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-[16px] text-outline">search</span>
+<input class="w-full text-[13px] border-outline-variant rounded-lg pl-8 py-1 focus:ring-0 focus:border-primary" placeholder="Search Brand" type="text"/>
+</div>
+<div class="flex flex-col gap-2 max-h-48 overflow-y-auto pr-1">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded-[2px] border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="text-body-md text-secondary group-hover:text-primary transition-colors">SONY</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input checked="" class="rounded-[2px] border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="text-body-md text-secondary group-hover:text-primary transition-colors">Samsung</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded-[2px] border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="text-body-md text-secondary group-hover:text-primary transition-colors">LG</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input checked="" class="rounded-[2px] border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="text-body-md text-secondary group-hover:text-primary transition-colors">TCL</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded-[2px] border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="text-body-md text-secondary group-hover:text-primary transition-colors">Xiaomi</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded-[2px] border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="text-body-md text-secondary group-hover:text-primary transition-colors">Motorola</span>
+</label>
+</div>
+<button class="text-primary text-[12px] font-bold mt-2 hover:underline">59 MORE</button>
+</div>
+<!-- Price Slider Simulation -->
+<div class="mb-6 border-t border-surface-container-high pt-4">
+<h3 class="text-label-sm font-label-sm text-secondary uppercase mb-3">Price</h3>
+<div class="relative h-1 bg-surface-container-high rounded-full mb-6">
+<div class="absolute left-0 right-1/4 h-1 bg-primary rounded-full"></div>
+<div class="absolute left-0 -top-1.5 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-sm"></div>
+<div class="absolute right-1/4 -top-1.5 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-sm"></div>
+</div>
+<div class="flex items-center justify-between gap-2">
+<div class="border border-outline-variant p-1 flex-1 text-center text-[12px] text-secondary">Min</div>
+<span class="text-outline">to</span>
+<div class="border border-outline-variant p-1 flex-1 text-center text-[12px] text-secondary">₹60000+</div>
+</div>
+</div>
+<!-- Ratings -->
+<div class="mb-6 border-t border-surface-container-high pt-4">
+<h3 class="text-label-sm font-label-sm text-secondary uppercase mb-3">Customer Ratings</h3>
+<div class="flex flex-col gap-2">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="rounded-[2px] border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="text-body-md text-secondary flex items-center">4 <span class="material-symbols-outlined text-[14px] ml-0.5">star</span> &amp; above</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="rounded-[2px] border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="text-body-md text-secondary flex items-center">3 <span class="material-symbols-outlined text-[14px] ml-0.5">star</span> &amp; above</span>
+</label>
+</div>
+</div>
+<!-- Others (Simplified placeholders) -->
+<div class="flex flex-col gap-3 border-t border-surface-container-high pt-4">
+<div class="flex justify-between items-center cursor-pointer">
+<span class="text-body-md font-medium">Smart Features</span>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+<div class="flex justify-between items-center cursor-pointer">
+<span class="text-body-md font-medium">Resolution</span>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+<div class="flex justify-between items-center cursor-pointer">
+<span class="text-body-md font-medium">Display Tech</span>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+</div>
+</div>
+<div class="p-4 bg-primary-container rounded-lg text-white">
+<p class="text-label-sm mb-2 opacity-80">Need help choosing?</p>
+<div class="flex items-center justify-between">
+<span class="text-body-md font-bold">TV Buying Guide</span>
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+</div>
+</aside>
+<!-- Product Listing Area -->
+<section class="flex-1 bg-white border border-outline-variant">
+<!-- Breadcrumbs and Sort -->
+<div class="p-4 border-b border-surface-container-high">
+<nav class="flex text-[12px] text-secondary gap-1 mb-2">
+<a class="hover:text-primary" href="#">Home</a>
+<span>&gt;</span>
+<a class="hover:text-primary" href="#">Home Entertainment</a>
+<span>&gt;</span>
+<span class="text-primary font-medium">Televisions</span>
+</nav>
+<div class="flex items-baseline gap-2 mb-4">
+<h1 class="text-headline-md text-primary">Televisions</h1>
+<span class="text-body-md text-secondary">(Showing 1 – 24 of 1,132 results)</span>
+</div>
+<div class="flex items-center gap-6 text-body-md border-b-2 border-transparent">
+<span class="font-bold text-primary">Sort By</span>
+<button class="text-primary font-bold border-b-2 border-primary pb-2 -mb-[2px]">Relevance</button>
+<button class="text-secondary hover:text-primary transition-colors pb-2">Popularity</button>
+<button class="text-secondary hover:text-primary transition-colors pb-2">Price -- Low to High</button>
+<button class="text-secondary hover:text-primary transition-colors pb-2">Price -- High to Low</button>
+<button class="text-secondary hover:text-primary transition-colors pb-2">Newest First</button>
+</div>
+</div>
+<!-- Product Items -->
+<div class="divide-y divide-surface-container-high">
+<!-- Product 1 -->
+<article class="p-6 flex gap-8 group hover:bg-surface-container-lowest transition-all">
+<!-- Image Area -->
+<div class="w-64 flex flex-col items-center">
+<div class="relative w-full aspect-video overflow-hidden mb-4">
+<img class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" data-alt="A sleek, modern 55-inch QLED smart television displaying a vibrant, colorful abstract screensaver with high contrast. The TV has ultra-thin bezels and is set against a minimalist, clean white background with soft cinematic lighting that highlights its premium metallic finish. Professional product photography for an enterprise commerce website, emphasizing clarity and modern design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqvJk8Hkg0rjLhb7u_qbntwFAmgurDgNCc2KvnzFRx4CQPbgCUffnS_6S9RxurGs7McE-lm57Y4Z4rT0vhXQ4vghmg2ecWDFs-zBI8KvrpYV_G-T9elZ2eO_xcI1gHVQx8wpOExemtEnKuiUmtTavTuD3QyYvE4qjTu9gq-HIM99FxImejyhk3Olz7Ii7QqbYOCpCRMsWIAJ9sIPhrQmtkvkTSWNSlO5yd5GSNoU8AYE5XBqR5LuTSQ5mEsrvfAfS7OhTyKHbSgbo"/>
+<div class="absolute top-2 left-2 bg-on-secondary-fixed text-white text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Sponsored</div>
+</div>
+<label class="flex items-center gap-2 cursor-pointer mt-2 group/check">
+<input class="rounded-[2px] border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="text-body-md text-secondary group-hover/check:text-primary">Add to Compare</span>
+</label>
+</div>
+<!-- Details Area -->
+<div class="flex-1">
+<h2 class="text-body-lg font-semibold text-primary mb-2 group-hover:text-primary transition-colors">TCL V4C 80.04 cm (32 inch) QLED HD Ready Smart Google TV with 100% Color Volume Plus, 24W Dolby Audio...</h2>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-green-600 text-white text-[12px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1">4.1 <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span></span>
+<span class="text-body-md text-secondary">11,557 Ratings &amp; 944 Reviews</span>
+</div>
+<ul class="text-body-md text-on-surface-variant flex flex-col gap-1 list-disc pl-4 marker:text-outline-variant">
+<li>HD Ready | QLED</li>
+<li>Model ID: 32V4C</li>
+<li>Launch Year: 2025</li>
+<li>Total Sound Output: 24 W</li>
+<li>1 Year Product Warranty</li>
+</ul>
+</div>
+<!-- Pricing Area -->
+<div class="w-48 text-right flex flex-col items-end">
+<div class="flex flex-col mb-1">
+<div class="flex items-center justify-end gap-2">
+<span class="text-headline-md font-bold text-primary">₹16,490</span>
+<div class="bg-surface-variant px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-blue-600 text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold text-blue-800">Assured</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2">
+<span class="text-secondary line-through text-[14px]">₹20,490</span>
+<span class="text-green-600 font-bold text-[14px]">19% off</span>
+</div>
+</div>
+<p class="text-[12px] text-green-700 font-bold mb-2">Hot Deal</p>
+<p class="text-[12px] text-secondary">Upto ₹4,150 Off on Exchange</p>
+</div>
+</article>
+<!-- Product 2 -->
+<article class="p-6 flex gap-8 group hover:bg-surface-container-lowest transition-all">
+<!-- Image Area -->
+<div class="w-64 flex flex-col items-center">
+<div class="relative w-full aspect-video overflow-hidden mb-4">
+<img class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" data-alt="A premium 43-inch LED Smart TV showcasing a crystal-clear nature documentary with vivid greens and blues. The TV features a slim profile and is showcased in a high-end, contemporary studio setting. The lighting is soft and neutral, typical of professional catalog photography. The overall aesthetic is clean, sophisticated, and focused on technological excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0K8IDygJN6PcEl3tEhARQRL4Vk3VxYYK8f2oi37dJakhl5cErwwKSC_mmUBXstG7jqKZvOwYqxGqMKmsBMnYMe50pEGGzTRlgF6Bi8Lb0ulEE6lbNdI866ygxpvUBa8PRGQJlyd0UnePxfrXUuymYO4_qKjcD67PXACRKaW1rRuIs6pP9N4v0Wj2UGoU-Cb6TO6rVA-te0hsG2zwXTwBhIrlO87NoIX7QAqmhaOkpgSz8RjsH-4WRETLGrM1vl9sCVMyYblTgZQM"/>
+<div class="absolute top-2 left-2 bg-green-700 text-white text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Bestseller</div>
+</div>
+<label class="flex items-center gap-2 cursor-pointer mt-2 group/check">
+<input class="rounded-[2px] border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="text-body-md text-secondary group-hover/check:text-primary">Add to Compare</span>
+</label>
+</div>
+<!-- Details Area -->
+<div class="flex-1">
+<h2 class="text-body-lg font-semibold text-primary mb-2 group-hover:text-primary transition-colors">Samsung 80 cm (32 inch) HD Ready LED Smart Tizen TV with Voice Assistance Remote Control | 100+ Free C...</h2>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-green-600 text-white text-[12px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1">4.3 <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span></span>
+<span class="text-body-md text-secondary">1,42,234 Ratings &amp; 8,414 Reviews</span>
+</div>
+<ul class="text-body-md text-on-surface-variant flex flex-col gap-1 list-disc pl-4 marker:text-outline-variant">
+<li>HD Ready | LED</li>
+<li>Model ID: UA32T4500FKXXL</li>
+<li>Launch Year: 2025</li>
+<li>Total Sound Output: 20 W</li>
+<li>2 Year Warranty (1 Year Standard + 1 Year additional on Panel)</li>
+</ul>
+</div>
+<!-- Pricing Area -->
+<div class="w-48 text-right flex flex-col items-end">
+<div class="flex flex-col mb-1">
+<div class="flex items-center justify-end gap-2">
+<span class="text-headline-md font-bold text-primary">₹16,490</span>
+<div class="bg-surface-variant px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-blue-600 text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold text-blue-800">Assured</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2">
+<span class="text-secondary line-through text-[14px]">₹17,990</span>
+<span class="text-green-600 font-bold text-[14px]">7% off</span>
+</div>
+</div>
+<p class="text-[12px] text-green-700 font-bold mb-1">Hot Deal</p>
+<p class="text-[12px] text-secondary mb-1">Upto ₹4,150 Off on Exchange</p>
+<p class="text-[12px] text-primary font-bold">Bank Offer</p>
+</div>
+</article>
+<!-- Product 3 -->
+<article class="p-6 flex gap-8 group hover:bg-surface-container-lowest transition-all">
+<!-- Image Area -->
+<div class="w-64 flex flex-col items-center">
+<div class="relative w-full aspect-video overflow-hidden mb-4">
+<img class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" data-alt="An ultra-large 65-inch 4K UHD Smart TV with HDR technology. The screen displays a high-speed car race with intense motion blur and vibrant colors. The design is frameless, emphasizing the massive screen. Set against a dark, premium home theater background to showcase the deep black levels and color accuracy. Modern, cinematic, and professional enterprise commerce photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3BBV8qdL3_VTyHUzY3fWe3AElX8UbxaawVTGC2zxQmS2B8LOdZz-pX-7cq9C2WrdHUaavD0ir9M-2oNpBNAq7XQh4ivqwtU-ZxEqsQ_6-dfPcYMwzjh_T4dOeifqDiPQjLMfhFt9bgNN6MlgSmAQi2CGIZZ6RyVm_D8EqwvyBRVp8cIMBfzwZXDEeeGvFO4rOJgxF8QcJEUm4-gn1TEhuwzxRGe9dU34BrRP1PtK0jNLI8EN7AnbMv8UhvUihpcpvlhludCVC2x4"/>
+</div>
+<label class="flex items-center gap-2 cursor-pointer mt-2 group/check">
+<input class="rounded-[2px] border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="text-body-md text-secondary group-hover/check:text-primary">Add to Compare</span>
+</label>
+</div>
+<!-- Details Area -->
+<div class="flex-1">
+<h2 class="text-body-lg font-semibold text-primary mb-2 group-hover:text-primary transition-colors">TCL T6D 138.71 cm (55 inch) QLED Ultra HD (4K) Smart Google TV 2026 Edition with HDR10+ Dolby Vision-...</h2>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-green-600 text-white text-[12px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1">4.1 <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span></span>
+<span class="text-body-md text-secondary">12,385 Ratings &amp; 907 Reviews</span>
+</div>
+<ul class="text-body-md text-on-surface-variant flex flex-col gap-1 list-disc pl-4 marker:text-outline-variant">
+<li>Ultra HD (4K) | QLED</li>
+<li>Model ID: 55T6D</li>
+<li>Launch Year: 2026</li>
+<li>Total Sound Output: 28 W</li>
+<li>2 Years warranty on product</li>
+</ul>
+</div>
+<!-- Pricing Area -->
+<div class="w-48 text-right flex flex-col items-end">
+<div class="flex flex-col mb-1">
+<div class="flex items-center justify-end gap-2">
+<span class="text-headline-md font-bold text-primary">₹41,990</span>
+<div class="bg-surface-variant px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-blue-600 text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold text-blue-800">Assured</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2">
+<span class="text-secondary line-through text-[14px]">₹78,990</span>
+<span class="text-green-600 font-bold text-[14px]">45% off</span>
+</div>
+</div>
+<p class="text-[12px] text-green-700 font-bold mb-2">Hot Deal</p>
+<p class="text-[12px] text-secondary">Upto ₹4,150 Off on Exchange</p>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="p-6 border-t border-surface-container-high flex items-center justify-between">
+<span class="text-body-md text-secondary">Page 1 of 48</span>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-primary font-bold bg-surface-container-low">1</button>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-high flex items-center justify-center text-secondary transition-colors">2</button>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-high flex items-center justify-center text-secondary transition-colors">3</button>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-high flex items-center justify-center text-secondary transition-colors">4</button>
+<span class="mx-2">...</span>
+<button class="flex items-center gap-1 text-primary font-bold hover:underline ml-4">
+                        NEXT
+                        <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="bg-surface-container-low border-t border-outline-variant w-full py-16 mt-12">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- Brand Column -->
+<div class="col-span-1">
+<h3 class="text-headline-md font-headline-md text-primary mb-6">NexaCart</h3>
+<p class="text-body-md text-secondary max-w-xs mb-8">
+                    Your premier destination for high-stakes enterprise commerce and premium electronic equipment.
+                </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer transition-colors">public</span>
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer transition-colors">language</span>
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer transition-colors">share</span>
+</div>
+</div>
+<!-- Links Column 1 -->
+<div>
+<h4 class="text-label-sm font-label-sm text-secondary uppercase mb-6">About NexaCart</h4>
+<ul class="flex flex-col gap-4 text-body-md text-on-secondary-container">
+<li><a class="hover:text-primary transition-all" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-all" href="#">Contact</a></li>
+<li><a class="hover:text-primary transition-all" href="#">Careers</a></li>
+<li><a class="hover:text-primary transition-all" href="#">Corporate Information</a></li>
+</ul>
+</div>
+<!-- Links Column 2 -->
+<div>
+<h4 class="text-label-sm font-label-sm text-secondary uppercase mb-6">Help &amp; Policy</h4>
+<ul class="flex flex-col gap-4 text-body-md text-on-secondary-container">
+<li><a class="hover:text-primary transition-all" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-all" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-all" href="#">Shipping Info</a></li>
+<li><a class="hover:text-primary transition-all" href="#">Returns</a></li>
+</ul>
+</div>
+<!-- Newsletter -->
+<div>
+<h4 class="text-label-sm font-label-sm text-secondary uppercase mb-6">Stay Updated</h4>
+<div class="flex flex-col gap-4">
+<p class="text-body-md text-secondary">Subscribe to our newsletter for exclusive corporate deals.</p>
+<div class="flex gap-2">
+<input class="flex-1 bg-white border border-outline-variant rounded px-4 py-2 text-body-md focus:ring-0 focus:border-primary" placeholder="Email Address" type="email"/>
+<button class="bg-primary text-white px-4 py-2 rounded font-bold hover:bg-neutral-800 transition-colors">JOIN</button>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop mt-16 pt-8 border-t border-outline-variant text-center">
+<p class="text-label-sm text-secondary opacity-60">© 2024 NexaCart Enterprise. All rights reserved.</p>
+</div>
+</footer>
+<!-- Interactivity Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hover effect on product cards handled by Tailwind group-hover
+            
+            // Simulation of filter toggle
+            const arrows = document.querySelectorAll('.material-symbols-outlined');
+            arrows.forEach(arrow => {
+                if (arrow.innerText === 'keyboard_arrow_up' || arrow.innerText === 'expand_more') {
+                    arrow.addEventListener('click', (e) => {
+                        const target = e.target;
+                        target.innerText = target.innerText === 'keyboard_arrow_up' ? 'expand_more' : 'keyboard_arrow_up';
+                    });
+                }
+            });
+
+            // Smooth scroll to top when clicking brand
+            const brand = document.querySelector('.brand-logo');
+            brand.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body></html>
