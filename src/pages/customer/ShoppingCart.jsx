@@ -34,13 +34,35 @@ export default function ShoppingCart() {
   const [addressState, setAddressState] = React.useState('');
   const [addressPincode, setAddressPincode] = React.useState('');
 
-  // Simulated Razorpay Modal State
-  const [showSimulatedRzp, setShowSimulatedRzp] = React.useState(false);
-  const [selectedMethod, setSelectedMethod] = React.useState('upi');
+  // UPI Scan & Pay Modal State
+  const [showUpiModal, setShowUpiModal] = React.useState(false);
   const [upiPaymentVerifying, setUpiPaymentVerifying] = React.useState(false);
   const [upiOrderTimer, setUpiOrderTimer] = React.useState(30);
 
-  const handleUpiVerificationFromSimulatedRzp = async () => {
+  const handleUpiScanAndPay = () => {
+    if (!currentUser) {
+      alert('Please log in to checkout.');
+      navigate('/customer/login');
+      return;
+    }
+
+    if (cartItems.length === 0) {
+      alert('Your cart is empty.');
+      return;
+    }
+
+    const selectedAddr = addresses.find(a => a.id === selectedAddressId);
+    if (!selectedAddr) {
+      alert('Please add and select a delivery address before proceeding to checkout.');
+      return;
+    }
+
+    setUpiOrderTimer(30);
+    setUpiPaymentVerifying(false);
+    setShowUpiModal(true);
+  };
+
+  const handleUpiVerification = async () => {
     const selectedAddr = addresses.find(a => a.id === selectedAddressId);
     if (!selectedAddr) return;
 
@@ -67,17 +89,17 @@ export default function ShoppingCart() {
         });
 
         if (verifyResponse.ok) {
-          alert('Payment checkout successful and order placed! Expect delivery in 7 Days.');
-          setShowSimulatedRzp(false);
+          alert('UPI Payment Verified! Order placed successfully.');
+          setShowUpiModal(false);
           setUpiPaymentVerifying(false);
           setCartItems([]);
           navigate('/customer/orders');
         } else {
-          alert('Payment verification failed on server.');
+          alert('UPI verification failed on server.');
           setUpiPaymentVerifying(false);
         }
       } catch (err) {
-        alert('Error validating payment callback.');
+        alert('Error validating UPI checkout callback.');
         setUpiPaymentVerifying(false);
       }
     }, 2000);
@@ -85,13 +107,13 @@ export default function ShoppingCart() {
 
   React.useEffect(() => {
     let timer;
-    if (showSimulatedRzp && selectedMethod === 'upi' && upiOrderTimer > 0 && !upiPaymentVerifying) {
+    if (showUpiModal && upiOrderTimer > 0 && !upiPaymentVerifying) {
       timer = setTimeout(() => setUpiOrderTimer(upiOrderTimer - 1), 1000);
-    } else if (showSimulatedRzp && selectedMethod === 'upi' && upiOrderTimer === 0 && !upiPaymentVerifying) {
-      handleUpiVerificationFromSimulatedRzp();
+    } else if (showUpiModal && upiOrderTimer === 0 && !upiPaymentVerifying) {
+      handleUpiVerification();
     }
     return () => clearTimeout(timer);
-  }, [showSimulatedRzp, selectedMethod, upiOrderTimer, upiPaymentVerifying]);
+  }, [showUpiModal, upiOrderTimer, upiPaymentVerifying]);
 
   const loadCartData = async () => {
     if (!currentUser) return;
@@ -220,10 +242,65 @@ export default function ShoppingCart() {
       return;
     }
 
-    setSelectedMethod('upi');
-    setUpiOrderTimer(30);
-    setUpiPaymentVerifying(false);
-    setShowSimulatedRzp(true);
+    const deliveryAddressStr = `${selectedAddr.name}, Phone: ${selectedAddr.phone}, ${selectedAddr.street_address}, ${selectedAddr.city}, ${selectedAddr.state} - ${selectedAddr.pincode}`;
+
+    // 1. Call backend to create Razorpay Order
+    const rzpOrder = await createRazorpayOrder(total);
+    if (!rzpOrder) {
+      alert('Order creation failed on backend server.');
+      return;
+    }
+
+    // 2. Open Razorpay Checkout overlay
+    const options = {
+      key: 'rzp_test_TFLbN6g6YPuD2m',
+      amount: rzpOrder.amount,
+      currency: rzpOrder.currency,
+      name: 'NexaCart E-Commerce',
+      description: 'Role-Based Checkout Test Payment',
+      order_id: rzpOrder.id,
+      handler: async function (response) {
+        // 3. Post verification payload to backend
+        try {
+          const verifyResponse = await fetch(`${BACKEND_URL}/payments/verify`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              cartItems: cartItems.map(item => ({ id: item.id, qty: item.qty })),
+              deliveryAddress: deliveryAddressStr
+            })
+          });
+
+          if (verifyResponse.ok) {
+            alert('Payment checkout successful and order placed! Expect delivery in 7 Days.');
+            setCartItems([]);
+            navigate('/customer/orders');
+          } else {
+            const err = await verifyResponse.json();
+            alert(`Payment verification failed: ${err.message || 'Signature mismatch'}`);
+          }
+        } catch (error) {
+          alert('Error validating payment callback.');
+        }
+      },
+      prefill: {
+        name: currentUser.name,
+        email: currentUser.email,
+        contact: currentUser.phone || '+916300668400'
+      },
+      theme: {
+        color: '#0F172A'
+      }
+    };
+
+    const rzpInstance = new window.Razorpay(options);
+    rzpInstance.open();
   };
 
   if (loading) {
@@ -408,10 +485,17 @@ export default function ShoppingCart() {
 
                 <button 
                   onClick={handleCheckout}
-                  className="w-full text-white py-4 bg-[#0c1322] hover:bg-[#1a253c] rounded-full font-semibold text-body-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-all shadow-lg cursor-pointer"
+                  className="w-full text-white py-4 bg-primary rounded-full font-semibold text-body-lg flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all shadow-lg cursor-pointer"
                 >
-                  Proceed to Payment (₹{total.toLocaleString()})
+                  Pay via Razorpay (₹{total.toLocaleString()})
                   <span className="material-symbols-outlined">arrow_forward</span>
+                </button>
+                <button 
+                  onClick={handleUpiScanAndPay}
+                  className="w-full text-primary mt-3 py-3 border-2 border-primary rounded-full font-semibold text-body-md flex items-center justify-center gap-2 hover:bg-primary/5 active:scale-[0.98] transition-all cursor-pointer"
+                >
+                  <span className="material-symbols-outlined">qr_code_scanner</span>
+                  Scan &amp; Pay (UPI QR)
                 </button>
               </div>
             </aside>
@@ -525,195 +609,62 @@ export default function ShoppingCart() {
         </div>
       )}
 
-      {/* SIMULATED RAZORPAY CHECKOUT OVERLAY */}
-      {showSimulatedRzp && (
+      {/* UPI QR CODE MODAL */}
+      {showUpiModal && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-          <div className="bg-white rounded-2xl w-full max-w-4xl shadow-2xl flex flex-col md:flex-row overflow-hidden min-h-[550px] relative text-left">
-            
-            {/* Close Button */}
+          <div className="bg-white rounded-2xl max-w-sm w-full shadow-2xl p-6 relative text-center">
             <button 
-              onClick={() => setShowSimulatedRzp(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors z-20 material-symbols-outlined cursor-pointer"
+              type="button" 
+              onClick={() => setShowUpiModal(false)}
+              disabled={upiPaymentVerifying}
+              className="absolute top-4 right-4 material-symbols-outlined text-secondary hover:bg-surface-container p-2 rounded-full cursor-pointer disabled:opacity-50"
             >
               close
             </button>
+            <h3 className="font-headline-md text-xl font-bold text-primary mb-2 flex items-center justify-center gap-2">
+              <span className="material-symbols-outlined text-primary">qr_code_2</span>
+              Scan &amp; Pay UPI
+            </h3>
+            <p className="text-xs text-on-surface-variant mb-6">Scan QR code using any UPI App (GPay, PhonePe, Paytm, BHIM)</p>
 
-            {/* Left Column: Summary (Dark Blue/Grey) */}
-            <div className="w-full md:w-[320px] bg-[#0c1322] text-white p-8 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center font-bold text-lg text-white">N</div>
-                  <span className="font-bold text-lg tracking-tight">NexaCart E-Commerce</span>
-                </div>
+            <div className="w-64 h-64 mx-auto border border-outline-variant rounded-xl flex items-center justify-center p-2 bg-white shadow-inner mb-6">
+              <img 
+                src="/fake_upi_qr.png" 
+                alt="UPI QR Code" 
+                className="w-full h-full object-contain"
+              />
+            </div>
 
-                <div className="bg-white/5 border border-white/10 p-5 rounded-xl mb-4">
-                  <p className="text-xs text-white/55 uppercase tracking-wider font-semibold mb-1">Price Summary</p>
-                  <p className="text-3xl font-bold">₹{total.toLocaleString('en-IN')}</p>
-                </div>
-
-                <div className="bg-white/5 border border-white/10 p-4 rounded-xl flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-white/60 text-sm">person</span>
-                    <span className="text-xs text-white/80 font-medium">Using as {currentUser?.phone || '+91 63006 68400'}</span>
-                  </div>
-                  <span className="material-symbols-outlined text-white/40 text-xs">chevron_right</span>
-                </div>
+            <div className="bg-surface-container p-4 rounded-xl mb-6 text-left">
+              <div className="flex justify-between items-center text-xs text-on-surface-variant font-medium mb-1">
+                <span>Amount to Pay</span>
+                <span className="font-bold text-primary text-sm">₹{total.toLocaleString('en-IN')}</span>
               </div>
-
-              {/* Bottom graphic & Secured Tag */}
-              <div className="mt-8">
-                <div className="flex items-center gap-2 text-[10px] text-white/40 uppercase tracking-widest font-bold">
-                  <span>Secured by</span>
-                  <span className="text-white/60 font-black">Razorpay</span>
-                </div>
+              <div className="flex justify-between items-center text-xs text-on-surface-variant font-medium">
+                <span>UPI ID</span>
+                <span className="font-mono text-primary font-semibold">nexacart@upi</span>
               </div>
             </div>
 
-            {/* Right Column: Interactive Payment Methods */}
-            <div className="flex-grow bg-white flex flex-col">
-              {/* Header Title */}
-              <div className="p-6 border-b border-gray-100 flex items-center justify-center">
-                <h3 className="font-semibold text-gray-700 text-sm">Payment Options</h3>
-              </div>
-
-              {/* Two Column details pane */}
-              <div className="flex flex-grow flex-col sm:flex-row">
-                
-                {/* Left Method List (Light background) */}
-                <div className="w-full sm:w-[200px] bg-[#f8fafc] border-r border-gray-100 p-2 space-y-1 flex flex-col">
-                  <button 
-                    onClick={() => setSelectedMethod('card')}
-                    className={`w-full flex flex-col p-3 rounded-lg text-left transition-all ${selectedMethod === 'card' ? 'bg-white shadow border border-gray-100' : 'hover:bg-gray-100/50'}`}
-                  >
-                    <span className="text-xs font-bold text-gray-700">Cards</span>
-                    <span className="text-[10px] text-gray-400 mt-1">Visa, MasterCard, RuPay</span>
-                  </button>
-                  <button 
-                    onClick={() => setSelectedMethod('netbanking')}
-                    className={`w-full flex flex-col p-3 rounded-lg text-left transition-all ${selectedMethod === 'netbanking' ? 'bg-white shadow border border-gray-100' : 'hover:bg-gray-100/50'}`}
-                  >
-                    <span className="text-xs font-bold text-gray-700">Netbanking</span>
-                    <span className="text-[10px] text-gray-400 mt-1">SBI, ICICI, HDFC</span>
-                  </button>
-                  <button 
-                    onClick={() => setSelectedMethod('wallet')}
-                    className={`w-full flex flex-col p-3 rounded-lg text-left transition-all ${selectedMethod === 'wallet' ? 'bg-white shadow border border-gray-100' : 'hover:bg-gray-100/50'}`}
-                  >
-                    <span className="text-xs font-bold text-gray-700">Wallet</span>
-                    <span className="text-[10px] text-gray-400 mt-1">Paytm, PhonePe</span>
-                  </button>
-                  <button 
-                    onClick={() => setSelectedMethod('paylater')}
-                    className={`w-full flex flex-col p-3 rounded-lg text-left transition-all ${selectedMethod === 'paylater' ? 'bg-white shadow border border-gray-100' : 'hover:bg-gray-100/50'}`}
-                  >
-                    <span className="text-xs font-bold text-gray-700">Pay Later</span>
-                    <span className="text-[10px] text-gray-400 mt-1">LazyPay, ePayLater</span>
-                  </button>
-                  <button 
-                    onClick={() => setSelectedMethod('upi')}
-                    className={`w-full flex flex-col p-3 rounded-lg text-left transition-all ${selectedMethod === 'upi' ? 'bg-white shadow border border-gray-100 border-l-4 border-l-primary' : 'hover:bg-gray-100/50'}`}
-                  >
-                    <span className="text-xs font-bold text-gray-800 flex items-center gap-1.5">
-                      <span className="material-symbols-outlined text-sm text-primary">qr_code_scanner</span>
-                      Scan &amp; Pay QR
-                    </span>
-                    <span className="text-[10px] text-primary font-semibold mt-1">Simulated UPI QR</span>
-                  </button>
+            <div className="space-y-4">
+              {upiPaymentVerifying ? (
+                <div className="flex items-center justify-center gap-2 text-primary font-bold animate-pulse py-2 text-sm">
+                  <span className="material-symbols-outlined animate-spin text-lg">autorenew</span>
+                  Verifying transaction with bank...
                 </div>
-
-                {/* Right Form Pane */}
-                <div className="flex-1 p-8 flex flex-col justify-between">
-                  {selectedMethod === 'upi' && (
-                    <div className="space-y-6 text-center flex-1 flex flex-col justify-center items-center">
-                      <div className="w-48 h-48 border border-gray-200 rounded-xl p-2 bg-white shadow-md flex items-center justify-center">
-                        <img 
-                          src="/fake_upi_qr.png" 
-                          alt="UPI QR Code" 
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-                      <div>
-                        <p className="text-xs text-gray-500 max-w-xs mx-auto">Scan QR code using any UPI App (GPay, PhonePe, Paytm, BHIM) to pay ₹{total.toLocaleString('en-IN')}</p>
-                      </div>
-                      
-                      {upiPaymentVerifying ? (
-                        <div className="flex items-center justify-center gap-2 text-primary font-bold animate-pulse text-xs py-2">
-                          <span className="material-symbols-outlined animate-spin text-sm">autorenew</span>
-                          Verifying transaction with bank...
-                        </div>
-                      ) : (
-                        <div className="w-full max-w-xs space-y-2">
-                          <div className="text-[10px] text-gray-500 font-medium">Awaiting payment... <span className="font-bold text-primary">{upiOrderTimer}s</span></div>
-                          <button 
-                            onClick={handleUpiVerificationFromSimulatedRzp}
-                            className="w-full py-3 bg-[#0c1322] hover:bg-[#1a253c] text-white rounded-lg font-bold text-sm shadow transition-all cursor-pointer"
-                          >
-                            Simulate Payment Success
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {selectedMethod === 'card' && (
-                    <div className="space-y-4 flex-1">
-                      <h4 className="font-bold text-xs text-gray-500 uppercase tracking-wider mb-4">Add a new card</h4>
-                      <div className="space-y-3">
-                        <input type="text" placeholder="Card Number" className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary" />
-                        <div className="grid grid-cols-2 gap-3">
-                          <input type="text" placeholder="MM / YY" className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary" />
-                          <input type="password" placeholder="CVV" className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary" />
-                        </div>
-                      </div>
-                      <button 
-                        onClick={handleUpiVerificationFromSimulatedRzp}
-                        className="w-full mt-6 py-3 bg-[#0c1322] text-white rounded-lg font-bold text-sm hover:opacity-90 transition-all cursor-pointer"
-                      >
-                        Pay ₹{total.toLocaleString('en-IN')}
-                      </button>
-                    </div>
-                  )}
-
-                  {selectedMethod === 'netbanking' && (
-                    <div className="space-y-4 flex-1">
-                      <h4 className="font-bold text-xs text-gray-500 uppercase tracking-wider mb-4">Popular Banks</h4>
-                      <div className="grid grid-cols-2 gap-3">
-                        <button onClick={handleUpiVerificationFromSimulatedRzp} className="p-3 border rounded-lg text-xs font-semibold text-gray-700 hover:bg-gray-50 text-center cursor-pointer">State Bank of India</button>
-                        <button onClick={handleUpiVerificationFromSimulatedRzp} className="p-3 border rounded-lg text-xs font-semibold text-gray-700 hover:bg-gray-50 text-center cursor-pointer">HDFC Bank</button>
-                        <button onClick={handleUpiVerificationFromSimulatedRzp} className="p-3 border rounded-lg text-xs font-semibold text-gray-700 hover:bg-gray-50 text-center cursor-pointer">ICICI Bank</button>
-                        <button onClick={handleUpiVerificationFromSimulatedRzp} className="p-3 border rounded-lg text-xs font-semibold text-gray-700 hover:bg-gray-50 text-center cursor-pointer">Axis Bank</button>
-                      </div>
-                    </div>
-                  )}
-
-                  {selectedMethod === 'wallet' && (
-                    <div className="space-y-4 flex-1">
-                      <h4 className="font-bold text-xs text-gray-500 uppercase tracking-wider mb-4">Select Wallet</h4>
-                      <div className="grid grid-cols-2 gap-3">
-                        <button onClick={handleUpiVerificationFromSimulatedRzp} className="p-3 border rounded-lg text-xs font-semibold text-gray-700 hover:bg-gray-50 text-center cursor-pointer">Paytm Wallet</button>
-                        <button onClick={handleUpiVerificationFromSimulatedRzp} className="p-3 border rounded-lg text-xs font-semibold text-gray-700 hover:bg-gray-50 text-center cursor-pointer">PhonePe Wallet</button>
-                      </div>
-                    </div>
-                  )}
-
-                  {selectedMethod === 'paylater' && (
-                    <div className="space-y-4 flex-1">
-                      <h4 className="font-bold text-xs text-gray-500 uppercase tracking-wider mb-4">Select Provider</h4>
-                      <div className="space-y-2">
-                        <button onClick={handleUpiVerificationFromSimulatedRzp} className="w-full p-4 border rounded-lg text-xs font-semibold text-gray-700 hover:bg-gray-50 flex items-center justify-between cursor-pointer">
-                          <span>LazyPay</span>
-                          <span className="material-symbols-outlined text-xs">chevron_right</span>
-                        </button>
-                        <button onClick={handleUpiVerificationFromSimulatedRzp} className="w-full p-4 border rounded-lg text-xs font-semibold text-gray-700 hover:bg-gray-50 flex items-center justify-between cursor-pointer">
-                          <span>ePayLater</span>
-                          <span className="material-symbols-outlined text-xs">chevron_right</span>
-                        </button>
-                      </div>
-                    </div>
-                  )}
-
-                </div>
-              </div>
+              ) : (
+                <>
+                  <div className="text-xs text-on-surface-variant mb-2">
+                    Awaiting payment... <span className="font-bold text-primary">{upiOrderTimer}s</span> remaining
+                  </div>
+                  <button 
+                    onClick={handleUpiVerification}
+                    className="w-full py-3 bg-primary text-white rounded-full font-bold text-sm shadow hover:opacity-90 active:scale-98 transition-all cursor-pointer"
+                  >
+                    Simulate Payment Success
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
