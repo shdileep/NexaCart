@@ -247,28 +247,23 @@ export default function OrderDetails() {
               <div className="pb-4 space-y-3">
                 <h3 className="font-body-md font-bold text-primary mb-2">Price Details</h3>
                 <div className="flex justify-between font-body-md text-secondary">
-                  <span>Listing price</span>
-                  <span>₹{originalPrice.toLocaleString()}</span>
-                </div>
-                <div className="flex justify-between font-body-md text-secondary">
-                  <div className="flex items-center gap-1">
-                    <span>Selling price</span>
-                    <span className="material-symbols-outlined text-sm">info</span>
-                  </div>
+                  <span>Product Subtotal</span>
                   <span>₹{amount.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between font-body-md text-secondary">
-                  <div className="flex items-center gap-1">
-                    <span>Discount</span>
-                  </div>
-                  <span className="text-green-600 font-semibold">- ₹{(originalPrice - amount).toLocaleString()}</span>
+                  <span>Delivery Charge</span>
+                  <span>₹{parseFloat(order.delivery_charge || 100).toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between font-body-md text-secondary">
+                  <span>Platform Fee</span>
+                  <span>₹50</span>
                 </div>
               </div>
               
               <div className="py-4">
                 <div className="flex justify-between font-headline-md text-xl text-primary font-bold">
-                  <span>Total amount</span>
-                  <span>₹{amount.toLocaleString()}</span>
+                  <span>Total amount paid</span>
+                  <span>₹{(parseFloat(amount) + parseFloat(order.delivery_charge || 100) + 50).toLocaleString()}</span>
                 </div>
               </div>
               

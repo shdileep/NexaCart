@@ -13,6 +13,7 @@ export default function AdminSellers() {
   const [statusFilter, setStatusFilter] = React.useState('');
 
   const loadData = async () => {
+    if (!localStorage.getItem('token')) return;
     const allUsers = await getAdminUsersList();
     const sellerList = allUsers.filter(u => u.role === 'seller');
     setSellers(sellerList);

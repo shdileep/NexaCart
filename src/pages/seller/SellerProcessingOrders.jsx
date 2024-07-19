@@ -12,7 +12,7 @@ export default function SellerProcessingOrders() {
   const [processingCount, setProcessingCount] = React.useState(0);
 
   const loadData = async () => {
-    if (!currentSeller?.id) return;
+    if (!currentSeller?.id || !localStorage.getItem('token')) return;
     setLoading(true);
     const allProds = await getProducts();
     const sellerProds = allProds.filter(p => p.seller_id === currentSeller.id);

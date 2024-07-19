@@ -12,7 +12,7 @@ export default function SellerReturns() {
 
   React.useEffect(() => {
     async function loadData() {
-      if (!currentSeller?.id) return;
+      if (!currentSeller?.id || !localStorage.getItem('token')) return;
       setLoading(true);
       const allProds = await getProducts();
       const sellerProds = allProds.filter(p => p.seller_id === currentSeller.id);

@@ -16,6 +16,7 @@ export default function AdminCustomers() {
   const [statusFilter, setStatusFilter] = React.useState('');
 
   const loadData = async () => {
+    if (!localStorage.getItem('token')) return;
     const allUsers = await getAdminUsersList();
     const customers = allUsers.filter(u => u.role === 'customer');
     setUsers(customers);

@@ -17,7 +17,7 @@ export default function SellerFinance() {
 
   React.useEffect(() => {
     async function loadData() {
-      if (!currentSeller?.id) return;
+      if (!currentSeller?.id || !localStorage.getItem('token')) return;
       setLoading(true);
 
       const allProds = await getProducts();
