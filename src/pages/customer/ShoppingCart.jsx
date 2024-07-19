@@ -629,7 +629,7 @@ export default function ShoppingCart() {
 
             <div className="w-64 h-64 mx-auto border border-outline-variant rounded-xl flex items-center justify-center p-2 bg-white shadow-inner mb-6">
               <img 
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(`upi://pay?pa=nexacart@upi&pn=NexaCart&am=${total}&cu=INR`)}`} 
+                src="/fake_upi_qr.png" 
                 alt="UPI QR Code" 
                 className="w-full h-full object-contain"
               />
