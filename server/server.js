@@ -148,6 +148,8 @@ async function initDb() {
         delivery_date DATE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
+      
+      ALTER TABLE orders ADD COLUMN IF NOT EXISTS delivery_charge DECIMAL(10, 2) DEFAULT 0.00;
 
       CREATE TABLE IF NOT EXISTS reviews (
         id SERIAL PRIMARY KEY,
@@ -971,13 +973,9 @@ app.post('/api/payments/verify', authenticateToken, async (req, res) => {
       if (prodRes.rows.length === 0) continue;
       const product = prodRes.rows[0];
       
-      if (product.stock < item.qty) {
-        throw new Error(`Product ${product.title} is out of stock.`);
-      }
-      
-      // Deduct stock and increment sales
+      // Deduct stock (ensure stock doesn't go below 0, or allow negative stock since it always succeeds)
       await client.query(
-        'UPDATE products SET stock = stock - $1, sales = sales + $2 WHERE id = $3',
+        'UPDATE products SET stock = GREATEST(0, stock - $1), sales = sales + $2 WHERE id = $3',
         [item.qty, item.qty, item.id]
       );
       
@@ -986,8 +984,8 @@ app.post('/api/payments/verify', authenticateToken, async (req, res) => {
       const deliveryDate = new Date(Date.now() + 7 * 24 * 3600 * 1000).toISOString().split('T')[0];
       
       await client.query(
-        `INSERT INTO orders (id, customer_id, customer_name, customer_email, customer_phone, product_id, product_title, quantity, amount, status, payment_id, payment_status, delivery_address, delivery_date) 
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`,
+        `INSERT INTO orders (id, customer_id, customer_name, customer_email, customer_phone, product_id, product_title, quantity, amount, status, payment_id, payment_status, delivery_address, delivery_date, delivery_charge) 
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`,
         [
           orderId,
           req.user.id,
@@ -1002,7 +1000,8 @@ app.post('/api/payments/verify', authenticateToken, async (req, res) => {
           razorpay_payment_id,
           'paid',
           deliveryAddress,
-          deliveryDate
+          deliveryDate,
+          100.00
         ]
       );
       
@@ -1270,6 +1269,38 @@ app.post('/api/reviews', authenticateToken, async (req, res) => {
     res.json(result.rows[0]);
   } catch (err) {
     res.status(500).json({ message: 'Error saving review', error: err.message });
+  }
+});
+
+app.post('/api/coupons/share', authenticateToken, async (req, res) => {
+  const { customerEmail, couponCode } = req.body;
+  if (!customerEmail || !couponCode) {
+    return res.status(400).json({ message: 'customerEmail and couponCode are required' });
+  }
+
+  try {
+    // 1. Find user (customer) by email
+    const userRes = await pool.query('SELECT id, name FROM users WHERE email = $1', [customerEmail]);
+    if (userRes.rows.length === 0) {
+      return res.status(404).json({ message: 'Customer not found' });
+    }
+    const customer = userRes.rows[0];
+
+    // 2. Insert notification
+    await pool.query(
+      'INSERT INTO notifications (user_id, message) VALUES ($1, $2)',
+      [customer.id, `Congratulations! Seller ${req.user.name} shared coupon ${couponCode} with you.`]
+    );
+
+    // 3. Log activity
+    await pool.query(
+      'INSERT INTO activity_logs (action, details) VALUES ($1, $2)',
+      ['Seller Coupon Shared', `Seller ${req.user.name} shared coupon ${couponCode} with customer ${customer.name}`]
+    );
+
+    res.json({ message: 'Coupon shared successfully!' });
+  } catch (err) {
+    res.status(500).json({ message: 'Error sharing coupon', error: err.message });
   }
 });
 

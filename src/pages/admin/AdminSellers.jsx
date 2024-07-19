@@ -22,6 +22,8 @@ export default function AdminSellers() {
 
   React.useEffect(() => {
     loadData();
+    const timer = setInterval(loadData, 5000);
+    return () => clearInterval(timer);
   }, []);
 
   const handleBlockSeller = async (sellerId, currentBlocked) => {

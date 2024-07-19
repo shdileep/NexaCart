@@ -25,6 +25,8 @@ export default function AdminCustomers() {
 
   React.useEffect(() => {
     loadData();
+    const timer = setInterval(loadData, 5000);
+    return () => clearInterval(timer);
   }, []);
 
   const handleBlockUnblock = async (userId, currentBlocked) => {

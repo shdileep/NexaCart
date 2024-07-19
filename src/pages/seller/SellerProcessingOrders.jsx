@@ -31,6 +31,8 @@ export default function SellerProcessingOrders() {
 
   React.useEffect(() => {
     loadData();
+    const timer = setInterval(loadData, 5000);
+    return () => clearInterval(timer);
   }, [currentSeller?.id]);
 
   const handleUpdateStatus = async (orderId, nextStatus) => {

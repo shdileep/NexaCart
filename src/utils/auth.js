@@ -448,6 +448,20 @@ export async function clearNotifications() {
   return false;
 }
 
+export async function shareCoupon(customerEmail, couponCode) {
+  try {
+    const response = await fetch(`${BACKEND_URL}/coupons/share`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({ customerEmail, couponCode })
+    });
+    return response.ok;
+  } catch (err) {
+    console.error('Error sharing coupon:', err);
+  }
+  return false;
+}
+
 // Customer Reviews
 
 export async function getReviews() {
