@@ -274,6 +274,14 @@ http://localhost:5173
 
 ---
 
+## 🔧 Troubleshooting & Tips
+
+- **Database Connection**: Ensure your PostgreSQL service is running on port 5432 and credentials match `.env`.
+- **Image Uploads**: Verify `CLOUDINARY_*` credentials if product image uploads fail.
+- **Payment Sandbox**: Ensure test card credentials are used for Razorpay test mode checkouts.
+
+---
+
 ## ⭐ Highlights
 
 - JWT Authentication
