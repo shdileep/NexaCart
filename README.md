@@ -49,17 +49,7 @@ cd server
 npm install
 ```
 
-Create a `.env` file in the `server/` folder based on `.env.example`:
-```env
-PORT=5000
-DATABASE_URL=postgres://postgres:password@localhost:5432/nexacart
-JWT_SECRET=super_secret_nexacart_jwt_key_12345
-CLOUDINARY_CLOUD_NAME=dqv8xxvqu
-CLOUDINARY_API_KEY=631481232811413
-CLOUDINARY_API_SECRET=Wl8_N1BfFWhb4N5hM0s_m1A7B70
-RAZORPAY_KEY_ID=rzp_test_TFLbN6g6YPuD2m
-RAZORPAY_KEY_SECRET=QvP7YpGzG7M8tL9vTFLbN6g6
-```
+
 
 ### 2. Database Schema Setup
 If you haven't initialized the tables, log into your PostgreSQL shell and run the schema setup from `server/schema.sql`:
