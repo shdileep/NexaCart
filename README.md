@@ -97,10 +97,9 @@ This project adheres to professional git branch workflows:
 
 ## 🎥 Project Demo
 
-> **Watch the complete demo below:**
-https://github.com/shdileep/NexaCart/blob/main/src/Demo.mp4
----
+> Watch the complete demo below.
 
+[▶️ Watch Demo Video](https://github.com/shdileep/NexaCart/blob/main/src/Demo.mp4)
 
 ---
 
