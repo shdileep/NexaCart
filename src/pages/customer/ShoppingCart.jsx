@@ -34,6 +34,87 @@ export default function ShoppingCart() {
   const [addressState, setAddressState] = React.useState('');
   const [addressPincode, setAddressPincode] = React.useState('');
 
+  // UPI Scan & Pay Modal State
+  const [showUpiModal, setShowUpiModal] = React.useState(false);
+  const [upiPaymentVerifying, setUpiPaymentVerifying] = React.useState(false);
+  const [upiOrderTimer, setUpiOrderTimer] = React.useState(30);
+
+  React.useEffect(() => {
+    let timer;
+    if (showUpiModal && upiOrderTimer > 0 && !upiPaymentVerifying) {
+      timer = setTimeout(() => setUpiOrderTimer(upiOrderTimer - 1), 1000);
+    } else if (showUpiModal && upiOrderTimer === 0 && !upiPaymentVerifying) {
+      handleUpiVerification();
+    }
+    return () => clearTimeout(timer);
+  }, [showUpiModal, upiOrderTimer, upiPaymentVerifying]);
+
+  const handleUpiScanAndPay = () => {
+    if (!currentUser) {
+      alert('Please log in to checkout.');
+      navigate('/customer/login');
+      return;
+    }
+
+    if (cartItems.length === 0) {
+      alert('Your cart is empty.');
+      return;
+    }
+
+    const selectedAddr = addresses.find(a => a.id === selectedAddressId);
+    if (!selectedAddr) {
+      alert('Please add and select a delivery address before proceeding to checkout.');
+      return;
+    }
+
+    setUpiOrderTimer(30);
+    setUpiPaymentVerifying(false);
+    setShowUpiModal(true);
+  };
+
+  const handleUpiVerification = async () => {
+    const selectedAddr = addresses.find(a => a.id === selectedAddressId);
+    if (!selectedAddr) return;
+
+    setUpiPaymentVerifying(true);
+    
+    // Simulate a 2-second backend verification delay
+    setTimeout(async () => {
+      try {
+        const deliveryAddressStr = `${selectedAddr.name}, Phone: ${selectedAddr.phone}, ${selectedAddr.street_address}, ${selectedAddr.city}, ${selectedAddr.state} - ${selectedAddr.pincode}`;
+
+        const verifyResponse = await fetch(`${BACKEND_URL}/payments/verify`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+          body: JSON.stringify({
+            razorpay_order_id: 'UPI_ORDER_' + Math.random().toString(36).substring(2, 11).toUpperCase(),
+            razorpay_payment_id: 'UPI_PAY_' + Math.random().toString(36).substring(2, 11).toUpperCase(),
+            razorpay_signature: 'UPI_SCAN_PAY_BYPASS',
+            cartItems: cartItems.map(item => ({ id: item.id, qty: item.qty })),
+            deliveryAddress: deliveryAddressStr
+          })
+        });
+
+        if (verifyResponse.ok) {
+          alert('UPI Payment Verified! Order placed successfully.');
+          setShowUpiModal(false);
+          setUpiPaymentVerifying(false);
+          setCartItems([]);
+          navigate('/customer/orders');
+        } else {
+          alert('UPI verification failed on server.');
+          setUpiPaymentVerifying(false);
+        }
+      } catch (err) {
+        alert('Error validating UPI checkout callback.');
+        setUpiPaymentVerifying(false);
+      }
+    }, 2000);
+  };
+
   const loadCartData = async () => {
     if (!currentUser) return;
     const cart = await getCart();
@@ -409,6 +490,13 @@ export default function ShoppingCart() {
                   Pay via Razorpay (₹{total.toLocaleString()})
                   <span className="material-symbols-outlined">arrow_forward</span>
                 </button>
+                <button 
+                  onClick={handleUpiScanAndPay}
+                  className="w-full text-primary mt-3 py-3 border-2 border-primary rounded-full font-semibold text-body-md flex items-center justify-center gap-2 hover:bg-primary/5 active:scale-[0.98] transition-all cursor-pointer"
+                >
+                  <span className="material-symbols-outlined">qr_code_scanner</span>
+                  Scan &amp; Pay (UPI QR)
+                </button>
               </div>
             </aside>
           )}
@@ -518,6 +606,67 @@ export default function ShoppingCart() {
               </button>
             </div>
           </form>
+        </div>
+      )}
+
+      {/* UPI QR CODE MODAL */}
+      {showUpiModal && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl max-w-sm w-full shadow-2xl p-6 relative text-center">
+            <button 
+              type="button" 
+              onClick={() => setShowUpiModal(false)}
+              disabled={upiPaymentVerifying}
+              className="absolute top-4 right-4 material-symbols-outlined text-secondary hover:bg-surface-container p-2 rounded-full cursor-pointer disabled:opacity-50"
+            >
+              close
+            </button>
+            <h3 className="font-headline-md text-xl font-bold text-primary mb-2 flex items-center justify-center gap-2">
+              <span className="material-symbols-outlined text-primary">qr_code_2</span>
+              Scan &amp; Pay UPI
+            </h3>
+            <p className="text-xs text-on-surface-variant mb-6">Scan QR code using any UPI App (GPay, PhonePe, Paytm, BHIM)</p>
+
+            <div className="w-64 h-64 mx-auto border border-outline-variant rounded-xl flex items-center justify-center p-2 bg-white shadow-inner mb-6">
+              <img 
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(`upi://pay?pa=nexacart@upi&pn=NexaCart&am=${total}&cu=INR`)}`} 
+                alt="UPI QR Code" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+
+            <div className="bg-surface-container p-4 rounded-xl mb-6 text-left">
+              <div className="flex justify-between items-center text-xs text-on-surface-variant font-medium mb-1">
+                <span>Amount to Pay</span>
+                <span className="font-bold text-primary text-sm">₹{total.toLocaleString('en-IN')}</span>
+              </div>
+              <div className="flex justify-between items-center text-xs text-on-surface-variant font-medium">
+                <span>UPI ID</span>
+                <span className="font-mono text-primary font-semibold">nexacart@upi</span>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              {upiPaymentVerifying ? (
+                <div className="flex items-center justify-center gap-2 text-primary font-bold animate-pulse py-2 text-sm">
+                  <span className="material-symbols-outlined animate-spin text-lg">autorenew</span>
+                  Verifying transaction with bank...
+                </div>
+              ) : (
+                <>
+                  <div className="text-xs text-on-surface-variant mb-2">
+                    Awaiting payment... <span className="font-bold text-primary">{upiOrderTimer}s</span> remaining
+                  </div>
+                  <button 
+                    onClick={handleUpiVerification}
+                    className="w-full py-3 bg-primary text-white rounded-full font-bold text-sm shadow hover:opacity-90 active:scale-98 transition-all cursor-pointer"
+                  >
+                    Simulate Payment Success
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
         </div>
       )}
 
