@@ -1,16 +1,104 @@
-# React + Vite
+# NexaCart Role-Based E-Commerce Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A production-grade, full-stack, role-based e-commerce platform built in React, Node.js, Express, and PostgreSQL. It demonstrates secure JWT authentication, role-based access control (RBAC), dynamically persistence in PostgreSQL, Razorpay sandbox payment integration, Cloudinary image upload, and real-time activity tracking.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Key Features
 
-## React Compiler
+### 1. Role-Based Access Control (RBAC)
+- **Admin**: Full control of the marketplace. Can approve or reject seller products, block/unblock customers and sellers, view real-time operations via the Activity Log, and track total marketplace KPIs (Users, Revenue, Orders).
+- **Seller (Sales Person)**: Can add, edit, and delete products they own. Products require admin approval before becoming visible to customers. Sellers can track orders containing their products, view customer ratings, and receive real-time notifications when products are approved or sold.
+- **Customer**: Can register, browse, search, and filter approved products. Can manage their personal wishlist, shopping cart, delivery addresses (Add/Edit/Delete/Set Default), perform secure checkouts via Razorpay sandbox, and rate purchased items.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. Product Approval Flow
+- Newly added seller products start as **Pending Approval**.
+- Approved products appear immediately in the **New Arrivals** section of the customer dashboard.
+- Rejected or deleted products are removed from queues and stored under marked statuses.
 
-## Expanding the Oxlint configuration
+### 3. Integrated Delivery Address CRUD
+- Customers can manage multiple shipping addresses at checkout: Add, Edit, Delete, and select a Default Address.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### 4. Razorpay Payment Gateway Integration
+- Creates payment order on the backend via Razorpay SDK.
+- Integrates the frontend Razorpay Checkout overlay.
+- Securely verifies payment signature callback (`razorpay_order_id`, `razorpay_payment_id`, `razorpay_signature`) before persisting orders.
+
+### 5. Cloudinary Image Upload
+- Directly processes Base64 upload buffers and uploads images to Cloudinary securely.
+
+---
+
+## 🛠️ Tech Stack
+- **Frontend**: React (Vite), TailwindCSS, Google Fonts (Hanken Grotesk, Inter), Material Symbols
+- **Backend**: Node.js, Express, pg (node-postgres), JWT (jsonwebtoken), bcryptjs, Razorpay SDK, Cloudinary SDK
+- **Database**: PostgreSQL (relational schema with constraints and cascades)
+
+---
+
+## 📦 Installation & Setup
+
+### Prerequisites
+- Node.js (v18+)
+- PostgreSQL local instance running
+
+### 1. Backend Configuration
+Navigate to the `server/` directory:
+```bash
+cd server
+npm install
+```
+
+Create a `.env` file in the `server/` folder based on `.env.example`:
+```env
+PORT=5000
+DATABASE_URL=postgres://postgres:password@localhost:5432/nexacart
+JWT_SECRET=super_secret_nexacart_jwt_key_12345
+CLOUDINARY_CLOUD_NAME=dqv8xxvqu
+CLOUDINARY_API_KEY=631481232811413
+CLOUDINARY_API_SECRET=Wl8_N1BfFWhb4N5hM0s_m1A7B70
+RAZORPAY_KEY_ID=rzp_test_TFLbN6g6YPuD2m
+RAZORPAY_KEY_SECRET=QvP7YpGzG7M8tL9vTFLbN6g6
+```
+
+### 2. Database Schema Setup
+If you haven't initialized the tables, log into your PostgreSQL shell and run the schema setup from `server/schema.sql`:
+```bash
+psql -U postgres -d nexacart -f schema.sql
+```
+
+### 3. Start Backend Server
+```bash
+node server.js
+```
+
+### 4. Frontend Configuration
+Navigate to the root directory and start the Vite dev server:
+```bash
+npm install
+npm run dev
+```
+
+The application will be running on `http://localhost:5173`.
+
+---
+
+## 🔐 Credentials for Verification & Testing
+
+Use the following credentials to log into different roles:
+
+| Role | Email | Password | Details |
+| :--- | :--- | :--- | :--- |
+| **Admin** | `admin@nexacart.com` | `admin123` | Control Panel, pending products, block check |
+| **Seller** | `seller@nexacart.com` | `seller123` | Seller Dashboard, add products, view notifications |
+| **Customer** | `customer@nexacart.com` | `customer123` | Customer Dashboard, cart, wishlist, Razorpay checkout |
+
+---
+
+## 📂 Git Commit Workflow
+
+This project adheres to professional git branch workflows:
+1. Created feature branch `feature/full-stack-fixes` from `main`.
+2. Committed isolated backend changes.
+3. Connected frontend layouts with async REST endpoints.
+4. Merged `feature/full-stack-fixes` branch back into `main` using fast-forward merge.
