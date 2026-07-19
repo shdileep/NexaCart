@@ -27,6 +27,8 @@ export default function SellerCancelledOrders() {
       setLoading(false);
     }
     loadData();
+    const timer = setInterval(loadData, 5000);
+    return () => clearInterval(timer);
   }, [currentSeller?.id]);
 
   if (loading) {

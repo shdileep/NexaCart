@@ -26,16 +26,20 @@ export default function SellerFinance() {
       const allOrders = await getOrders();
       const filteredOrders = allOrders.filter(o => sellerProds.some(sp => sp.id === o.productId));
 
-      // Delivered orders constitute Total Earnings
+      // Delivered orders constitute Total Earnings (includes product amount + 50% delivery charge split)
       const deliveredOrders = filteredOrders.filter(o => o.status.toLowerCase() === 'delivered');
-      const totalEarnings = deliveredOrders.reduce((sum, o) => sum + parseFloat(o.amount), 0);
+      const totalEarnings = deliveredOrders.reduce((sum, o) => sum + parseFloat(o.amount) + parseFloat(o.delivery_charge || 0) * 0.5, 0);
 
-      // Pending/processing orders constitute Pending Payout
+      // Pending/processing orders constitute Pending Payout (includes product amount + 50% delivery charge split)
       const pendingOrders = filteredOrders.filter(o => o.status.toLowerCase() === 'pending' || o.status.toLowerCase() === 'processing' || o.status.toLowerCase() === 'shipped');
-      const pendingPayout = pendingOrders.reduce((sum, o) => sum + parseFloat(o.amount), 0);
+      const pendingPayout = pendingOrders.reduce((sum, o) => sum + parseFloat(o.amount) + parseFloat(o.delivery_charge || 0) * 0.5, 0);
 
-      // Available balance is earnings minus a standard platform fee (5%)
-      const availableBalance = totalEarnings * 0.95;
+      // Available balance is product amount minus platform fee (5%) plus 50% delivery charge split
+      const availableBalance = deliveredOrders.reduce((sum, o) => {
+        const amt = parseFloat(o.amount);
+        const delCharge = parseFloat(o.delivery_charge || 0);
+        return sum + (amt * 0.95) + (delCharge * 0.5);
+      }, 0);
 
       // Generate mock charges data for last 6 months based on actual sales
       const months = ['May', 'Jun', 'Jul'];
@@ -71,6 +75,8 @@ export default function SellerFinance() {
       setLoading(false);
     }
     loadData();
+    const timer = setInterval(loadData, 5000);
+    return () => clearInterval(timer);
   }, [currentSeller?.id]);
 
   if (loading) {

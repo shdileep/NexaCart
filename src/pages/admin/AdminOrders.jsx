@@ -14,6 +14,8 @@ export default function AdminOrders() {
       setOrders(allOrders);
     }
     loadOrders();
+    const timer = setInterval(loadOrders, 5000);
+    return () => clearInterval(timer);
   }, []);
 
   const handleOpenOrderDetail = (order) => {
@@ -21,11 +23,11 @@ export default function AdminOrders() {
     setShowDetailModal(true);
   };
 
-  // KPIs based on target stats
-  const totalRevenue = 9000;
-  const activeOrdersCount = orders.length; // 10 orders
+  // KPIs based on actual orders
+  const totalRevenue = orders.reduce((sum, o) => sum + parseFloat(o.amount), 0);
+  const activeOrdersCount = orders.length;
   const refundRate = '0.00%';
-  const averageTicket = totalRevenue / (activeOrdersCount || 1); // 900 INR
+  const averageTicket = activeOrdersCount > 0 ? totalRevenue / activeOrdersCount : 0;
 
   return (
     <div className="min-h-screen bg-background">
