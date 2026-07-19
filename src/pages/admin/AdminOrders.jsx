@@ -10,6 +10,7 @@ export default function AdminOrders() {
 
   React.useEffect(() => {
     async function loadOrders() {
+      if (!localStorage.getItem('token')) return;
       const allOrders = await getOrders();
       setOrders(allOrders);
     }

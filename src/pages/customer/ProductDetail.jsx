@@ -190,7 +190,6 @@ export default function ProductDetail() {
                 </div>
                 <div>
                   <p className="font-bold text-primary">{product.store_name || product.storeName || 'Lumina Tech Systems'}</p>
-                  <p className="text-label-sm font-label-sm text-on-surface-variant">{product.seller_email || 'seller@nexacart.com'}</p>
                 </div>
               </div>
             </div>
@@ -203,7 +202,9 @@ export default function ProductDetail() {
               </div>
               <div className="flex flex-col items-center gap-1 text-center">
                 <span className="material-symbols-outlined">payments</span>
-                <span className="text-label-sm font-label-sm text-on-surface-variant">COD: {product.cod || 'Yes'}</span>
+                <span className="text-label-sm font-label-sm text-on-surface-variant">
+                  {product.cod && product.cod.toLowerCase() === 'yes' ? 'COD Available' : 'COD Not Available'}
+                </span>
               </div>
               <div className="flex flex-col items-center gap-1 text-center">
                 <span className="material-symbols-outlined">verified</span>

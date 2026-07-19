@@ -22,7 +22,7 @@ export default function SellerCustomers() {
   const [selectedCustomer, setSelectedCustomer] = React.useState(null);
 
   const loadData = async () => {
-    if (!currentSeller?.id) return;
+    if (!currentSeller?.id || !localStorage.getItem('token')) return;
     setLoading(true);
     
     const allProds = await getProducts();
