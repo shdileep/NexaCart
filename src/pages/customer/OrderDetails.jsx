@@ -17,21 +17,24 @@ export default function OrderDetails() {
   const currentUser = getCurrentUser();
 
   React.useEffect(() => {
-    const allOrders = getOrders();
-    const currentOrder = allOrders.find(o => o.id === orderId);
-    if (currentOrder) {
-      setOrder(currentOrder);
-      
-      const allProds = getProducts();
-      const matchingProd = allProds.find(p => p.id === currentOrder.productId);
-      setProduct(matchingProd);
-      
-      const reviews = getReviews();
-      const existingReview = reviews.find(r => r.orderId === orderId);
-      if (existingReview) {
-        setRating(existingReview.rating);
+    async function loadData() {
+      const allOrders = await getOrders();
+      const currentOrder = allOrders.find(o => o.id === orderId);
+      if (currentOrder) {
+        setOrder(currentOrder);
+        
+        const allProds = await getProducts();
+        const matchingProd = allProds.find(p => p.id === currentOrder.productId);
+        setProduct(matchingProd);
+        
+        const reviews = await getReviews();
+        const existingReview = reviews.find(r => r.orderId === orderId);
+        if (existingReview) {
+          setRating(existingReview.rating);
+        }
       }
     }
+    loadData();
   }, [orderId]);
 
   const handleDownloadInvoice = () => {

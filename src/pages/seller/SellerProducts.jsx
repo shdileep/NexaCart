@@ -33,11 +33,11 @@ export default function SellerProducts() {
   const currentSeller = getCurrentUser() || { name: 'John Doe', role: 'seller', businessName: 'Lumina Tech Systems' };
   const fileInputRef = React.useRef(null);
 
-  const loadData = () => {
+  const loadData = async () => {
     if (!currentSeller?.id) return;
-    const allProds = getProducts();
+    const allProds = await getProducts();
     // Filter products uploaded by this seller, excluding deleted ones
-    const sellerProds = allProds.filter(p => p.sellerId === currentSeller.id && p.status !== 'deleted');
+    const sellerProds = allProds.filter(p => p.seller_id === currentSeller.id && p.status !== 'deleted');
     setProducts(sellerProds);
   };
 
@@ -69,7 +69,7 @@ export default function SellerProducts() {
     setImages(prev => prev.filter((_, i) => i !== idx));
   };
 
-  const handleAddProductSubmit = (e) => {
+  const handleAddProductSubmit = async (e) => {
     e.preventDefault();
     if (!title || !price || !stock || !deliveryLocation) {
       alert("Please fill in all mandatory fields.");
@@ -114,7 +114,7 @@ export default function SellerProducts() {
       sellerEmail: currentSeller.email
     };
 
-    addProduct(productPayload);
+    await addProduct(productPayload);
 
     // Reset fields
     setTitle('');
@@ -207,7 +207,7 @@ export default function SellerProducts() {
                             </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4 font-semibold text-primary text-left">₹{prod.price.toLocaleString()}</td>
+                        <td className="px-6 py-4 font-semibold text-primary text-left">₹{parseFloat(prod.price).toLocaleString()}</td>
                         <td className="px-6 py-4 text-left">
                           <div className="flex items-center gap-1.5">
                             <span className={`w-2 h-2 rounded-full ${

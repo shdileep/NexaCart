@@ -513,8 +513,10 @@ app.get('/api/products', async (req, res) => {
       query += ` AND category = $${params.length}`;
     }
     if (status) {
-      params.push(status);
-      query += ` AND status = $${params.length}`;
+      if (status !== 'all') {
+        params.push(status);
+        query += ` AND status = $${params.length}`;
+      }
     } else {
       query += ` AND status = 'approved'`;
     }
@@ -1210,6 +1212,15 @@ app.get('/api/notifications', authenticateToken, async (req, res) => {
     })));
   } catch (err) {
     res.status(500).json({ message: 'Error loading notifications', error: err.message });
+  }
+});
+
+app.put('/api/notifications', authenticateToken, async (req, res) => {
+  try {
+    await pool.query('UPDATE notifications SET read = TRUE WHERE user_id = $1', [req.user.id]);
+    res.json({ message: 'Notifications marked as read' });
+  } catch (err) {
+    res.status(500).json({ message: 'Error marking notifications as read', error: err.message });
   }
 });
 

@@ -12,12 +12,26 @@ export default function AdminDashboard() {
   const currentUser = getCurrentUser();
   const adminName = currentUser ? currentUser.name : 'System Admin';
 
-  const products = getProducts();
-  const orders = getOrders();
-  const logs = getLogs();
+  const [products, setProducts] = React.useState([]);
+  const [orders, setOrders] = React.useState([]);
+  const [logs, setLogs] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    async function loadData() {
+      setLoading(true);
+      const allProds = await getProducts();
+      setProducts(allProds);
+      const allOrders = await getOrders();
+      setOrders(allOrders);
+      const allLogs = await getLogs();
+      setLogs(allLogs);
+      setLoading(false);
+    }
+    loadData();
+  }, []);
 
   // Statistics overrides per instructions:
-  // total customers to 20, total sellers to 30, total orders to 10, and total revenue to 9,000.
   const totalCustomers = 20;
   const totalSellers = 30;
   const totalOrders = 10;

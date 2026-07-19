@@ -10,9 +10,10 @@ export default function SellerHeader() {
 
   const currentSeller = getCurrentUser() || { id: 0 };
 
-  const loadNotifications = () => {
+  const loadNotifications = async () => {
     if (currentSeller?.id) {
-      setNotifications(getNotifications(currentSeller.id));
+      const items = await getNotifications();
+      setNotifications(items);
     }
   };
 
@@ -23,10 +24,10 @@ export default function SellerHeader() {
     return () => clearInterval(timer);
   }, [currentSeller?.id]);
 
-  const handleToggleNotifications = () => {
+  const handleToggleNotifications = async () => {
     if (!showNotifications && currentSeller?.id) {
-      markNotificationsAsRead(currentSeller.id);
-      loadNotifications();
+      await markNotificationsAsRead();
+      await loadNotifications();
     }
     setShowNotifications(!showNotifications);
     setShowDropdown(false);
