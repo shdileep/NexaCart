@@ -1,0 +1,496 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>NexaCart | Product Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#000000",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "surface": "#f7f9fb",
+                        "primary": "#000000",
+                        "on-primary-fixed": "#131b2e",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "error": "#ba1a1a",
+                        "primary-container": "#131b2e",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#0b1c30",
+                        "surface-bright": "#f7f9fb",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eceef0",
+                        "on-surface": "#191c1e",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#565e74",
+                        "inverse-surface": "#2d3133",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "inverse-primary": "#bec6e0",
+                        "secondary-container": "#d5e3fd",
+                        "surface-dim": "#d8dadc",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed": "#d5e3fd",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-surface-variant": "#45464d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#191c1e",
+                        "outline": "#76777d",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "on-tertiary-container": "#75859d",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary": "#515f74",
+                        "outline-variant": "#c6c6cd",
+                        "on-secondary-container": "#57657b",
+                        "primary-fixed": "#dae2fd",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "background": "#f7f9fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f7f9fb;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md">
+<!-- SideNavBar -->
+<aside class="w-[260px] h-screen fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant flex flex-col py-8 px-4 h-full z-50">
+<div class="mb-10 px-2 flex items-center gap-3">
+
+<div class="w-10 h-10 flex-shrink-0 transition-all duration-300 grayscale hover:grayscale-0">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLAXnemxBRetU8KEwI4mx0Moh8_UlxeKvDTqVTDspBOiQDzaA_W77jJvEIRwt_ZoNnKvfFNpVvEplBpNkFbqVLISxRMZt5kuZoet5M0aluAcTDzWn7gQsR2vGD69CsN67M8IZKRyUHM7M28vsLW7A727DPMGZaH6UNnUPGqjJswlRm-8E_uM6EnwtWt_nwDUY0mFRT267fs4BvgKJiZiMuqcH_P5lkY3whjKrDYlyS8Iv992bZdsT1zibPRHmuRtVWDs7Auucfugo" alt="NexaCart Logo" class="w-full h-full object-contain">
+</div><h1 class="font-headline-md text-headline-md font-bold text-primary">NexaCart</h1>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container transition-colors duration-200 text-on-secondary-container" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded bg-surface-container text-primary font-semibold border-r-4 border-primary transition-all duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="">Products</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container transition-colors duration-200 text-on-secondary-container" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container transition-colors duration-200 text-on-secondary-container" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container transition-colors duration-200 text-on-secondary-container" href="#">
+<span class="material-symbols-outlined">local_offer</span>
+<span class="">Coupons</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container transition-colors duration-200 text-on-secondary-container" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container transition-colors duration-200 text-on-secondary-container" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="">Finance</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-6 px-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container transition-colors duration-200 text-on-secondary-container" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="">Settings</span>
+</a>
+<div class="mt-4 flex items-center gap-3 px-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional studio portrait of an enterprise merchant, high-end corporate style with soft directional lighting, neutral gray background. The subject is wearing a sharp charcoal blazer, projecting confidence and authority. Shot with a shallow depth of field for a modern, clean look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxZTiGZT2iVODv33Io2JuPqZmopVhPagrlo-04iha15oLCEKYTrz7dlsUy3cX0o45RmSA9XiYJtfFS4eLrEUKH1ZRUkj-0mxEjn-FJGx2S1rGQ_o33lDT2r8Iky1i_SDUjAQRuxIKJ486uMCbyEK6UkAXDdxrX1xrGp8KVmn3GAz1RCGnEnRA5uiCLs1iSGKF-abSppkH7fTGB1mPJO5F7FuKHxDwTDldXrVPPNARlHG4WziaOiPkYfUYlocrJN5dQHyssITa6UTo">
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="text-sm font-semibold truncate">Enterprise Seller</span>
+<span class="text-xs text-on-surface-variant truncate">ID: 8829-NC</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="h-[80px] fixed top-0 right-0 left-[260px] bg-surface-container-lowest border-b border-outline-variant shadow-sm flex justify-between items-center px-gutter z-40">
+<div class="flex items-center flex-1 max-w-2xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">search</span>
+<input class="w-full pl-11 pr-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg focus:outline-none focus:border-primary transition-all font-body-md text-sm" placeholder="Search catalog, SKUs, or categories..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-6 ml-gutter">
+<button class="relative p-2 rounded-full hover:bg-surface-container transition-all active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container transition-all active:scale-95">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-6 w-px bg-outline-variant"></div>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-full font-semibold transition-all hover:opacity-90 active:scale-95">
+<span class="material-symbols-outlined text-sm">add</span>
+<span class="text-sm">New Product</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pl-[260px] pt-[80px] min-h-screen">
+<div class="p-8 max-w-container-max mx-auto">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Product Catalog</h2>
+<p class="text-on-surface-variant mt-1">Manage your enterprise inventory and stock health across all regions.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-outline-variant rounded-lg font-semibold hover:bg-surface-container transition-all text-sm">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+                        Filters
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-outline-variant rounded-lg font-semibold hover:bg-surface-container transition-all text-sm">
+<span class="material-symbols-outlined text-lg">ios_share</span>
+                        Export CSV
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Main Table Section -->
+<div class="col-span-9">
+<div class="bg-white border border-outline-variant rounded-lg overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-4 text-xs font-bold text-on-surface uppercase tracking-wider">Product</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface uppercase tracking-wider">Category</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface uppercase tracking-wider">Stock</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface uppercase tracking-wider">Price</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface uppercase tracking-wider">Sales</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface uppercase tracking-wider"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded border border-outline-variant bg-surface overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A premium high-fidelity wireless headphone set in matte obsidian black. The product is photographed in a minimalist studio setting with dramatic side lighting to emphasize the sleek contours and premium materials. High-contrast, clean aesthetic suitable for an enterprise commerce catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwHIa4FkHhHSEPH2kUOO1hiHB4-w3uA2sJGFkxM6eYR2pKu2zBPm46Z50yNe0q6rZapac4tLZg476EQEpGlTbIyh_elSvuSBHUrS_UfHrISTIlw_WoJKbedznrisBWbrC8AkMA9GD5FiZJUQO4IL7S7VeZ-d_4F7-H5UISSgCQmSQ3K0G6EWFdEYX4YlQSZ4DgQNNDqGcLKJoApx-IdPYhZBHHX2MZn-3EZqKDge_fmIChdH5E7rThoVd3fVhzpGdY_I7R-IAUYBI">
+</div>
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Aura Pro Wireless</span>
+<span class="text-xs font-label-sm text-on-surface-variant">SKU: NC-HE-001</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 bg-surface-container rounded font-label-sm text-label-sm text-on-secondary-container">Electronics</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<span class="font-semibold text-primary">1,240</span>
+<div class="w-24 h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 75%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-semibold text-primary">$299.00</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-success">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-sm font-medium text-emerald-600">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">2,491 units</td>
+<td class="px-6 py-4 text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+<!-- Row 2 (Low Stock) -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded border border-outline-variant bg-surface overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Minimalist executive mechanical watch with a brushed titanium finish and midnight blue face. The photography is sharp and architectural, featuring clean lines and high-end detailing. Professional enterprise lighting with cold tones and premium reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHPOC7MmC2UaYWRIa4kWi37qGRz7Up45cGTgaUl2csgLtShY9jwPsTgEQu4LKc1SyG6ipUBwbG7rC_ZrlmB40E6PwjGWa6LSlncEzXvrTF7mAfJOMaVw5X8EUgkjZxnn_ohzPRQHjXhNZUaHxBXTJmWhCnloDMQYr2pml1VrlXzTELd4Y5RaxgND6F18ehSrb5_0-iOk02iMh8mgXW_h25JMGWG8QGeML-7VuHu8rmW-4We9zALT-WIHGJvwWkWNArd_08Ez_58lM">
+</div>
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Chronos T1 Titanium</span>
+<span class="text-xs font-label-sm text-on-surface-variant">SKU: NC-WA-482</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 bg-surface-container rounded font-label-sm text-label-sm text-on-secondary-container">Accessories</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<span class="font-semibold text-error">12</span>
+<div class="w-24 h-1 bg-error-container rounded-full overflow-hidden">
+<div class="h-full bg-error" style="width: 15%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-semibold text-primary">$850.00</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="text-sm font-medium text-error">Low Stock</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">148 units</td>
+<td class="px-6 py-4 text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded border border-outline-variant bg-surface overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Sleek, minimalist matte glass smart water bottle with an integrated OLED display cap. Modern product photography using a high-key lighting setup in a clinical, high-tech aesthetic. Minimalist white-on-white composition with subtle shadow play." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh1TApTErZmo0a7Pv7V57md2v3cRKlU57qA7d7eAbIj3zgvSR9QWQEenCIiuKkmZ2ujWyTPLuzUSAKAhGd3RoDSDANDYR_dpjikzSHVjRwKMtNoi_h2YYT6bWdCN0A4hIGZaqIB1BdgZ9U02iEYd69ONd1CdieM0_a5CPLRot-46pqu-Bkq8PSHl8KNa2Y7fTRuxSYuwfH3lNrXMlmomCygxOQPZShcjPsMznbPvubssjPsV_CW3Mn4dVOXIzmeGplA8c2UGajxNQ">
+</div>
+<div class="flex flex-col">
+<span class="font-semibold text-primary">HydroSart V2</span>
+<span class="text-xs font-label-sm text-on-surface-variant">SKU: NC-HO-112</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 bg-surface-container rounded font-label-sm text-label-sm text-on-secondary-container">Home &amp; Living</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<span class="font-semibold text-primary">850</span>
+<div class="w-24 h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 55%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-semibold text-primary">$49.00</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-success">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-sm font-medium text-emerald-600">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">892 units</td>
+<td class="px-6 py-4 text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+<!-- Row 4 (Archived) -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded border border-outline-variant bg-surface overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Ergonomic vertical designer mouse with a sculptural, organic form in a dark slate finish. Professional lighting setup emphasizing the ergonomic curves and texture. Clean, corporate visual style with minimal distraction." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA77ke3xdyj0zGsfiRRl0OdUHYzUewDU0XiVKJvc5B8GeMuGugxvXavTNG4C8c73LBAy0YbDiLXOgqAY8jd5rgyBcm6fYNk9Qp1QPbaiaC1Hcn1kZhw2mgwXAsafMoQb0xvDI8CFQHn3_C2kFHCBSj-C0wkzzpkDvQ3ddKxiCNX1uSyUZldgKFVQwSx5tDUYRNkcl3C5ViudntOyYt6CvywFWG81WfBYHaoMtFPy1ub5pn5VIAqXnqLnN8ktgBzKOTIC1zlcmxYLns">
+</div>
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Vertex Mouse Gen 1</span>
+<span class="text-xs font-label-sm text-on-surface-variant">SKU: NC-PE-099</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 bg-surface-container rounded font-label-sm text-label-sm text-on-secondary-container">Peripherals</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<span class="font-semibold text-on-surface-variant">0</span>
+<div class="w-24 h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-on-surface-variant" style="width: 0%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-semibold text-on-surface-variant">$129.00</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-on-surface-variant"></span>
+<span class="text-sm font-medium text-on-surface-variant">Archived</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">3,102 units</td>
+<td class="px-6 py-4 text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-surface-container-lowest px-6 py-4 flex items-center justify-between border-t border-outline-variant">
+<span class="text-sm text-on-surface-variant">Showing <span class="font-semibold text-primary">1-10</span> of <span class="font-semibold text-primary">482</span> products</span>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant rounded hover:bg-surface-container transition-all disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 border border-outline-variant rounded hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Alert Section -->
+<div class="col-span-3 space-y-gutter">
+<!-- Alert Panel -->
+<div class="glass-card p-6 rounded-lg">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-semibold text-lg text-primary">Stock Health</h3>
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="space-y-6">
+<!-- Alert 1 -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-primary">Chronos T1 Titanium</span>
+<span class="text-xs text-on-surface-variant">12 units remaining</span>
+</div>
+<span class="text-xs font-bold text-error">CRITICAL</span>
+</div>
+<div class="w-full h-2 bg-error-container rounded-full">
+<div class="h-full bg-error rounded-full" style="width: 12%"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-2">Estimated stock out in: 2 days</p>
+<button class="w-full mt-3 py-2 text-xs font-bold bg-primary text-white rounded hover:opacity-90 transition-all">RESTOCK NOW</button>
+</div>
+<!-- Alert 2 -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-primary">EvoDesk Pro (S)</span>
+<span class="text-xs text-on-surface-variant">45 units remaining</span>
+</div>
+<span class="text-xs font-bold text-amber-600">URGENT</span>
+</div>
+<div class="w-full h-2 bg-amber-100 rounded-full">
+<div class="h-full bg-amber-500 rounded-full" style="width: 28%"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-2">Recommended restock: 150 units</p>
+<button class="w-full mt-3 py-2 text-xs font-bold border border-outline-variant bg-white text-primary rounded hover:bg-surface-container transition-all">VIEW FORECAST</button>
+</div>
+</div>
+</div>
+<!-- Statistics Card -->
+<div class="bg-primary text-white p-6 rounded-lg overflow-hidden relative">
+<div class="relative z-10">
+<h3 class="text-xs font-label-sm uppercase tracking-widest opacity-70 mb-1">Monthly Throughput</h3>
+<p class="text-2xl font-bold font-headline-md">$142,884.00</p>
+<div class="flex items-center gap-2 mt-4">
+<span class="material-symbols-outlined text-emerald-400">trending_up</span>
+<span class="text-xs font-semibold">+12.4% vs last month</span>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'wght' 700;">monitoring</span>
+</div>
+</div>
+<!-- Quick Action Card -->
+<div class="border border-outline-variant rounded-lg p-6 bg-white">
+<h3 class="font-semibold text-primary mb-4">Inventory Insights</h3>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<div class="p-2 bg-surface-container rounded-lg">
+<span class="material-symbols-outlined text-lg">package_2</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold">Bulk Upload</span>
+<span class="text-xs text-on-surface-variant">Sync CSV or API</span>
+</div>
+</li>
+<li class="flex items-center gap-3">
+<div class="p-2 bg-surface-container rounded-lg">
+<span class="material-symbols-outlined text-lg">rule</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold">Stock Rules</span>
+<span class="text-xs text-on-surface-variant">Automated alerts</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interactions for table rows
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.classList.add('shadow-sm');
+            });
+            row.addEventListener('mouseleave', () => {
+                row.classList.remove('shadow-sm');
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.01]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.01]');
+        });
+    </script>
+
+
+</body></html>

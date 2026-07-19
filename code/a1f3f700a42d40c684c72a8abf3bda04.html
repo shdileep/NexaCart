@@ -1,0 +1,519 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Order Management | NexaCart Enterprise</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #e2e8f0;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        /* Active nav indicator animation */
+        .nav-indicator {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#000000",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "surface": "#f7f9fb",
+                        "primary": "#000000",
+                        "on-primary-fixed": "#131b2e",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "error": "#ba1a1a",
+                        "primary-container": "#131b2e",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#0b1c30",
+                        "surface-bright": "#f7f9fb",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eceef0",
+                        "on-surface": "#191c1e",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#565e74",
+                        "inverse-surface": "#2d3133",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "inverse-primary": "#bec6e0",
+                        "secondary-container": "#d5e3fd",
+                        "surface-dim": "#d8dadc",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed": "#d5e3fd",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-surface-variant": "#45464d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#191c1e",
+                        "outline": "#76777d",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "on-tertiary-container": "#75859d",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary": "#515f74",
+                        "outline-variant": "#c6c6cd",
+                        "on-secondary-container": "#57657b",
+                        "primary-fixed": "#dae2fd",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "background": "#f7f9fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "display-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary selection:text-on-primary">
+<!-- SideNavBar Integration -->
+<aside class="w-[260px] h-screen fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant flex flex-col py-8 px-4 h-full z-50">
+<div class="mb-12 px-4">
+<div class="w-10 h-10 mb-2 overflow-hidden rounded-lg transition-all duration-300 grayscale hover:grayscale-0">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLAXnemxBRetU8KEwI4mx0Moh8_UlxeKvDTqVTDspBOiQDzaA_W77jJvEIRwt_ZoNnKvfFNpVvEplBpNkFbqVLISxRMZt5kuZoet5M0aluAcTDzWn7gQsR2vGD69CsN67M8IZKRyUHM7M28vsLW7A727DPMGZaH6UNnUPGqjJswlRm-8E_uM6EnwtWt_nwDUY0mFRT267fs4BvgKJiZiMuqcH_P5lkY3whjKrDYlyS8Iv992bZdsT1zibPRHmuRtVWDs7Auucfugo" alt="NexaCart Logo" class="w-full h-full object-cover">
+</div><h1 class="font-headline-md text-headline-md font-bold text-primary">NexaCart</h1>
+<p class="font-label-sm text-label-sm text-on-secondary-container mt-1">Enterprise Seller</p>
+</div>
+<nav class="flex-1 space-y-1 custom-scrollbar overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded transition-colors duration-200 text-on-secondary-container hover:bg-surface-container" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded transition-colors duration-200 text-on-secondary-container hover:bg-surface-container" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md">Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded transition-colors duration-200 text-on-secondary-container hover:bg-surface-container" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded transition-colors duration-200 text-primary font-semibold border-r-4 border-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="font-body-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded transition-colors duration-200 text-on-secondary-container hover:bg-surface-container" href="#">
+<span class="material-symbols-outlined">local_offer</span>
+<span class="font-body-md">Coupons</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded transition-colors duration-200 text-on-secondary-container hover:bg-surface-container" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded transition-colors duration-200 text-on-secondary-container hover:bg-surface-container" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md">Finance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded transition-colors duration-200 text-on-secondary-container hover:bg-surface-container" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-8 border-t border-outline-variant px-4 flex items-center gap-3">
+<img class="w-10 h-10 rounded-full border border-outline-variant object-cover" data-alt="A professional close-up of a merchant in a minimalist office setting, soft natural lighting, high-end corporate aesthetic, neutral tones, focused look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxsXYsJ9YQFTjCPCHVBdx8N90JTLLRThgsHp6PdBkcckRrWqRyJIlQMWGTJy6SqTLVg-v2EuM25-CX_ljkBwCPHLsukP9I7_D0TGGzhFlK7CzrxUS4IbJzmQ1jNqJsFE5GCL8ZwZOEbEMyUJ2xACXhP1TOpyPUiH6yXbCK_J2jF_VxJLhsGoRJ15rU5tAR46aJffKv-Ptx8RVM9DREGVF2G88lURqh2zZ-F5hgvrNkbL0tYwmwNF_P0BeZ8crb_3ZzGuEP7buIMU8">
+<div>
+<p class="font-body-md font-semibold text-primary">Alex Chen</p>
+<p class="text-[12px] text-on-secondary-container">Global Logistics</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] min-h-screen">
+<!-- TopNavBar Integration -->
+<header class="h-[80px] sticky top-0 bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-gutter w-full z-40 shadow-sm">
+<div class="flex items-center bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 w-[400px]">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full ml-2 placeholder:text-on-secondary-container" placeholder="Search orders, customers, or SKUs..." type="text">
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-on-surface-variant hover:text-primary transition-all duration-200">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all duration-200">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-secondary-fixed-variant">Processing Queue</span>
+</div>
+</div>
+</header>
+<!-- View Content -->
+<div class="p-gutter max-w-container-max mx-auto">
+<!-- Page Header & Action -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<nav class="flex items-center gap-2 text-on-secondary-container mb-2">
+<span class="text-[12px]">Dashboard</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-[12px] font-semibold text-primary">Orders</span>
+</nav>
+<h2 class="font-headline-md text-headline-md text-primary">Order Management</h2>
+<p class="text-on-secondary-container mt-1">Manage and fulfillment of your enterprise sales pipeline.</p>
+</div>
+<button class="px-6 py-3 bg-gradient-to-b from-[#1e293b] to-[#0f172a] text-on-primary rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 group">
+<span class="material-symbols-outlined text-[20px] group-active:scale-90 transition-transform">bolt</span>
+                    Bulk Process
+                </button>
+</div>
+<!-- Dashboard Statistics Mini-Grid -->
+<div class="grid grid-cols-4 gap-6 mb-8">
+<div class="glass-card p-6 rounded-lg">
+<p class="text-on-secondary-container font-label-sm mb-2">AWAITING SHIPMENT</p>
+<div class="flex items-end justify-between">
+<h3 class="text-[32px] font-bold text-primary">124</h3>
+<span class="text-error font-semibold flex items-center gap-1 text-[14px]">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +12%
+                        </span>
+</div>
+</div>
+<div class="glass-card p-6 rounded-lg">
+<p class="text-on-secondary-container font-label-sm mb-2">AVG. PROCESSING TIME</p>
+<div class="flex items-end justify-between">
+<h3 class="text-[32px] font-bold text-primary">4.2h</h3>
+<span class="text-on-secondary-container text-[14px]">-0.5h from avg</span>
+</div>
+</div>
+<div class="glass-card p-6 rounded-lg">
+<p class="text-on-secondary-container font-label-sm mb-2">PICK LISTS READY</p>
+<div class="flex items-end justify-between">
+<h3 class="text-[32px] font-bold text-primary">18</h3>
+<span class="material-symbols-outlined text-primary">description</span>
+</div>
+</div>
+<div class="glass-card p-6 rounded-lg bg-primary-container border-none overflow-hidden relative group">
+<div class="relative z-10">
+<p class="text-on-primary-container font-label-sm mb-2">SHIPPING QUOTA</p>
+<h3 class="text-[32px] font-bold text-white">88%</h3>
+</div>
+<div class="absolute bottom-0 left-0 h-1 bg-white transition-all duration-1000" style="width: 88%;"></div>
+</div>
+</div>
+<!-- Tabbed Navigation & Filters -->
+<div class="mb-6 flex items-center justify-between border-b border-outline-variant">
+<div class="flex gap-8">
+<button class="pb-4 text-on-secondary-container font-medium hover:text-primary transition-colors relative">
+                        All Orders
+                    </button>
+<button class="pb-4 text-primary font-semibold relative">
+                        Processing
+                        <div class="absolute bottom-[-1px] left-0 w-full h-[2px] bg-primary"></div>
+</button>
+<button class="pb-4 text-on-secondary-container font-medium hover:text-primary transition-colors relative">
+                        Cancelled
+                    </button>
+<button class="pb-4 text-on-secondary-container font-medium hover:text-primary transition-colors relative">
+                        Returns
+                    </button>
+</div>
+<div class="flex items-center gap-4 pb-2">
+<button class="flex items-center gap-2 px-3 py-1.5 border border-outline-variant rounded hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+<span class="text-body-md">Filters</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 border border-outline-variant rounded hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[18px]">export_notes</span>
+<span class="text-body-md">Export</span>
+</button>
+</div>
+</div>
+<!-- Order Table Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant">
+<th class="p-4 w-12">
+<input class="rounded-[0.25rem] border-outline-variant text-primary focus:ring-primary h-4 w-4" type="checkbox">
+</th>
+<th class="p-4 font-label-sm text-label-sm">ORDER ID</th>
+<th class="p-4 font-label-sm text-label-sm">CUSTOMER</th>
+<th class="p-4 font-label-sm text-label-sm">PRODUCT</th>
+<th class="p-4 font-label-sm text-label-sm">AMOUNT</th>
+<th class="p-4 font-label-sm text-label-sm">STATUS</th>
+<th class="p-4 font-label-sm text-label-sm text-right">ACTION</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#f1f5f9]">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-4">
+<input class="rounded-[0.25rem] border-outline-variant text-primary focus:ring-primary h-4 w-4" type="checkbox">
+</td>
+<td class="p-4">
+<span class="font-label-sm text-primary font-bold">#ORD-88219</span>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-primary font-bold text-[12px]">JD</div>
+<div>
+<p class="font-semibold text-primary">Jonathan Davis</p>
+<p class="text-[12px] text-on-secondary-container">jon.davis@enterprise.com</p>
+</div>
+</div>
+</td>
+<td class="p-4">
+<div>
+<p class="text-primary">Apex Pro Workstation x2</p>
+<p class="text-[12px] text-on-secondary-container">SKU: APX-2024-WKS</p>
+</div>
+</td>
+<td class="p-4">
+<span class="font-semibold text-primary">$4,598.00</span>
+</td>
+<td class="p-4">
+<span class="px-3 py-1 bg-surface-container text-on-secondary-container rounded font-label-sm text-[11px] flex items-center gap-1.5 w-fit">
+<span class="w-1.5 h-1.5 rounded-full bg-on-secondary-container"></span>
+                                    Awaiting Shipment
+                                </span>
+</td>
+<td class="p-4 text-right">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-4">
+<input class="rounded-[0.25rem] border-outline-variant text-primary focus:ring-primary h-4 w-4" type="checkbox">
+</td>
+<td class="p-4">
+<span class="font-label-sm text-primary font-bold">#ORD-88220</span>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center text-white font-bold text-[12px]">SK</div>
+<div>
+<p class="font-semibold text-primary">Sarah Koenig</p>
+<p class="text-[12px] text-on-secondary-container">s.koenig@media.net</p>
+</div>
+</div>
+</td>
+<td class="p-4">
+<div>
+<p class="text-primary">Lumina Display 32"</p>
+<p class="text-[12px] text-on-secondary-container">SKU: LUM-32-ULT</p>
+</div>
+</td>
+<td class="p-4">
+<span class="font-semibold text-primary">$1,299.00</span>
+</td>
+<td class="p-4">
+<span class="px-3 py-1 bg-surface-container text-on-secondary-container rounded font-label-sm text-[11px] flex items-center gap-1.5 w-fit">
+<span class="w-1.5 h-1.5 rounded-full bg-on-secondary-container"></span>
+                                    Awaiting Shipment
+                                </span>
+</td>
+<td class="p-4 text-right">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-4">
+<input class="rounded-[0.25rem] border-outline-variant text-primary focus:ring-primary h-4 w-4" type="checkbox">
+</td>
+<td class="p-4">
+<span class="font-label-sm text-primary font-bold">#ORD-88224</span>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold text-[12px]">MB</div>
+<div>
+<p class="font-semibold text-primary">Marcus Black</p>
+<p class="text-[12px] text-on-secondary-container">m.black@logistics.co</p>
+</div>
+</div>
+</td>
+<td class="p-4">
+<div>
+<p class="text-primary">Evo Mouse Gen 3 x12</p>
+<p class="text-[12px] text-on-secondary-container">SKU: EVO-M3-BLK</p>
+</div>
+</td>
+<td class="p-4">
+<span class="font-semibold text-primary">$840.00</span>
+</td>
+<td class="p-4">
+<span class="px-3 py-1 bg-surface-container text-on-secondary-container rounded font-label-sm text-[11px] flex items-center gap-1.5 w-fit">
+<span class="w-1.5 h-1.5 rounded-full bg-on-secondary-container"></span>
+                                    Awaiting Shipment
+                                </span>
+</td>
+<td class="p-4 text-right">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-4">
+<input class="rounded-[0.25rem] border-outline-variant text-primary focus:ring-primary h-4 w-4" type="checkbox">
+</td>
+<td class="p-4">
+<span class="font-label-sm text-primary font-bold">#ORD-88225</span>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Corporate headshot of a female executive, high contrast black and white photography, professional and minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARp90oIC-SpM7ALI7jmEluICH2ys_HJllE5YUY8-t_rdQOi0K1c6sAcvzI_I1ia4zVba4LlocR3qsp_vtyH3CxxQ_BYExwtGkgIYtaPCzjSPMysI5vYuAzzIlzftvWCZfS5Y2fX_TAvt6hKoQsqmzzEEMH8qkfmp53US5CahO-hQFc-xzU0RQtxpdXVHdP1xJVIjz5uLkEjm2yb_pnBdDSn8wifxphg_KFv_vGjvxi4KkGZZ_1tfARhtT8_4ZUtKDNwMe1mxMKsWM">
+<div>
+<p class="font-semibold text-primary">Linda Zhao</p>
+<p class="text-[12px] text-on-secondary-container">l.zhao@fintech.io</p>
+</div>
+</div>
+</td>
+<td class="p-4">
+<div>
+<p class="text-primary">Quantum SSD 4TB</p>
+<p class="text-[12px] text-on-secondary-container">SKU: QNT-SSD-4T</p>
+</div>
+</td>
+<td class="p-4">
+<span class="font-semibold text-primary">$650.00</span>
+</td>
+<td class="p-4">
+<span class="px-3 py-1 bg-surface-container text-on-secondary-container rounded font-label-sm text-[11px] flex items-center gap-1.5 w-fit">
+<span class="w-1.5 h-1.5 rounded-full bg-on-secondary-container"></span>
+                                    Awaiting Shipment
+                                </span>
+</td>
+<td class="p-4 text-right">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="p-4 bg-surface-container-low flex justify-between items-center border-t border-outline-variant">
+<p class="text-[12px] text-on-secondary-container">Showing 4 of 124 processing orders</p>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant rounded hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="px-3 py-1 border border-outline-variant rounded bg-primary text-on-primary text-[12px] font-bold">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container text-[12px]">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container text-[12px]">3</button>
+<button class="p-2 border border-outline-variant rounded hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contextual Help / Status -->
+<div class="mt-12 grid grid-cols-3 gap-8">
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+</div>
+<div>
+<h4 class="font-semibold text-primary">Logistics API</h4>
+<p class="text-[12px] text-on-secondary-container">Connected to FedEx &amp; UPS systems. All labels are generating normally.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">inventory</span>
+</div>
+<div>
+<h4 class="font-semibold text-primary">Stock Synchronized</h4>
+<p class="text-[12px] text-on-secondary-container">Inventory levels updated 3 mins ago across all global nodes.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">security</span>
+</div>
+<div>
+<h4 class="font-semibold text-primary">Risk Assessment</h4>
+<p class="text-[12px] text-on-secondary-container">98.2% of current orders cleared fraud verification automatically.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Micro-interaction Scripts -->
+<script>
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('click', (e) => {
+                if (e.target.type !== 'checkbox' && !e.target.closest('button')) {
+                    const checkbox = row.querySelector('input[type="checkbox"]');
+                    checkbox.checked = !checkbox.checked;
+                }
+            });
+        });
+
+        // Simple feedback for Bulk Process button
+        const bulkBtn = document.querySelector('button:contains("Bulk Process")');
+        if (bulkBtn) {
+            bulkBtn.addEventListener('click', () => {
+                const icon = bulkBtn.querySelector('.material-symbols-outlined');
+                icon.style.transition = 'transform 0.5s';
+                icon.style.transform = 'rotate(360deg)';
+                setTimeout(() => {
+                    icon.style.transform = 'rotate(0deg)';
+                }, 500);
+            });
+        }
+    </script>
+
+
+</body></html>

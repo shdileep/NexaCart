@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Details | NexaCart Enterprise</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Hanken+Grotesk:wght@600;700&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-container-highest": "#e0e3e5",
+                "on-tertiary-fixed": "#0b1c30",
+                "error-container": "#ffdad6",
+                "secondary-fixed": "#d5e3fd",
+                "on-error": "#ffffff",
+                "on-surface-variant": "#45464d",
+                "on-secondary": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "error": "#ba1a1a",
+                "surface-dim": "#d8dadc",
+                "surface-bright": "#f7f9fb",
+                "outline-variant": "#c6c6cd",
+                "surface-container-low": "#f2f4f6",
+                "on-primary": "#ffffff",
+                "on-tertiary-fixed-variant": "#38485d",
+                "secondary-container": "#d5e3fd",
+                "on-secondary-fixed": "#0d1c2f",
+                "on-tertiary-container": "#75859d",
+                "on-secondary-container": "#57657b",
+                "primary-fixed-dim": "#bec6e0",
+                "tertiary-container": "#0b1c30",
+                "surface": "#f7f9fb",
+                "tertiary": "#000000",
+                "on-background": "#191c1e",
+                "on-primary-container": "#7c839b",
+                "tertiary-fixed": "#d3e4fe",
+                "tertiary-fixed-dim": "#b7c8e1",
+                "secondary": "#515f74",
+                "inverse-on-surface": "#eff1f3",
+                "surface-tint": "#565e74",
+                "inverse-primary": "#bec6e0",
+                "secondary-fixed-dim": "#b9c7e0",
+                "on-error-container": "#93000a",
+                "primary-container": "#131b2e",
+                "on-primary-fixed-variant": "#3f465c",
+                "on-primary-fixed": "#131b2e",
+                "on-surface": "#191c1e",
+                "surface-variant": "#e0e3e5",
+                "outline": "#76777d",
+                "surface-container": "#eceef0",
+                "surface-container-high": "#e6e8ea",
+                "on-secondary-fixed-variant": "#3a485c",
+                "background": "#f7f9fb",
+                "primary-fixed": "#dae2fd",
+                "primary": "#000000",
+                "inverse-surface": "#2d3133",
+                "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "margin-desktop": "64px",
+                "gutter": "24px",
+                "unit": "4px",
+                "container-max": "1440px",
+                "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                "body-lg": ["Inter"],
+                "label-sm": ["JetBrains Mono"],
+                "headline-md": ["Hanken Grotesk"],
+                "body-md": ["Inter"],
+                "display-lg-mobile": ["Hanken Grotesk"],
+                "display-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface selection:bg-primary-fixed selection:text-primary">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full h-[80px] bg-surface-container-lowest border-b border-outline-variant z-50">
+<div class="flex justify-between items-center h-full px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-8 flex-1">
+<div class="flex items-center gap-2">
+<div class="bg-primary text-on-primary w-10 h-10 flex items-center justify-center font-bold text-headline-md rounded-lg">N</div>
+<span class="text-headline-md font-headline-md font-bold text-primary">NexaCart</span>
+</div>
+<!-- Search Bar -->
+<div class="hidden lg:flex flex-1 max-w-md relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:outline-none focus:border-primary transition-all font-body-md" placeholder="Search premium items..." type="text"/>
+</div>
+</div>
+<nav class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-6 mr-8">
+<a class="font-body-md text-on-secondary-container hover:text-primary transition-colors duration-200" href="#">Shop</a>
+<a class="font-body-md text-on-secondary-container hover:text-primary transition-colors duration-200" href="#">Deals</a>
+<a class="font-body-md text-primary border-b-2 border-primary pb-1 font-semibold" href="#">Orders</a>
+<a class="font-body-md text-on-secondary-container hover:text-primary transition-colors duration-200" href="#">Support</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface">favorite</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors relative active:scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface">shopping_cart</span>
+<span class="absolute top-1 right-1 bg-primary text-on-primary text-[10px] w-4 h-4 flex items-center justify-center rounded-full">3</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface">account_circle</span>
+</button>
+</div>
+</nav>
+</div>
+</header>
+<main class="pt-[100px] pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 mb-8 text-on-surface-variant">
+<a class="font-label-sm hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<a class="font-label-sm hover:text-primary transition-colors" href="#">My Account</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<a class="font-label-sm hover:text-primary transition-colors" href="#">My Orders</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="font-label-sm text-primary font-bold">OD437787053930134100</span>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Order Content -->
+<div class="lg:col-span-8 space-y-6">
+<!-- Product Card -->
+<section class="bg-surface-container-lowest border border-outline-variant p-6 rounded-lg transition-all hover:shadow-sm">
+<div class="flex flex-col md:flex-row gap-8">
+<div class="w-full md:w-32 h-32 bg-surface-container-low rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A studio-lit professional product photograph of a sleek, black waterproof backpack rain cover made of premium ripstop nylon. The product is shown partially folded next to its compact carrying pouch, appearing durable and high-end. The lighting is crisp and cool, creating subtle highlights on the material's texture, set against a neutral, minimal gray background for an enterprise e-commerce aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYwmWmhgwaRAtWTj2fjLi4EsPOEP1N9s95A6Yi09Qrs5IBgp8sW0WkZ7-y7I23yzvW4OL9thaS9VSaMA2Ga1OK819LgEj5UmpjjBZY_EwnePbjUJheD1UQigZjHM6Y7YJdNqDdQvaDgxxOS_lkWZnn9g2L_iOt_3a0R5WXL1oJxLbFXeT2RR7se3cJtZS00ABU84Ej-CZQBcvsSRTXLAs-6yzEROFdux7poGKdASELKL2oM3qK86-XCtocIeHNKEFC0kdeO96IGXk"/>
+</div>
+<div class="flex-1 space-y-3">
+<div class="flex justify-between items-start">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface leading-tight mb-1">Sanchi Creation Raincover Waterproof Backpack Rain Cover with Pouch Luggage Cover</h1>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="font-label-sm bg-surface-container rounded px-2 py-0.5">Free Size</span>
+<span class="font-label-sm bg-surface-container rounded px-2 py-0.5">Black</span>
+<span class="font-body-md border-l border-outline-variant pl-3">Seller: <span class="text-primary font-semibold">StarSellerr</span></span>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-primary">₹120</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-outline-variant">
+<!-- High-Fidelity Tracker -->
+<div class="max-w-2xl">
+<div class="flex flex-col gap-8 relative">
+<div class="absolute left-[11px] top-3 bottom-3 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-[11px] top-3 h-1/2 w-[2px] bg-primary"></div>
+<div class="flex items-start gap-6 relative z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[14px]" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<div>
+<h3 class="font-body-md font-bold text-on-surface">Order Confirmed</h3>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Jun 09, 2024 • 10:45 AM</p>
+</div>
+</div>
+<div class="flex items-start gap-6 relative z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[14px]" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<div>
+<h3 class="font-body-md font-bold text-on-surface">Delivered</h3>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Jun 14, 2024 • 03:20 PM</p>
+<a class="inline-flex items-center gap-1 mt-2 text-primary font-bold hover:underline" href="#">
+                                            See All Updates
+                                            <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</a>
+</div>
+</div>
+</div>
+<p class="mt-8 font-label-sm text-on-surface-variant italic">Return policy ended on Jun 24</p>
+</div>
+</div>
+<!-- Chat Interaction -->
+<div class="mt-10 border-t border-outline-variant pt-6">
+<button class="w-full flex items-center justify-center gap-3 py-4 hover:bg-surface-container-low transition-colors duration-200 text-on-surface group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">chat_bubble</span>
+<span class="font-body-md font-semibold">Chat with us</span>
+</button>
+</div>
+</section>
+<!-- Rating Section -->
+<section class="bg-surface-container-lowest border border-outline-variant p-8 rounded-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Rate your experience</h2>
+<div class="bg-surface-container-low p-6 rounded-lg flex flex-col items-center justify-center border border-outline-variant border-dashed">
+<div class="flex items-center gap-1 mb-4 text-outline-variant">
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[40px]">star</span></button>
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[40px]">star</span></button>
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[40px]">star</span></button>
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[40px]">star</span></button>
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[40px]">star</span></button>
+</div>
+<p class="font-body-md text-on-surface-variant">Your feedback helps us improve your shopping experience.</p>
+<button class="mt-4 text-primary font-bold hover:underline">Rate the product</button>
+</div>
+</section>
+<div class="flex items-center gap-2 p-4 bg-surface-container-low rounded font-label-sm text-on-surface-variant">
+<span>Order #OD437787053930134100</span>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">content_copy</span></button>
+</div>
+</div>
+<!-- Right Column: Sidebar -->
+<aside class="lg:col-span-4 space-y-gutter">
+<!-- Delivery Address -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-lg">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<h3 class="font-body-md font-bold text-on-surface">Delivery Address</h3>
+</div>
+<div class="space-y-1">
+<p class="font-body-md font-semibold text-on-surface">Dileep Sai</p>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                            GANESH EXECUTIVE P.G FOR MEN'S HOSTEL Phase 3, Electronic City, Bangalore, Karnataka - 560100
+                        </p>
+<p class="font-body-md text-on-surface-variant pt-2">
+<span class="font-semibold text-on-surface">Phone:</span> 6300668400
+                        </p>
+</div>
+</div>
+<!-- Price Details -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-lg divide-y divide-outline-variant">
+<div class="pb-4 space-y-3">
+<h3 class="font-body-md font-bold text-on-surface mb-2">Price Details</h3>
+<div class="flex justify-between font-body-md text-on-surface-variant">
+<span>Listing price</span>
+<span>₹365</span>
+</div>
+<div class="flex justify-between font-body-md text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span>Selling price</span>
+<span class="material-symbols-outlined text-sm">info</span>
+</div>
+<span>₹111</span>
+</div>
+<div class="flex justify-between font-body-md text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span>Total fees</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+<span>₹9</span>
+</div>
+</div>
+<div class="py-4">
+<div class="flex justify-between font-headline-md text-headline-md text-primary font-bold">
+<span>Total amount</span>
+<span>₹120</span>
+</div>
+</div>
+<div class="pt-4">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded border border-outline-variant">
+<span class="font-label-sm text-on-surface-variant">Paid By</span>
+<div class="flex items-center gap-2">
+<span class="font-label-sm font-bold text-on-surface">UPI</span>
+<div class="bg-white border border-outline-variant px-1.5 py-0.5 rounded text-[10px] font-bold">UPI</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Invoice Download -->
+<button class="w-full py-4 glass-effect border-2 border-primary text-primary font-bold rounded-lg flex items-center justify-center gap-2 transition-all hover:bg-primary-container hover:text-white group">
+<span class="material-symbols-outlined group-hover:animate-bounce">download</span>
+                    Download Invoice
+                </button>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-surface-container border-t border-outline-variant">
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="lg:col-span-2">
+<div class="flex items-center gap-2 mb-6">
+<div class="bg-primary text-on-primary w-8 h-8 flex items-center justify-center font-bold text-headline-md rounded-lg">N</div>
+<span class="font-headline-md text-headline-md font-bold text-primary">NexaCart</span>
+</div>
+<p class="font-body-md text-on-surface-variant max-w-xs mb-8">
+                    Elevating the standard of enterprise commerce with mathematical precision and uncompromising quality.
+                </p>
+<div class="space-y-4">
+<h4 class="font-label-sm text-on-surface font-bold uppercase tracking-widest">Stay Updated</h4>
+<div class="flex gap-2">
+<input class="bg-surface-container-lowest border border-outline-variant px-4 py-2 rounded-lg focus:outline-none focus:border-primary flex-1 font-body-md" placeholder="Email address" type="email"/>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg hover:opacity-90 transition-opacity font-semibold">Join</button>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-sm text-on-surface font-bold uppercase tracking-widest">Shop</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-on-surface-variant hover:underline transition-all" href="#">New Arrivals</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:underline transition-all" href="#">Best Sellers</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:underline transition-all" href="#">Exclusive Deals</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:underline transition-all" href="#">Business Gift Cards</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-sm text-on-surface font-bold uppercase tracking-widest">Support</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-on-surface-variant hover:underline transition-all" href="#">Shipping Info</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:underline transition-all" href="#">Returns</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:underline transition-all" href="#">Contact Us</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:underline transition-all" href="#">Help Center</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-sm text-on-surface font-bold uppercase tracking-widest">Company</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-on-surface-variant hover:underline transition-all" href="#">Privacy Policy</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:underline transition-all" href="#">Terms of Service</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:underline transition-all" href="#">Trust Center</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:underline transition-all" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div class="flex flex-col justify-between items-end lg:col-span-1">
+<div class="flex gap-4">
+<a class="w-10 h-10 bg-surface-container-high rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+<a class="w-10 h-10 bg-surface-container-high rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-outline-variant px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-sm text-on-surface-variant">© 2024 NexaCart Enterprise. All rights reserved.</p>
+<div class="flex items-center gap-8">
+<span class="flex items-center gap-2 text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-sm">security</span>
+                    Bank-level Security
+                </span>
+<span class="flex items-center gap-2 text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+                    Verified Merchant
+                </span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for the star rating
+        const stars = document.querySelectorAll('button > .material-symbols-outlined');
+        stars.forEach((star, index) => {
+            star.parentElement.addEventListener('mouseenter', () => {
+                for(let i = 0; i <= index; i++) {
+                    stars[i].style.fontVariationSettings = "'FILL' 1";
+                    stars[i].classList.add('text-primary');
+                }
+            });
+            star.parentElement.addEventListener('mouseleave', () => {
+                stars.forEach(s => {
+                    s.style.fontVariationSettings = "'FILL' 0";
+                    s.classList.remove('text-primary');
+                });
+            });
+        });
+    </script>
+</body></html>

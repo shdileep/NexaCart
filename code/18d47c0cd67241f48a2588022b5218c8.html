@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Orders | NexaCart Enterprise</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-premium {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed-variant": "#3a485c",
+                      "secondary": "#515f74",
+                      "on-secondary-container": "#57657b",
+                      "error": "#ba1a1a",
+                      "surface-container": "#eceef0",
+                      "surface-bright": "#f7f9fb",
+                      "on-primary-container": "#7c839b",
+                      "tertiary-fixed-dim": "#b7c8e1",
+                      "on-secondary-fixed": "#0d1c2f",
+                      "surface-variant": "#e0e3e5",
+                      "surface-container-high": "#e6e8ea",
+                      "tertiary": "#000000",
+                      "on-tertiary-container": "#75859d",
+                      "on-error-container": "#93000a",
+                      "surface-dim": "#d8dadc",
+                      "on-tertiary-fixed-variant": "#38485d",
+                      "inverse-on-surface": "#eff1f3",
+                      "primary": "#000000",
+                      "primary-fixed-dim": "#bec6e0",
+                      "inverse-primary": "#bec6e0",
+                      "tertiary-fixed": "#d3e4fe",
+                      "outline": "#76777d",
+                      "on-primary-fixed": "#131b2e",
+                      "surface": "#f7f9fb",
+                      "error-container": "#ffdad6",
+                      "surface-container-highest": "#e0e3e5",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed-dim": "#b9c7e0",
+                      "on-tertiary-fixed": "#0b1c30",
+                      "background": "#f7f9fb",
+                      "secondary-fixed": "#d5e3fd",
+                      "primary-fixed": "#dae2fd",
+                      "on-background": "#191c1e",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#d5e3fd",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "tertiary-container": "#0b1c30",
+                      "surface-container-low": "#f2f4f6",
+                      "on-surface-variant": "#45464d",
+                      "on-error": "#ffffff",
+                      "inverse-surface": "#2d3133",
+                      "surface-tint": "#565e74",
+                      "outline-variant": "#c6c6cd",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "primary-container": "#131b2e",
+                      "on-surface": "#191c1e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-mobile": "20px",
+                      "margin-desktop": "64px",
+                      "unit": "4px",
+                      "container-max": "1440px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "display-lg": ["Hanken Grotesk"],
+                      "display-lg-mobile": ["Hanken Grotesk"],
+                      "headline-md": ["Hanken Grotesk"],
+                      "label-sm": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar (JSON Authority) -->
+<nav class="fixed top-0 w-full h-[80px] border-b border-outline-variant z-50 bg-white"><div class="flex justify-between items-center h-full px-margin-desktop max-w-container-max mx-auto gap-gutter"><div class="flex items-center gap-8"><a class="flex items-center gap-3 group" href="#"><div class="w-10 h-10 flex items-center justify-center group-hover:scale-110 transition-all duration-300"><img alt="NexaCart Logo" class="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcz5Ask9bLyohEW6UHpMdob4taTSvvB2pSpMkTuOKut_6XBGAmSxS9f8qWrxe1ifg9Lxng_S3ZC5nKyXzHrpzTWdpW-0sv0swB1K708sA_hMLOdtILlIh4Ig2X9fFYSYY9G1i3KdYzY_k9_F5mBKVvQ3AyQSMUfxef1R_Vwh4lKTR_ALdte3ZqlGVcS8TnZccqalu9UZBFNzj9FyzDFdyxsYA9k6r0gIq7SV7OUslWvEMzPU7YaFvgvWXIaZT1UumxvQ9GfFb3fPk"/></div><span class="text-headline-md font-headline-md font-bold text-primary">NexaCart</span></a></div><div class="flex-1 max-w-xl px-8"><div class="relative group"><input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-2 focus:ring-1 focus:ring-primary transition-all" placeholder="Search premium items..." type="text"/><span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant">search</span></div></div><nav class="flex items-center gap-6"><a class="font-body-md text-on-secondary-container hover:text-primary transition-colors duration-200" href="#">Home</a><a class="font-body-md text-on-secondary-container hover:text-primary transition-colors duration-200" href="#">Categories</a><button class="active:scale-95 transition-transform"><span class="material-symbols-outlined">favorite</span></button><button class="active:scale-95 transition-transform relative"><span class="material-symbols-outlined">shopping_cart</span><span class="absolute -top-2 -right-2 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span></button><a class="font-body-md text-on-secondary-container hover:text-primary transition-colors duration-200" href="#">Orders</a><button class="active:scale-95 transition-transform"><span class="material-symbols-outlined">notifications</span></button><button class="active:scale-95 transition-transform"><span class="material-symbols-outlined">account_circle</span></button></nav></div></nav>
+<main class="mt-[80px] flex-grow max-w-container-max mx-auto w-full px-margin-desktop py-8">
+<nav class="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md mb-8">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">My Account</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-semibold">My Orders</span>
+</nav>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Sidebar: Filters -->
+<aside class="col-span-3">
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant overflow-hidden">
+<div class="p-6 border-b border-outline-variant">
+<h2 class="font-headline-md text-headline-md text-on-surface">Filters</h2>
+</div>
+<div class="p-6 space-y-8">
+<!-- Order Status -->
+<section>
+<h3 class="font-label-sm text-label-sm text-on-surface-variant mb-4 uppercase tracking-wider">Order Status</h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary transition-all" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">On the way</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary transition-all" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">Delivered</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary transition-all" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">Cancelled</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary transition-all" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">Returned</span>
+</label>
+</div>
+</section>
+<!-- Order Time -->
+<section>
+<h3 class="font-label-sm text-label-sm text-on-surface-variant mb-4 uppercase tracking-wider">Order Time</h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary transition-all" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">Last 30 days</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary transition-all" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">2024</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary transition-all" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">2023</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary transition-all" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">Older</span>
+</label>
+</div>
+</section>
+</div>
+</div>
+</aside>
+<!-- Right Content Area: Orders List -->
+<section class="col-span-9 space-y-gutter">
+<!-- Search Orders Bar -->
+<div class="flex gap-2">
+<div class="relative flex-grow">
+<input class="w-full h-12 bg-surface-container-lowest border border-outline-variant rounded-lg px-4 font-body-md text-body-md focus:outline-none focus:border-primary transition-all" placeholder="Search your orders here" type="text"/>
+</div>
+<button class="bg-[#2563eb] text-white flex items-center gap-2 px-8 h-12 rounded-lg font-body-md font-semibold hover:bg-blue-700 transition-colors shadow-sm">
+<span class="material-symbols-outlined">search</span>
+                        Search Orders
+                    </button>
+</div>
+<!-- Order Item 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex items-start gap-8 hover:shadow-md transition-shadow">
+<div class="w-24 h-24 flex-shrink-0 bg-surface-container p-2 rounded-lg border border-outline-variant">
+<img class="w-full h-full object-contain" data-alt="A premium black high-performance waterproof backpack rain cover accessory shown on a clean white background. Studio lighting highlights the sleek, durable synthetic material texture. Minimalist commercial photography style suitable for a high-end enterprise e-commerce platform like NexaCart." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGQVYwq6toyaqKihU5OTaSdq_wE_bRBx233knZ9g82WE-mdfGFqTfEA-wPB39bK2bBl9nMNfiC10RM86m5NBio0bljWOmVcseUk57BV20Ia7FA1_Ce3SBUqmaYAX_FBzYQ844gbhVHhYmKOMllwshZk8mBev9bWqagGYN5MD958VJQ4q9U1-aP_5BPn1tYyUj_bpMe_QOsrdvNnoW-qjCji2JSA5jfO1i0MIFL7noPummd37ZNQOnmAps1GIn7nuCF2oF8uKHnF3g"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface max-w-lg">Sanchi Creation Raincover Waterproof Bac...</h3>
+<span class="font-headline-md text-headline-md text-on-surface">₹120</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Color: Black | Size: Free Size</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-600"></span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Delivered on Jun 14</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Your item has been delivered</p>
+</div>
+<div class="flex flex-col items-end">
+<button class="flex items-center gap-2 text-[#2563eb] font-body-md font-semibold hover:underline group">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform" style="font-variation-settings: 'FILL' 1;">star</span>
+                            Rate &amp; Review Product
+                        </button>
+</div>
+</div>
+<!-- Order Item 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex items-start gap-8 hover:shadow-md transition-shadow">
+<div class="w-24 h-24 flex-shrink-0 bg-surface-container p-2 rounded-lg border border-outline-variant">
+<img class="w-full h-full object-contain" data-alt="A modern anti-theft architectural backpack in matte black finish, featuring a sleek marble-patterned front panel. Professional product photography with high-key lighting on a neutral grey background. The image conveys high quality, enterprise durability, and sophisticated modern style for urban professionals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLTE7hyB63dK_SZ7iKw6xT_5erhM2qRH_1jdQM9YsYB7T3aDoA8hE4cwPGVmmq_JYCpY5BSxJdI1TcvYcupwdMi2f4ME18EldKwYNg0BYA6OpZsyJqbLuclhirYiiof10pltmQJqVEvZ7pNQGQmy5Nq9nbaf1or_jobE9ZAQchbnWqK4LDegK2yyGq27klVWMhaRLvmhYD8UlxiO5vfFxsz0l_Yp8-AATwvSrXNwskO5myMu_8i4f0axspbJMYaIp9-Klgab7Hucc"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface max-w-lg">Arctic Fox Slope Anti-Theft Marble 23 L ...</h3>
+<span class="font-headline-md text-headline-md text-on-surface">₹1,277</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Color: Black</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-600"></span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Delivered on Jun 04</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Your item has been delivered</p>
+</div>
+<div class="flex flex-col items-end">
+<button class="flex items-center gap-2 text-[#2563eb] font-body-md font-semibold hover:underline group">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform" style="font-variation-settings: 'FILL' 1;">star</span>
+                            Rate &amp; Review Product
+                        </button>
+</div>
+</div>
+<!-- Order Item 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex items-start gap-8 hover:shadow-md transition-shadow">
+<div class="w-24 h-24 flex-shrink-0 bg-surface-container p-2 rounded-lg border border-outline-variant">
+<img class="w-full h-full object-contain" data-alt="Packaging of Park Avenue Premium luxury soaps displayed prominently. The packaging is sophisticated with dark navy and gold accents, suggesting a premium grooming experience. Clean lighting highlights the professional enterprise packaging design against a soft-focus minimalist bathroom setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0BqEKyFHEv7YY8duVoBCl6Y_zCz-3gMvk_XkPrXqnkI54OoiQMlJR-avNK7pc6dxjdh1LidDK3Eqa_P3-Nb66gDNAahGtk4smAZvqw2lIWQrWKcPhGwKLhG75wCw3ZOB_eLwK-rqDukoDFAQuB2janO8cnEOmPBnrnpZi-8cfQIUpu5U1wVW-Ooo41FGgp3pkcMQNM7vuAHsnqufrgUtYovC_9tvqTCSNokrALHHUqmhXpxFVe9bFouBbb3SNfxGLGnlNCRtIudY"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface max-w-lg">PARK AVENUE Premium Men's Soaps</h3>
+<span class="font-headline-md text-headline-md text-on-surface">₹136</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Color: White</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-600"></span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Delivered on May 18</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Your item has been delivered</p>
+</div>
+<div class="flex flex-col items-end">
+<button class="flex items-center gap-2 text-[#2563eb] font-body-md font-semibold hover:underline group">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform" style="font-variation-settings: 'FILL' 1;">star</span>
+                            Rate &amp; Review Product
+                        </button>
+</div>
+</div>
+<!-- Order Item 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex items-start gap-8 hover:shadow-md transition-shadow">
+<div class="w-24 h-24 flex-shrink-0 bg-surface-container p-2 rounded-lg border border-outline-variant">
+<img class="w-full h-full object-contain" data-alt="A bottle of Dove Intense Repair Shampoo with its signature white and blue branding. Soft, elegant lighting showcases the sleek packaging curves. High-resolution commercial photography on a pristine white background, emphasizing purity and high-end personal care quality for an enterprise retail platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUAPC2-56ZdDRRw-Db9PZsxURiGs7s4jCpnSBfUjKXwlB7REKt4xV-_SSyWg2dEPDB6MxudOs6c_SIAKwVZHo5mLaEiTr03gx_vMH39OG5FHMfrkY5s-Q6h-2er4GVs8Sy2y1b24zB8keUHlWRhh05YfS3xItTtpQA4tlkPUj5-PlEVDpXvzZaMuN_2kjIF2F9PBJbkoEKK6mzBMjiCxLHvK8crzl_P6XS9eYkh2w51JtJCvN8bAMouHd6OePqpvG2-TjJjADCAPo"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface max-w-lg">DOVE Intense Repair Shampoo</h3>
+<span class="font-headline-md text-headline-md text-on-surface">₹157</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6"></p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-600"></span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Delivered on May 18</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Your item has been delivered</p>
+</div>
+<div class="flex flex-col items-end">
+<button class="flex items-center gap-2 text-[#2563eb] font-body-md font-semibold hover:underline group">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform" style="font-variation-settings: 'FILL' 1;">star</span>
+                            Rate &amp; Review Product
+                        </button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer (JSON Authority) -->
+<footer class="bg-surface-container-low border-t border-outline-variant"><div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto"><div class="space-y-4"><span class="font-headline-md text-headline-md font-bold text-on-surface">NexaCart</span><p class="font-body-md text-body-md text-secondary">Absolute reliability, scale, and institutional authority in global commerce.</p></div><div><h4 class="font-label-sm text-label-sm text-on-surface font-semibold mb-4 uppercase tracking-wider">Company</h4><ul class="space-y-2"><li class=""><a class="text-secondary hover:text-primary transition-all font-body-md" href="#">About Us</a></li><li class=""><a class="text-secondary hover:text-primary transition-all font-body-md" href="#">Careers</a></li><li class=""><a class="text-secondary hover:text-primary transition-all font-body-md" href="#">Press</a></li></ul></div><div><h4 class="font-label-sm text-label-sm text-on-surface font-semibold mb-4 uppercase tracking-wider">Solutions</h4><ul class="space-y-2"><li class=""><a class="text-secondary hover:text-primary transition-all font-body-md" href="#">Enterprise</a></li><li class=""><a class="text-secondary hover:text-primary transition-all font-body-md" href="#">Logistics</a></li><li class=""><a class="text-secondary hover:text-primary transition-all font-body-md" href="#">Partnerships</a></li></ul></div><div><h4 class="font-label-sm text-label-sm text-on-surface font-semibold mb-4 uppercase tracking-wider">Stay Updated</h4><p class="text-secondary font-body-md mb-4">Subscribe to our market insights.</p><div class="flex gap-2"><input class="flex-1 bg-surface-container-lowest border border-outline-variant rounded px-4 py-2 text-body-md focus:outline-none focus:border-primary" placeholder="Email address" type="email"/><button class="bg-primary text-on-primary px-4 py-2 rounded font-semibold hover:bg-on-surface-variant transition-colors">Join</button></div></div></div><div class="px-margin-desktop py-6 max-w-container-max mx-auto border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4"><p class="font-label-sm text-label-sm text-secondary">© 2024 NexaCart Enterprise. All rights reserved.</p><div class="flex gap-6"><a class="font-label-sm text-label-sm text-secondary hover:text-primary" href="#">Legal</a><a class="font-label-sm text-label-sm text-secondary hover:text-primary" href="#">Privacy</a><a class="font-label-sm text-label-sm text-secondary hover:text-primary" href="#">Accessibility</a></div></div></footer>
+<script>
+        // Micro-interactions for interactive elements
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const label = this.nextElementSibling;
+                if(this.checked) {
+                    label.classList.add('text-primary', 'font-semibold');
+                    label.classList.remove('text-on-surface-variant');
+                } else {
+                    label.classList.remove('text-primary', 'font-semibold');
+                    label.classList.add('text-on-surface-variant');
+                }
+            });
+        });
+
+        // Hover effects for order items
+        document.querySelectorAll('.order-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateY(-2px)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

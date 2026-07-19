@@ -1,0 +1,353 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>NexaCart | Seller Settings</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#000000",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#7c839b",
+                    "secondary-fixed-dim": "#b9c7e0",
+                    "surface": "#f7f9fb",
+                    "primary": "#000000",
+                    "on-primary-fixed": "#131b2e",
+                    "tertiary-fixed": "#d3e4fe",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "error": "#ba1a1a",
+                    "primary-container": "#131b2e",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#0b1c30",
+                    "surface-bright": "#f7f9fb",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#eceef0",
+                    "on-surface": "#191c1e",
+                    "on-secondary-fixed-variant": "#3a485c",
+                    "surface-variant": "#e0e3e5",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#565e74",
+                    "inverse-surface": "#2d3133",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "inverse-primary": "#bec6e0",
+                    "secondary-container": "#d5e3fd",
+                    "surface-dim": "#d8dadc",
+                    "primary-fixed-dim": "#bec6e0",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-fixed": "#d5e3fd",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "on-surface-variant": "#45464d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#191c1e",
+                    "outline": "#76777d",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "on-tertiary-container": "#75859d",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "secondary": "#515f74",
+                    "outline-variant": "#c6c6cd",
+                    "on-secondary-container": "#57657b",
+                    "primary-fixed": "#dae2fd",
+                    "on-secondary-fixed": "#0d1c2f",
+                    "background": "#f7f9fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "margin-desktop": "64px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-sm": ["JetBrains Mono"],
+                    "display-lg-mobile": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab-line {
+            height: 2px;
+            bottom: -1px;
+        }
+        .glass-highlight {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #e2e8f0;
+        }
+        .signature-button {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="w-[260px] h-screen fixed left-0 top-0 bg-surface-container-lowest dark:bg-surface-container-low border-r border-outline-variant dark:border-on-surface-variant flex flex-col py-8 px-4 h-full z-50">
+<div class="mb-10 px-4">
+<div class="w-10 h-10 mb-2 transition-all duration-300 grayscale hover:grayscale-0 cursor-pointer"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaI5q1ordWa-uCfOtb2eheMm2bZGH09FbLimvoNy3I3RfjiqGjuzdm3EmX_klAI_0R7Ig5Pn64J4Vz4R8-nDeZGjNpZJYay5AaB3DT2nKAmoYpxU0MrrZFh8PbXm56JPCZIIN5NHdYwuzWVzWqyZ7jzdVu4atqLiXV3s3jxYvTb48jSzMlQWDEgKs3cLM8DBXIa9727Q10WC7aHqDHFdcCsDwXl7Uqpg-Sb1xiaIQEFy6YoPAwfMT7rzeTNJ4sCjOGAp5pItzn3TE" alt="NexaCart Logo" class="w-full h-full object-contain"></div><h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-on-primary-fixed tracking-tight">NexaCart</h1>
+<p class="font-label-sm text-label-sm text-on-secondary-container opacity-60">Enterprise Seller</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container dark:text-on-secondary-fixed-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container dark:text-on-secondary-fixed-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md">Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container dark:text-on-secondary-fixed-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-body-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container dark:text-on-secondary-fixed-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-body-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container dark:text-on-secondary-fixed-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="local_offer">local_offer</span>
+<span class="font-body-md">Coupons</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container dark:text-on-secondary-fixed-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container dark:text-on-secondary-fixed-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-body-md">Finance</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary dark:text-on-primary-fixed font-semibold border-r-4 border-primary bg-surface-container transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-4 flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-variant rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a modern enterprise executive in business casual attire. The background is a clean, minimalist corporate office with soft, diffused morning light. The aesthetic is high-end, using a monochrome and gray palette to emphasize professional reliability and calm authority. 8k resolution, cinematic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArvSs_F3VhG2_eqZfA3O0SBGGGwfSH_yCl_U5TX0du-mrV8v2Eqc5QI3KCZT7h_Xh-Li-oT3CTXZlsZ19Id6GTt62kcPFlNHXcs_Bcd_DkY5lOZ16b9tPKz_UiQ1OjUYoRt5qw2dbgXucvGYdRlrxV126ULVwE9o9dItAydV9s89hiym-BS3E4q20s4ZWYIsEZg4hI5Sj-Ls3_6wrnOSb125sFXtp2e5WZTbgAi4SSEjov_DZhl0zgK99xnSnb8ZC8uI2ahs_dW40">
+</div>
+<div>
+<p class="text-sm font-semibold">Alex Sterling</p>
+<p class="text-xs text-on-surface-variant">Merchant Admin</p>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="h-[80px] fixed top-0 right-0 left-[260px] bg-surface-container-lowest dark:bg-surface-container-low border-b border-outline-variant dark:border-on-surface-variant shadow-sm dark:shadow-none flex justify-between items-center px-gutter z-40">
+<div class="flex items-center w-1/2">
+<div class="relative w-full max-w-md group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg font-body-md focus:border-primary outline-none transition-all" placeholder="Search for anything..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all">help_outline</span>
+</div>
+<div class="h-8 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-secondary-fixed-variant">ENG</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">expand_more</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[260px] pt-[80px] min-h-screen p-10 max-w-[1440px]">
+<div class="flex flex-col gap-8 max-w-5xl mx-auto">
+<!-- Page Header -->
+<div class="flex items-end justify-between">
+<div>
+<h2 class="font-display-lg text-display-lg text-primary tracking-tight">Seller Settings</h2>
+<p class="text-on-surface-variant font-body-md mt-1">Manage your enterprise store profile, security, and global preferences.</p>
+</div>
+<button class="signature-button text-on-primary font-semibold py-3 px-8 rounded-full flex items-center gap-2 hover:opacity-90 transition-all scale-100 active:scale-95">
+                    Save Configuration
+                </button>
+</div>
+<!-- Bento Layout Content -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Left Nav Column: Tabs -->
+<div class="col-span-3">
+<div class="flex flex-col gap-1 p-2 bg-surface-container-lowest border border-outline-variant rounded-xl sticky top-[104px]">
+<button class="flex items-center gap-3 px-4 py-3 bg-primary text-on-primary rounded-lg font-semibold text-left transition-all">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+                            Store Profile
+                        </button>
+<button class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-lg font-medium text-left transition-all">
+<span class="material-symbols-outlined" data-icon="business_center">business_center</span>
+                            Business Details
+                        </button>
+<button class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-lg font-medium text-left transition-all">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+                            Security
+                        </button>
+<button class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-lg font-medium text-left transition-all">
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+                            Notifications
+                        </button>
+</div>
+</div>
+<!-- Right Content Column -->
+<div class="col-span-9 space-y-6">
+<!-- Section: Store Profile -->
+<div class="p-8 bg-surface-container-lowest border border-outline-variant rounded-xl">
+<h3 class="font-headline-md text-headline-md mb-6 border-b border-surface-container-high pb-4">Store Profile</h3>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Store Name</label>
+<input class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:border-primary outline-none transition-all font-body-md" type="text" value="NexaCart Global Hub">
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Support Email</label>
+<input class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:border-primary outline-none transition-all font-body-md" type="email" value="priority@nexacart.com">
+</div>
+<div class="col-span-2 space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Bio / Description</label>
+<textarea class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:border-primary outline-none transition-all font-body-md" rows="3">Premium electronics and software solutions for enterprise-level logistics and supply chain optimization.</textarea>
+</div>
+</div>
+</div>
+<!-- Section: Business Details -->
+<div class="p-8 bg-surface-container-lowest border border-outline-variant rounded-xl">
+<h3 class="font-headline-md text-headline-md mb-6 border-b border-surface-container-high pb-4">Business Details</h3>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-2 col-span-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Business Address</label>
+<input class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:border-primary outline-none transition-all font-body-md" type="text" value="1200 Innovation Way, Suite 400, San Francisco, CA 94105">
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Tax Identification Number (TIN)</label>
+<input class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:border-primary outline-none transition-all font-body-md" type="text" value="XX-XXXX4821">
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Registration Type</label>
+<select class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:border-primary outline-none transition-all font-body-md appearance-none bg-no-repeat bg-[right_1rem_center] bg-[length:1em]">
+<option>Corporation (C-Corp)</option>
+<option>Limited Liability Company (LLC)</option>
+<option>Partnership</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Section: Preferences (Bento Style Sub-cards) -->
+<div class="grid grid-cols-2 gap-6">
+<!-- Security Card -->
+<div class="glass-highlight p-8 rounded-xl flex flex-col h-full">
+<div class="flex items-center justify-between mb-4">
+<h4 class="font-headline-md text-headline-md">Security</h4>
+<span class="material-symbols-outlined text-primary" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-6">Last login: 14 mins ago from SF, CA</p>
+<div class="space-y-4 mt-auto">
+<div class="flex items-center justify-between">
+<span class="font-body-md">Two-Factor Authentication</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-md">Hardware Key Login</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Notifications Card -->
+<div class="glass-highlight p-8 rounded-xl flex flex-col h-full">
+<div class="flex items-center justify-between mb-4">
+<h4 class="font-headline-md text-headline-md">Alerts</h4>
+<span class="material-symbols-outlined text-primary" data-icon="campaign">campaign</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-6">Manage how you receive critical system updates.</p>
+<div class="space-y-4 mt-auto">
+<div class="flex items-center justify-between">
+<span class="font-body-md">New Order SMS</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-md">Analytics Reports (Weekly)</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Action -->
+<div class="flex items-center justify-between py-6 px-8 bg-primary-container text-on-primary-container rounded-xl">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined" data-icon="cloud_done">cloud_done</span>
+<span class="font-body-md">All changes are drafted. Press save to push live.</span>
+</div>
+<div class="flex gap-4">
+<button class="bg-surface-container-lowest text-primary px-6 py-2 rounded-lg font-semibold hover:bg-surface-container-high transition-colors">Discard</button>
+<button class="bg-on-primary-container text-white px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition-opacity">Push to Production</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Tab switching logic (simple UI simulation)
+        const tabs = document.querySelectorAll('.col-span-3 button');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('bg-primary', 'text-on-primary', 'font-semibold');
+                    t.classList.add('text-on-surface-variant', 'hover:bg-surface-container', 'font-medium');
+                });
+                tab.classList.remove('text-on-surface-variant', 'hover:bg-surface-container', 'font-medium');
+                tab.classList.add('bg-primary', 'text-on-primary', 'font-semibold');
+            });
+        });
+
+        // Floating Action Button logic if needed, but suppressed per instructions on settings pages.
+    </script>
+
+
+</body></html>

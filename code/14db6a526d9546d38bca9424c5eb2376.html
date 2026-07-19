@@ -1,0 +1,504 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>NexaCart - Cancelled Orders</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#000000",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "surface": "#f7f9fb",
+                        "primary": "#000000",
+                        "on-primary-fixed": "#131b2e",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "error": "#ba1a1a",
+                        "primary-container": "#131b2e",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#0b1c30",
+                        "surface-bright": "#f7f9fb",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eceef0",
+                        "on-surface": "#191c1e",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#565e74",
+                        "inverse-surface": "#2d3133",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "inverse-primary": "#bec6e0",
+                        "secondary-container": "#d5e3fd",
+                        "surface-dim": "#d8dadc",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed": "#d5e3fd",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-surface-variant": "#45464d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#191c1e",
+                        "outline": "#76777d",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "on-tertiary-container": "#75859d",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary": "#515f74",
+                        "outline-variant": "#c6c6cd",
+                        "on-secondary-container": "#57657b",
+                        "primary-fixed": "#dae2fd",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "background": "#f7f9fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "display-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #e2e8f0;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- SideNavBar (Authority Source: JSON) -->
+<aside class="w-[260px] h-screen fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant flex flex-col py-8 px-4 h-full z-50">
+<div class="mb-10 px-2">
+<div class="w-10 h-10 mb-2 overflow-hidden rounded-lg group cursor-pointer">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUeEaInw1Xram3Cmm3GsD7eYvHHK8TyhbiNa32n7_agHx66IkBjOp6jqd6I-VEH4dsalVHj7m44HGoQVOcTMuQt9YAvRyr9u60TGF1sVbPJxyk83dlz6Eueed3yEhuhO6nbcWFpO8qkekODWaxXLNaqHQaEd-CKen2C_USpfPbM7NJ7Am2IAEn6eHGNDJxNyUj14AeVtQ-qbX_6MUeWKhN8tuClzmwPdAs-jlz67Dfm2kxCr1y8u_OZZ6B_kDMxs4PW41W2IBJ3og" alt="NexaCart Logo" class="w-full h-full object-contain transition-all duration-500 grayscale group-hover:grayscale-0 group-hover:scale-110">
+</div><h1 class="font-headline-md text-headline-md font-bold text-primary">NexaCart</h1>
+<p class="font-label-sm text-label-sm text-on-secondary-container mt-1">Enterprise Seller</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Dashboard -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<!-- Products -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+<span class="font-body-md">Products</span>
+</a>
+<!-- Customers -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="font-body-md">Customers</span>
+</a>
+<!-- Orders (Active State Logic) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-primary font-semibold border-r-4 border-primary bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="font-body-md">Orders</span>
+</a>
+<!-- Coupons -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">local_offer</span>
+<span class="font-body-md">Coupons</span>
+</a>
+<!-- Analytics -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="font-body-md">Analytics</span>
+</a>
+<!-- Finance -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="font-body-md">Finance</span>
+</a>
+<!-- Settings -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 border-t border-outline-variant flex items-center gap-3 px-2">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a corporate executive for a profile avatar. The person has a friendly but authoritative expression, dressed in a sharp dark charcoal suit. The background is a clean, out-of-focus modern office interior with soft blue and grey tones, conveying a sense of enterprise reliability and leadership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlR4MEB0HsY-ZTlNgdxtSWlmarpEsitrjyHPurvoRCPvYJrye7nGGorkMFhGW4swEGj9RiWrQMOv4T9AlA5U9GLfvjfOBs-5G-l-edM80NBo20dGLN6BWyh33lie377bFu5xPrterRruDwnRz8SZB_BnTDP9ElICakhTlmbPxEmm61HvgmjcVkgG0acI2i2qmuBAYgR53wgF3shN2O9b0go6hn9tnxCMOsqK1mAtnfQSZX8bmXXIByB6okaFXVgxN_cludWB-SA94">
+</div>
+<div>
+<p class="font-body-md font-semibold text-primary">Alex Sterling</p>
+<p class="font-label-sm text-[10px] text-on-secondary-container">Admin Panel</p>
+</div>
+</div>
+</aside>
+<!-- TopNavBar (Authority Source: JSON) -->
+<header class="h-[80px] fixed top-0 right-0 left-[260px] bg-surface-container-lowest border-b border-outline-variant shadow-sm z-40 flex justify-between items-center px-gutter">
+<div class="flex items-center flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-secondary-container">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:border-primary focus:ring-0 transition-all font-body-md text-sm" placeholder="Search orders, customers, or IDs..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-on-secondary-container">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-on-secondary-container">help_outline</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-outline-variant hover:bg-surface-container transition-all">
+<span class="font-label-sm">v2.4.1</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] mt-[80px] p-gutter">
+<!-- Breadcrumbs & Header -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<nav class="flex items-center gap-2 text-on-secondary-container font-label-sm mb-2">
+<span class="">Orders</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-primary font-semibold">Cancelled Orders</span>
+</nav>
+<h2 class="font-display-lg text-display-lg text-primary tracking-tight">Cancelled Orders</h2>
+<p class="text-on-secondary-container mt-1">Manage and audit transactions that were terminated before completion.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container transition-all font-body-md">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+                    Export CSV
+                </button>
+<button class="flex items-center gap-2 px-6 py-2 bg-primary text-on-primary rounded-full hover:opacity-90 transition-all font-body-md font-semibold">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    Create Manual Refund
+                </button>
+</div>
+</div>
+<!-- Tabbed Navigation -->
+<div class="flex items-center gap-8 border-b border-outline-variant mb-6">
+<button class="pb-4 px-1 font-body-md text-on-secondary-container hover:text-primary transition-all relative">
+                All Orders
+            </button>
+<button class="pb-4 px-1 font-body-md text-on-secondary-container hover:text-primary transition-all relative">
+                Pending
+            </button>
+<button class="pb-4 px-1 font-body-md text-on-secondary-container hover:text-primary transition-all relative">
+                Shipped
+            </button>
+<button class="pb-4 px-1 font-body-md text-primary font-semibold relative">
+                Cancelled
+                <div class="absolute bottom-0 left-0 right-0 h-[3px] bg-primary rounded-t-full"></div>
+</button>
+<button class="pb-4 px-1 font-body-md text-on-secondary-container hover:text-primary transition-all relative">
+                Archived
+            </button>
+</div>
+<!-- Table Container (Bento/Card Hybrid) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<!-- Table Header/Filters -->
+<div class="p-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-low/30">
+<div class="flex gap-4">
+<div class="relative">
+<select class="pl-3 pr-10 py-1.5 bg-surface-container-lowest border border-outline-variant rounded-lg text-sm font-body-md focus:ring-0 focus:border-primary appearance-none">
+<option>Reason: All</option>
+<option>Out of Stock</option>
+<option>Customer Request</option>
+<option>Fraud Detected</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-on-secondary-container text-[20px]">expand_more</span>
+</div>
+<div class="relative">
+<select class="pl-3 pr-10 py-1.5 bg-surface-container-lowest border border-outline-variant rounded-lg text-sm font-body-md focus:ring-0 focus:border-primary appearance-none">
+<option>Refund: All</option>
+<option>Completed</option>
+<option>Processing</option>
+<option>Failed</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-on-secondary-container text-[20px]">expand_more</span>
+</div>
+</div>
+<div class="text-label-sm text-on-secondary-container">
+                    Showing 124 cancelled orders
+                </div>
+</div>
+<!-- The Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 font-label-sm text-on-secondary-container border-b border-outline-variant uppercase tracking-wider">Order ID</th>
+<th class="px-6 py-4 font-label-sm text-on-secondary-container border-b border-outline-variant uppercase tracking-wider">Customer</th>
+<th class="px-6 py-4 font-label-sm text-on-secondary-container border-b border-outline-variant uppercase tracking-wider">Amount</th>
+<th class="px-6 py-4 font-label-sm text-on-secondary-container border-b border-outline-variant uppercase tracking-wider">Cancellation Reason</th>
+<th class="px-6 py-4 font-label-sm text-on-secondary-container border-b border-outline-variant uppercase tracking-wider">Refund Status</th>
+<th class="px-6 py-4 font-label-sm text-on-secondary-container border-b border-outline-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<span class="font-label-sm text-primary">#NC-89241</span>
+<div class="text-[11px] text-on-secondary-container">2 mins ago</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-semibold text-xs">JD</div>
+<div>
+<div class="font-body-md font-medium text-primary">Julianne Devis</div>
+<div class="text-xs text-on-secondary-container">julianne@example.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 font-body-md font-semibold text-primary">$1,240.00</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm">
+                                    Out of Stock
+                                </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<span class="font-body-md text-sm text-on-surface">Completed</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 rounded-lg hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-on-secondary-container">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<span class="font-label-sm text-primary">#NC-89238</span>
+<div class="text-[11px] text-on-secondary-container">14 mins ago</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-fixed font-semibold text-xs">MR</div>
+<div>
+<div class="font-body-md font-medium text-primary">Marcus Raine</div>
+<div class="text-xs text-on-secondary-container">m.raine@enterprise.io</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 font-body-md font-semibold text-primary">$450.20</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm">
+                                    Customer Request
+                                </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-amber-400"></div>
+<span class="font-body-md text-sm text-on-surface">Processing</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 rounded-lg hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-on-secondary-container">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<span class="font-label-sm text-primary">#NC-89215</span>
+<div class="text-[11px] text-on-secondary-container">1 hour ago</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-secondary-container font-semibold text-xs">SK</div>
+<div>
+<div class="font-body-md font-medium text-primary">Sarah Kensley</div>
+<div class="text-xs text-on-secondary-container">sarah.k@webmail.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 font-body-md font-semibold text-primary">$2,890.00</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm">
+                                    Fraud Detected
+                                </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-error">
+<span class="material-symbols-outlined text-sm">block</span>
+<span class="font-body-md text-sm">No Refund Req.</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 rounded-lg hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-on-secondary-container">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<span class="font-label-sm text-primary">#NC-89190</span>
+<div class="text-[11px] text-on-secondary-container">3 hours ago</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-semibold text-xs">TH</div>
+<div>
+<div class="font-body-md font-medium text-primary">Thomas H.</div>
+<div class="text-xs text-on-secondary-container">t.h@delivery.net</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 font-body-md font-semibold text-primary">$89.99</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm">
+                                    Out of Stock
+                                </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<span class="font-body-md text-sm text-on-surface">Completed</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 rounded-lg hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-on-secondary-container">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-outline-variant flex justify-between items-center">
+<button class="px-4 py-1.5 rounded-lg border border-outline-variant text-sm font-medium hover:bg-surface-container transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+                    Previous
+                </button>
+<div class="flex gap-1">
+<button class="w-8 h-8 rounded bg-primary text-on-primary text-sm font-semibold">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container text-sm">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container text-sm">3</button>
+<span class="px-2">...</span>
+<button class="w-8 h-8 rounded hover:bg-surface-container text-sm">12</button>
+</div>
+<button class="px-4 py-1.5 rounded-lg border border-outline-variant text-sm font-medium hover:bg-surface-container transition-all flex items-center gap-1">
+                    Next
+                    <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Summary Cards (Asymmetric Bento Grid) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+<div class="glass-effect p-6 rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-error-container/20 rounded-lg">
+<span class="material-symbols-outlined text-error">cancel_presentation</span>
+</div>
+<span class="text-error font-label-sm">+4.2%</span>
+</div>
+<h4 class="font-label-sm text-on-secondary-container uppercase">Cancellation Rate</h4>
+<div class="text-3xl font-display-lg text-primary mt-1">2.4%</div>
+<p class="text-xs text-on-secondary-container mt-2">Target benchmark: under 1.5%</p>
+</div>
+<div class="glass-effect p-6 rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-emerald-100 rounded-lg">
+<span class="material-symbols-outlined text-emerald-600">currency_exchange</span>
+</div>
+<span class="text-emerald-600 font-label-sm">-12%</span>
+</div>
+<h4 class="font-label-sm text-on-secondary-container uppercase">Avg. Refund Time</h4>
+<div class="text-3xl font-display-lg text-primary mt-1">18.4 hrs</div>
+<p class="text-xs text-on-secondary-container mt-2">Improved from 21.0 hrs last month</p>
+</div>
+<div class="bg-primary text-on-primary p-6 rounded-xl relative overflow-hidden group">
+<div class="relative z-10">
+<h4 class="font-label-sm text-on-primary-container uppercase">Projected Loss Recovery</h4>
+<div class="text-3xl font-display-lg mt-1">$42,390.11</div>
+<p class="text-xs opacity-70 mt-2">Revenue recovered through re-stocking &amp; re-engagement</p>
+<button class="mt-4 px-4 py-2 bg-white/10 hover:bg-white/20 transition-all rounded-lg font-label-sm">
+                        View Audit Log
+                    </button>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[120px]">trending_up</span>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('click', () => {
+                row.classList.add('scale-[0.99]');
+                setTimeout(() => row.classList.remove('scale-[0.99]'), 150);
+            });
+        });
+
+        // Tab selection animation
+        const tabs = document.querySelectorAll('button.relative');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                if(this.querySelector('div')) return; // Already active
+                
+                // Clear existing
+                tabs.forEach(t => {
+                    t.classList.remove('text-primary', 'font-semibold');
+                    t.classList.add('text-on-secondary-container');
+                    const indicator = t.querySelector('div');
+                    if(indicator) indicator.remove();
+                });
+
+                // Set new
+                this.classList.remove('text-on-secondary-container');
+                this.classList.add('text-primary', 'font-semibold');
+                const div = document.createElement('div');
+                div.className = "absolute bottom-0 left-0 right-0 h-[3px] bg-primary rounded-t-full";
+                this.appendChild(div);
+            });
+        });
+    </script>
+
+
+</body></html>

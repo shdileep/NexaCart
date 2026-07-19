@@ -1,0 +1,523 @@
+<!DOCTYPE html><html lang="en" class="light" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Hanken+Grotesk:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "surface": "#f7f9fb",
+                        "tertiary": "#000000",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "on-primary-fixed": "#131b2e",
+                        "tertiary-fixed": "#d3e4fe",
+                        "primary": "#000000",
+                        "primary-container": "#131b2e",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "tertiary-container": "#0b1c30",
+                        "surface-bright": "#f7f9fb",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eceef0",
+                        "on-surface": "#191c1e",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "inverse-primary": "#bec6e0",
+                        "secondary-container": "#d5e3fd",
+                        "surface-dim": "#d8dadc",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#565e74",
+                        "inverse-surface": "#2d3133",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed": "#d5e3fd",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#191c1e",
+                        "outline": "#76777d",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-surface-variant": "#45464d",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#565e74",
+                        "secondary": "#515f74",
+                        "outline-variant": "#c6c6cd",
+                        "on-secondary-container": "#57657b",
+                        "primary-fixed": "#dae2fd",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "background": "#f7f9fb",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "on-tertiary-container": "#75859d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "unit": "4px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "label-sm": ["JetBrains Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    }catch(_e){}</script><meta charset="utf-8"></head><body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full h-[80px] bg-surface-container-lowest border-b border-outline-variant z-50"><div class="flex justify-between items-center h-full px-margin-desktop max-w-container-max mx-auto">
+    <div class="flex items-center gap-8">
+        <a href="#" class="flex items-center gap-3 group">
+            <div class="w-10 h-10 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcz5Ask9bLyohEW6UHpMdob4taTSvvB2pSpMkTuOKut_6XBGAmSxS9f8qWrxe1ifg9Lxng_S3ZC5nKyXzHrpzTWdpW-0sv0swB1K708sA_hMLOdtILlIh4Ig2X9fFYSYY9G1i3KdYzY_k9_F5mBKVvQ3AyQSMUfxef1R_Vwh4lKTR_ALdte3ZqlGVcS8TnZccqalu9UZBFNzj9FyzDFdyxsYA9k6r0gIq7SV7OUslWvEMzPU7YaFvgvWXIaZT1UumxvQ9GfFb3fPk" alt="NexaCart Logo" class="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
+            </div>
+            <span class="text-headline-md font-headline-md font-bold text-primary">NexaCart</span>
+        </a>
+    </div>
+    <div class="flex-1 max-w-xl px-8">
+        <div class="relative group">
+            <input type="text" placeholder="Search premium items..." class="w-full bg-surface-container-low border-none rounded-lg px-4 py-2 focus:ring-1 focus:ring-primary transition-all">
+            <span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant">search</span>
+        </div>
+    </div>
+    <nav class="flex items-center gap-6">
+        <a class="font-body-md text-on-secondary-container hover:text-primary transition-colors duration-200" href="#">Home</a>
+        <a class="font-body-md text-on-secondary-container hover:text-primary transition-colors duration-200" href="#">Categories</a>
+        <button class="active:scale-95 transition-transform"><span class="material-symbols-outlined">favorite</span></button>
+        <button class="active:scale-95 transition-transform relative">
+            <span class="material-symbols-outlined">shopping_cart</span>
+            <span class="absolute -top-2 -right-2 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+        </button>
+        <a class="font-body-md text-on-secondary-container hover:text-primary transition-colors duration-200" href="#">Orders</a>
+        <button class="active:scale-95 transition-transform"><span class="material-symbols-outlined">notifications</span></button>
+        <button class="active:scale-95 transition-transform"><span class="material-symbols-outlined">account_circle</span></button>
+    </nav>
+</div></header>
+<main class="mt-[80px] pt-8 max-w-container-max mx-auto px-margin-desktop pb-20">
+<!-- Breadcrumbs -->
+<nav class="mb-6 flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<a href="#" class="hover:text-primary">Home</a>
+<span class="material-symbols-outlined text-sm" data-original-icon="chevron_right">chevron_right</span>
+<a href="#" class="hover:text-primary">Fashion</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-on-surface">Track Pants</span>
+</nav>
+<div class="flex flex-col lg:flex-row gap-gutter">
+<!-- Left Section: 45% Gallery -->
+<section class="lg:w-[45%] flex flex-col md:flex-row gap-4">
+<!-- Thumbnails Vertical (MD and up) -->
+<div class="hidden md:flex flex-col gap-3 order-1">
+<div class="w-16 h-20 bg-surface-container border border-outline-variant rounded cursor-pointer overflow-hidden active-thumb">
+<img class="w-full h-full object-cover" data-alt="A professional product shot of NexaWear Premium Track Pants in a studio setting, emphasizing the sleek, black fabric and athletic silhouette. Modern enterprise catalog style with clean lighting and high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRynoIzMv4xTcEKS2RUotxuZBJmouCZ912Qp21aGhJiFTgMGIls9YpOOeriHB0vjUAtTB62Q6MsthsJXkt5_fFbUwJfpKF1FQo3nFaPxk9S7Tu9Y48JbG9oC6TX1_KbsQY5TeEGvVqK9541ZmSE4JErMHPREofmiu5tC5FBc6KcNONKXvXyWspgzgm7wnfvor7z4WemZ983QYh45hQWkxiiNn2RtO6CLFDer_EFWj7Adp3XAgGsX4oWqHlvuQgUa5hkpF8yRyqps8">
+</div>
+<div class="w-16 h-20 bg-surface-container border border-outline-variant rounded cursor-pointer overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up detail of the breathable performance fabric and reinforced stitching on a pair of high-end athletic joggers. The lighting is soft and neutral, showcasing the premium texture of the material in a light-mode commercial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4fwQ5ioKzGUs_Q4uqffiAfOvRxbK3v3lM88rYbI8aWPskLRP7K8p0Vr3An5JJmvGz2yCmINYfLt0wnb2Q5PueRCJQNuBedZtKUhUdglA5gc-4G8qxmBYcYzRiDlmbc0H8MHIjHIc4ub28BUjqExN6MJvs1K-dFGzC2mySKsmND3nk-1sy-bBZHSpKBgfVHGDJd1i9o7ANrK6wRHvkgI6q8w8laxYtZKFDQm_F5__jWf4YezLrKh0OrV81D90Kav2S3FEPP4fgnjk">
+</div>
+<div class="w-16 h-20 bg-surface-container border border-outline-variant rounded cursor-pointer overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Action shot of a model wearing minimalist black track pants, showing the tapered fit and ergonomic design for movement. Professional fashion photography in a minimalist studio environment with cool blue tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNVtzl_xDYrai0gfwgK71s7zXWJHz6AyZC3LX9wfUKX08hUbNzTNc7ewCy3QJt2fj4XKart9Kx0JYQ83G2eZrWnHk40OxO8F7fSwsdQ9cbXsHmhgBKiNIyYiVdnzj39MSeFsiRZ4aYScY01sYIaCn8WsALEPxmM30g6HT18vrWCV6wfq3ZvbyVwzkACbwExAAU9__JMAbLHvG3mwJQZtSCslgLActu8olWSftnbCLsd2XjPqAAWFhQcqddONCROKnR1QLSyKaUlPc">
+</div>
+<div class="w-16 h-20 bg-surface-container border border-outline-variant rounded cursor-pointer overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Back view of premium athletic pants showing the elasticated waistband and discreet zipped pocket detail. Clean, architectural composition focusing on functional design elements for modern commerce." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_usF0q9z8kXi-16hnkJRQOJ-eo8RaNMRY-Gd_T7ZDyZB-fw1wpPWf8QNu1zQdYZZKUXnOblMgqcSAchdyUIoN99ScrcNc2LnugkjhJqyPvbGbR3MQakQuNm2-iny4SWI_h9SrlPvmk1M7c6LEX_1bjvWmORHCwd6AkzXTRSq5Pt5UnXJRn51Bl297ZpTxMaZyxHEOhxtqLAwHBntfsIAsup4uKWxqPMjfsFYIROqf3CgveFijXE1X3xUk3ybO1j1888uYrCBVbhw">
+</div>
+</div>
+<!-- Main Image -->
+<div class="relative flex-1 order-2 aspect-[4/5] bg-surface-container rounded-lg border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover transition-opacity duration-500" data-alt="Master shot of the NexaWear Premium Track Pants presented in a 3/4 angle on a high-quality display mannequin. The lighting is crisp and corporate, highlighting the deep black color and superior fit. Minimalist white background for enterprise clarity." id="main-product-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTnULtyMykYiYQP7JNTXQfKeNR1JAgiRjK7wIFAEy5hxektiNLpOZgoi6ooMQvNjrSIBM-7na3Sfwjn5egqG8QFoL6-yeGu16CwkcRXtWG4bUH-lCgL47fUUFeudI8CTxh3WyB4xjAw5QLyA2kX63sO27CgFa_mwVk9IFPvI8Ztd90n_YffBm1Kj4UegklPJKeI8bI6YgRTrZAJRXCIr9q5IIKGIj-0z7U6yaVjBsfHiv19qAtfoU1BvMTCZMYYWyAZr0O8i759Ms">
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-primary">favorite</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-primary">share</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Right Section: 55% Details -->
+<section class="lg:w-[55%] flex flex-col gap-6">
+<div>
+<h1 class="font-headline-md text-display-lg leading-tight mb-2">NexaWear Premium Track Pants</h1>
+<div class="flex items-center gap-4 mb-4">
+<div class="flex items-center gap-1 bg-primary text-on-primary px-2 py-0.5 rounded text-label-sm font-label-sm">
+<span class="">4.3</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-on-surface-variant font-body-md">15,404 Ratings &amp; 2,130 Reviews</span>
+</div>
+<div class="flex items-end gap-3 mb-1">
+<span class="text-[32px] font-bold text-primary">₹450</span>
+<span class="text-on-surface-variant line-through text-body-lg mb-1">₹1,999</span>
+<span class="text-green-600 font-bold text-body-lg mb-1">77% OFF</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Inclusive of all taxes</p>
+</div>
+<!-- Offers Box -->
+<div class="p-4 border border-outline-variant rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary">local_offer</span>
+<span class="font-bold">Available Offers</span>
+</div>
+<ul class="space-y-2">
+<li class="flex gap-2 text-body-md">
+<span class="text-green-600 font-bold">Bank Offer</span>
+<span class="">10% off on ICICI Bank Credit Cards, up to ₹1000.</span>
+</li>
+<li class="flex gap-2 text-body-md">
+<span class="text-green-600 font-bold">No Cost EMI</span>
+<span class="">Starting from ₹150/month on select cards.</span>
+</li>
+</ul>
+</div>
+<!-- Delivery Section -->
+<div class="flex flex-col gap-4 py-4 border-y border-outline-variant">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-bold">Deliver to</span>
+</div>
+<button class="text-primary font-bold hover:underline">Change</button>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-bold">110001</span>
+<span class="text-on-surface-variant border-l border-outline-variant pl-4">Delivery by <span class="text-on-surface font-bold">Friday, Oct 25</span></span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-4">
+<button class="h-14 rounded-lg bg-[#FF9F00] text-white font-bold text-body-lg flex items-center justify-center gap-2 shadow-sm hover:-translate-y-1 transition-all">
+<span class="material-symbols-outlined">shopping_cart</span>
+                        ADD TO CART
+                    </button>
+<button class="h-14 rounded-lg bg-gradient-to-r from-[#1e293b] to-[#0f172a] text-white font-bold text-body-lg flex items-center justify-center gap-2 shadow-sm hover:-translate-y-1 transition-all">
+<span class="material-symbols-outlined">bolt</span>
+                        BUY NOW
+                    </button>
+</div>
+<!-- Seller Info -->
+<div class="flex items-center justify-between p-4 bg-surface-container border border-outline-variant rounded-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center font-bold text-on-secondary-container">A</div>
+<div>
+<p class="font-bold">AnviGroup</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">4.8 ★ Seller Score</p>
+</div>
+</div>
+<button class="text-primary font-bold text-label-sm font-label-sm">View Store</button>
+</div>
+<!-- Trust Badges-->
+<div class="flex justify-between py-2">
+<div class="flex flex-col items-center gap-1 text-center">
+<span class="material-symbols-outlined text-primary">replay</span>
+<span class="text-label-sm font-label-sm">10 Day Return</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-center">
+<span class="material-symbols-outlined text-primary">payments</span>
+<span class="text-label-sm font-label-sm">COD Available</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-center">
+<span class="material-symbols-outlined text-primary">verified</span>
+<span class="text-label-sm font-label-sm">Nexa Assured</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Product Details Accordions -->
+<section class="mt-16 border-t border-outline-variant pt-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div>
+<h2 class="font-headline-md text-headline-md mb-6">Product Highlights</h2>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-2"></span>
+<p class=""><span class="font-bold">Fabric:</span> Premium Lycra blend for 4-way stretch and moisture-wicking capability.</p>
+</li>
+<li class="flex items-start gap-3">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-2"></span>
+<p class=""><span class="font-bold">Fit:</span> Slim-tapered modern fit with articulated knees for maximum mobility.</p>
+</li>
+<li class="flex items-start gap-3">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-2"></span>
+<p class=""><span class="font-bold">Pockets:</span> Two deep side-zipped pockets and one hidden rear secure pocket.</p>
+</li>
+</ul>
+</div>
+<div class="space-y-4">
+<div class="border-b border-outline-variant pb-4">
+<button class="flex items-center justify-between w-full font-bold text-body-lg">
+                            Specifications
+                            <span class="material-symbols-outlined">expand_more</span>
+</button>
+<div class="mt-4 grid grid-cols-2 gap-y-3 text-body-md">
+<span class="text-on-surface-variant">Ideal For</span><span class="font-medium">Men</span>
+<span class="text-on-surface-variant">Occasion</span><span class="font-medium">Sports, Casual</span>
+<span class="text-on-surface-variant">Pattern</span><span class="font-medium">Solid</span>
+<span class="text-on-surface-variant">Closure</span><span class="font-medium">Drawstring</span>
+</div>
+</div>
+<div class="border-b border-outline-variant pb-4">
+<button class="flex items-center justify-between w-full font-bold text-body-lg">
+                            Material &amp; Care
+                            <span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Futuristic Promo Banner -->
+<section class="mt-20 rounded-2xl overflow-hidden relative h-64 bg-primary flex items-center px-12">
+<div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLu7m3yIUSXhDa6XNlsZsBMnOUF7VvrphbuATCUw0FF4gZRixrHwUt6ghwX5grUvFh56qeb9HTQ_LserASpn7jXsgxbdanIQhl9cZUj-DbrMCn7lkcZplaj2Rl91rxyyGrrj7dD9pzzxc8RUiqaS5z-WkssCZqLvYm2Z1HCgEO8Q47qQsuMXujbPH4J9hSd0b4cPQEibd40_xB9pBN5hXv9rK9AbtPM5YxcLJNr2UkzbZCYsLiOjGYsbzos')"></div>
+<div class="relative z-10 max-w-xl">
+<h3 class="text-on-primary font-display-lg text-headline-md mb-4">Discover Your Next Favorite</h3>
+<p class="text-on-primary-container font-body-lg">Our AI-powered engine analyzes your style to curate the perfect wardrobe. Experience NexaCart discovery.</p>
+</div>
+</section>
+<!-- Reviews Section -->
+<section class="mt-20">
+<div class="flex flex-col md:flex-row gap-12">
+<div class="md:w-1/3">
+<h2 class="font-headline-md text-headline-md mb-6">Ratings &amp; Reviews</h2>
+<div class="flex items-center gap-4 mb-4">
+<span class="text-[56px] font-bold">4.3</span>
+<div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">star_half</span>
+</div>
+<p class="text-on-surface-variant">15.4k Global Ratings</p>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<span class="w-3 text-label-sm">5</span><div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden"><div class="bg-green-600 h-full w-[70%]"></div></div><span class="text-label-sm">70%</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 text-label-sm">4</span><div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden"><div class="bg-green-500 h-full w-[20%]"></div></div><span class="text-label-sm">20%</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 text-label-sm">3</span><div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden"><div class="bg-yellow-500 h-full w-[5%]"></div></div><span class="text-label-sm">5%</span>
+</div>
+</div>
+</div>
+<div class="md:w-2/3 space-y-6">
+<div class="stagger-in p-6 border border-outline-variant rounded-lg glass-card" style="animation-delay: 0.1s;">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-green-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">5 ★</span>
+<span class="font-bold">Excellent Fabric Quality</span>
+</div>
+<p class="text-on-surface-variant mb-4">The material is incredibly soft yet durable. I've washed it twice and no pilling or fading. Great for gym and casual wear alike.</p>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span class="">Rahul Sharma, Certified Buyer • 2 days ago</span>
+<div class="flex gap-4">
+<button class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">thumb_up</span> 142</button>
+<button class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">thumb_down</span> 4</button>
+</div>
+</div>
+</div>
+<div class="stagger-in p-6 border border-outline-variant rounded-lg glass-card" style="animation-delay: 0.2s;">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-green-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">4 ★</span>
+<span class="font-bold">Perfect Fit</span>
+</div>
+<p class="text-on-surface-variant mb-4">Fits true to size. The taper is perfect—not too tight but gives a very sharp look. Wish there were more color options available.</p>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span class="">Anita Gupta, Certified Buyer • 1 week ago</span>
+<div class="flex gap-4">
+<button class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">thumb_up</span> 89</button>
+<button class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">thumb_down</span> 0</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Carousels -->
+<section class="mt-20 space-y-16">
+<div>
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-md">Similar Products</h2>
+<div class="flex gap-2">
+<button class="w-10 h-10 border border-outline-variant rounded-full flex items-center justify-center hover:bg-surface-container"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="w-10 h-10 border border-outline-variant rounded-full flex items-center justify-center hover:bg-surface-container"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+<!-- Carousel Items -->
+<div class="group">
+<div class="aspect-[3/4] bg-surface-container rounded-lg mb-3 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A pair of dark grey slim-fit joggers displayed against a clean, minimal white background. High-end athletic wear aesthetic with precise focus on fabric detail and professional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi7L56lhfMjE_z6gNcoin5QRZga_oMLlFTCPoNDyPv9I0zdvTdxqniUKYwpD5KK354x41kQoZnRpTAqD0LkgIMwhYnzTckM63b5WvdDtEu_OxSr0xSyZHheSUltcccUrSFxfEAYE3yZ8Qkhs4TlYTq62ZPKU2ggTaCE2H6d6u1wfj4ssBhGuBV50E7b9T90a_81ggtzoQ9NLFWmmwnevPuXSfPf1IkfkR9tFuzEr71qNhgUzU5Ow1_AkaRfXJ1z8Dvoadrb1MbAP0">
+</div>
+<p class="font-bold truncate">NexaWear Active Joggers</p>
+<p class="text-primary font-bold">₹599 <span class="text-on-surface-variant line-through font-normal text-sm ml-1">₹1,499</span></p>
+</div>
+<div class="group">
+<div class="aspect-[3/4] bg-surface-container rounded-lg mb-3 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Navy blue performance track pants with a white stripe detail on the side. Modern sports fashion photography style, professional and commercial appeal for enterprise commerce." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2liToEn_wUkvwXzyKji7TdHrKtE75L5h3RyNpGKXoQlg4oB_zopUReFAL8kS5oyI2JWR-iV9tZQZxwCBVJwGLaoo1QjKZmTzBGb4qMYMz0TwCm_iGy12OjxJ4FRWXlvg7WlgyLuWsElyMYZ43pzwR6Y6Qac504Gp2w5-G-nV4Euy3cUkxQoWBmtwXs8IhMjU6pDZoh3hyo3U9onlPtqtoyuI2XrY_Ny5MBPEr_W4JZ2G0sR1eJwp_QPPr8tQ1dtRc3-NOwNoaZ4Y">
+</div>
+<p class="font-bold truncate">NexaWear Pro Stripes</p>
+<p class="text-primary font-bold">₹749 <span class="text-on-surface-variant line-through font-normal text-sm ml-1">₹1,999</span></p>
+</div>
+<div class="group">
+<div class="aspect-[3/4] bg-surface-container rounded-lg mb-3 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Olive green cargo joggers with multiple utility pockets. High-resolution studio shot with architectural lighting, emphasizing functional premium streetwear." src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg">
+</div>
+<p class="font-bold truncate">NexaWear Cargo Elite</p>
+<p class="text-primary font-bold">₹899 <span class="text-on-surface-variant line-through font-normal text-sm ml-1">₹2,499</span></p>
+</div>
+<div class="group hidden md:block">
+<div class="aspect-[3/4] bg-surface-container rounded-lg mb-3 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Light grey melange athletic sweatpants. Minimalist, high-key lighting showcasing the soft cotton texture and premium waistband construction." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFHFpJAuBEz9U0XCVkEfHB7sIR0Vmu4Qrm0Xc7jgInFNEbpTYrUaRhVli9_9PKS1sQWrRHs9YGqpop_k-Gf3O1r59i4IIA720Wc0iGDlcwlvGK-YP0eVjxHriG3lCcoJ44H3HY_aRRKELt6mXknw8jv05DL9IYpkoLxdc5x3Azgxon5yEd3a2HdLSW71wtJ174v0t7d1_TTs2cikOzjbyXYCA6jx8v8h_rM4PV6vKSIjs-Lk4dgybhz-zlIoa2nFL0LX_TLuc29ss">
+</div>
+<p class="font-bold truncate">NexaWear Cloud Soft</p>
+<p class="text-primary font-bold">₹549 <span class="text-on-surface-variant line-through font-normal text-sm ml-1">₹1,299</span></p>
+</div>
+<div class="group hidden lg:block">
+<div class="aspect-[3/4] bg-surface-container rounded-lg mb-3 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Matte black compression leggings for performance training. Sleek, technological visual style with sharp contrast and futuristic athletic vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwWyveaQRv_Pqn1qCimOnXf9PaO44LCwylFEy3V8OUJwgDU1DF5c8gUwjw16SPKwj0SiHMzlGSfJESl97QaB_tbaS1eDECXOuo7-yR-vTJJVd8IxDc_sTYOB2lTEC40Rmwfu6MzhCRCBjIugSmDR5I9FDw-NhPqSYIiuWpRFCX9Kp_LmOUHFyAD_HH-cqtl1H4C-zQYc2YCSyK2wAoGPPKGda8t8vvfeK3ArvQUdEgxeJ3Y7rL10EwO4pVcftc1Nk0e2UmYuUIhtY">
+</div>
+<p class="font-bold truncate">NexaWear Compression Pro</p>
+<p class="text-primary font-bold">₹999 <span class="text-on-surface-variant line-through font-normal text-sm ml-1">₹2,999</span></p>
+</div>
+</div>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md mb-6">Frequently Bought Together</h2>
+<div class="flex flex-col md:flex-row items-center gap-8 p-8 border border-outline-variant rounded-2xl bg-surface-container-low">
+<div class="flex items-center gap-4">
+<div class="w-24 h-32 bg-white border border-outline-variant rounded p-1">
+<img class="w-full h-full object-contain" data-alt="A pair of premium black track pants, isolated on white. High-resolution commercial photography for e-commerce." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQR250kljiPPEyDuuToEnXQejS76DhgcujoPlUEWVQbi3D9SAkDI38GIXYpHMlwz-Tn8_i8Ne_UBMRAdk5kdSIMYtmrkxReHbKnD6jjWTWHCq6duVz32_I8yoR0qC060w-fzaGk30z_AS1DLC4HhvXivjjEMWkQBMdLEV3Xznxxm8tV0n51XLxQvM4UsE8kVK5yHtONef4ENbgwTMB8fcyhc91_QErdQtIKKRJoH66HGNYn_UaTyZB-_zNc7gk6Bb9rOZGzUqpK_o">
+</div>
+<span class="text-headline-md text-on-surface-variant">+</span>
+<div class="w-24 h-32 bg-white border border-outline-variant rounded p-1">
+<img class="w-full h-full object-contain" data-alt="A crisp white performance t-shirt with a small minimalist logo on the chest. Studio lighting, clean corporate look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8r6X0fRPaQTjBKMNoHSSnvpC1TzuqGqDXI5Nbv4n2vQt2y6foXJabyNoNgOBmcNbVu_U3MHbGP5_mq7UQ9lXRW-CKKefkQkFRbum7RevWRcN0AQOleh6v92mAKr1d7UoCA3qiZ6fTS94Ve5qPvwAfp952ASfr54-l9a0xw4J7fIJWHb2KnmBMRc2hfpBRgQgLjY6pniQGA0ssvD7qPWx3iOuXJhsppPeUgWJpHkx6gLLQp52CStUcHPr--AMA8lbYKwQbVQmP5vQ">
+</div>
+<span class="text-headline-md text-on-surface-variant">+</span>
+<div class="w-24 h-32 bg-white border border-outline-variant rounded p-1">
+<img class="w-full h-full object-contain" data-alt="A pair of black and white athletic sneakers on a minimalist platform. Contemporary commercial footwear photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCobfM2IEZrGeEmgAyJKEPEnXlTQEnbcZgJr_6Qtkacy_kujrV5zWu0i1T3jkrwOayyJI_m6QM5Q4v-j5YrO9ZP1D9ljPdgE-W9IurunwB3nxt2R6d8DKZeonD3iU9ilh2nktoz9Q3Xyq-BgnVPyqqVFLThv9KSG5yX8UQWTvKjMwwnSmCvKDPIJk3jJ-L1LPBhwpLaCmDhSEk_e9DmMHyMInS5HrWuy_0xd7A-bG3Lx0cRrE4UzvvsnVRxynFUPJ8f_HsAHThrkKQ">
+</div>
+</div>
+<div class="md:border-l border-outline-variant md:pl-8 flex flex-col gap-2">
+<p class="text-body-lg">Total price for 3 items: <span class="font-bold text-headline-md">₹1,899</span></p>
+<button class="bg-primary text-on-primary py-3 px-8 rounded-full font-bold hover:scale-105 transition-transform active:scale-95">Add all 3 to Cart</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-surface-container border-t border-outline-variant"><div class="max-w-container-max mx-auto px-margin-desktop">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+        <div class="lg:col-span-4">
+            <div class="flex items-center gap-3 mb-6">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcz5Ask9bLyohEW6UHpMdob4taTSvvB2pSpMkTuOKut_6XBGAmSxS9f8qWrxe1ifg9Lxng_S3ZC5nKyXzHrpzTWdpW-0sv0swB1K708sA_hMLOdtILlIh4Ig2X9fFYSYY9G1i3KdYzY_k9_F5mBKVvQ3AyQSMUfxef1R_Vwh4lKTR_ALdte3ZqlGVcS8TnZccqalu9UZBFNzj9FyzDFdyxsYA9k6r0gIq7SV7OUslWvEMzPU7YaFvgvWXIaZT1UumxvQ9GfFb3fPk" alt="NexaCart Logo" class="w-10 h-10 object-contain">
+                <span class="text-headline-md font-bold text-primary">NexaCart</span>
+            </div>
+            <p class="text-on-surface-variant mb-8 max-w-sm">Enterprise-grade commerce for the modern merchant. Experience reliability and scale at every transaction.</p>
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center hover:bg-primary hover:text-white transition-colors"><span class="material-symbols-outlined text-[20px]">public</span></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center hover:bg-primary hover:text-white transition-colors"><span class="material-symbols-outlined text-[20px]">share</span></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center hover:bg-primary hover:text-white transition-colors"><span class="material-symbols-outlined text-[20px]">mail</span></a>
+            </div>
+        </div>
+        <div class="lg:col-span-5 grid grid-cols-2 md:grid-cols-3 gap-8">
+            <div class="flex flex-col gap-4">
+                <p class="font-bold text-primary">Company</p>
+                <a href="#" class="text-on-surface-variant hover:text-primary transition-colors">About Us</a>
+                <a href="#" class="text-on-surface-variant hover:text-primary transition-colors">Careers</a>
+                <a href="#" class="text-on-surface-variant hover:text-primary transition-colors">Press</a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <p class="font-bold text-primary">Help</p>
+                <a href="#" class="text-on-surface-variant hover:text-primary transition-colors">Shipping Info</a>
+                <a href="#" class="text-on-surface-variant hover:text-primary transition-colors">Returns</a>
+                <a href="#" class="text-on-surface-variant hover:text-primary transition-colors">Contact Us</a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <p class="font-bold text-primary">Legal</p>
+                <a href="#" class="text-on-surface-variant hover:text-primary transition-colors">Privacy Policy</a>
+                <a href="#" class="text-on-surface-variant hover:text-primary transition-colors">Terms of Service</a>
+                <a href="#" class="text-on-surface-variant hover:text-primary transition-colors">Trust Center</a>
+            </div>
+        </div>
+        <div class="lg:col-span-3">
+            <p class="font-bold text-primary mb-4">Stay Updated</p>
+            <p class="text-on-surface-variant mb-4 text-sm">Subscribe to our newsletter for the latest enterprise insights.</p>
+            <div class="flex gap-2">
+                <input type="email" placeholder="Email address" class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 focus:ring-1 focus:ring-primary outline-none">
+                <button class="bg-primary text-white px-4 py-2 rounded-lg font-bold hover:opacity-90 transition-opacity">Join</button>
+            </div>
+        </div>
+    </div>
+    <div class="pt-8 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-6">
+        <p class="text-on-surface-variant text-sm">© 2024 NexaCart Enterprise. All rights reserved.</p>
+        <div class="flex items-center gap-8">
+            <div class="flex gap-4 opacity-40">
+                <span class="material-symbols-outlined">credit_card</span>
+                <span class="material-symbols-outlined">account_balance</span>
+                <span class="material-symbols-outlined">qr_code_2</span>
+            </div>
+            <div class="flex gap-6 text-sm font-medium">
+                <a href="#" class="text-on-surface-variant hover:text-primary">Privacy</a>
+                <a href="#" class="text-on-surface-variant hover:text-primary">Terms</a>
+                <a href="#" class="text-on-surface-variant hover:text-primary">Cookies</a>
+            </div>
+        </div>
+    </div>
+</div></footer>
+<script>
+        // Gallery thumbnail interaction
+        const thumbnails = document.querySelectorAll('.order-1 div');
+        const mainImg = document.getElementById('main-product-img');
+
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                thumbnails.forEach(t => t.classList.remove('active-thumb'));
+                thumb.classList.add('active-thumb');
+                
+                mainImg.style.opacity = '0';
+                setTimeout(() => {
+                    mainImg.src = thumb.querySelector('img').src;
+                    mainImg.style.opacity = '1';
+                }, 150);
+            });
+        });
+
+        // Intersection Observer for staggered review animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('stagger-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stagger-in').forEach(el => observer.observe(el));
+    </script>
+
+</body></html>

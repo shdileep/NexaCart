@@ -1,0 +1,576 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>NexaCart - Return Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#000000",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#7c839b",
+                    "secondary-fixed-dim": "#b9c7e0",
+                    "surface": "#f7f9fb",
+                    "primary": "#000000",
+                    "on-primary-fixed": "#131b2e",
+                    "tertiary-fixed": "#d3e4fe",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "error": "#ba1a1a",
+                    "primary-container": "#131b2e",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#0b1c30",
+                    "surface-bright": "#f7f9fb",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#eceef0",
+                    "on-surface": "#191c1e",
+                    "on-secondary-fixed-variant": "#3a485c",
+                    "surface-variant": "#e0e3e5",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#565e74",
+                    "inverse-surface": "#2d3133",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "inverse-primary": "#bec6e0",
+                    "secondary-container": "#d5e3fd",
+                    "surface-dim": "#d8dadc",
+                    "primary-fixed-dim": "#bec6e0",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-fixed": "#d5e3fd",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "on-surface-variant": "#45464d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#191c1e",
+                    "outline": "#76777d",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "on-tertiary-container": "#75859d",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "secondary": "#515f74",
+                    "outline-variant": "#c6c6cd",
+                    "on-secondary-container": "#57657b",
+                    "primary-fixed": "#dae2fd",
+                    "on-secondary-fixed": "#0d1c2f",
+                    "background": "#f7f9fb",
+                    "enterprise-blue": "#0284c7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "margin-desktop": "64px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-sm": ["JetBrains Mono"],
+                    "display-lg-mobile": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-premium {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        .nav-active-indicator {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen">
+<!-- SideNavBar -->
+<aside class="w-[260px] h-screen fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant flex flex-col py-8 px-4 h-full z-50">
+<div class="px-4 mb-10">
+<div class="mb-4 w-10 h-10 overflow-hidden rounded-lg transition-all duration-500 grayscale hover:grayscale-0"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLAXnemxBRetU8KEwI4mx0Moh8_UlxeKvDTqVTDspBOiQDzaA_W77jJvEIRwt_ZoNnKvfFNpVvEplBpNkFbqVLISxRMZt5kuZoet5M0aluAcTDzWn7gQsR2vGD69CsN67M8IZKRyUHM7M28vsLW7A727DPMGZaH6UNnUPGqjJswlRm-8E_uM6EnwtWt_nwDUY0mFRT267fs4BvgKJiZiMuqcH_P5lkY3whjKrDYlyS8Iv992bZdsT1zibPRHmuRtVWDs7Auucfugo" alt="NexaCart Logo" class="w-full h-full object-cover"></div><h1 class="font-headline-md text-headline-md font-bold text-primary">NexaCart</h1>
+<p class="font-label-sm text-label-sm text-on-secondary-container mt-1">Enterprise Seller</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Navigation Items Mapping from JSON -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Customers</span>
+</a>
+<div class="relative">
+<a class="flex items-center gap-3 px-4 py-3 text-primary font-semibold border-r-4 border-primary bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-body-md text-body-md">Orders</span>
+</a>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">local_offer</span>
+<span class="font-body-md text-body-md">Coupons</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md text-body-md">Finance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-4 pt-4 border-t border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+<img class="w-full h-full rounded-full object-cover" data-alt="A professional headshot of a corporate executive for a seller profile, featuring a sharp-focused portrait against a neutral, high-end studio background. The subject is wearing a tailored charcoal suit and a crisp white shirt, projecting confidence and institutional authority. The lighting is soft and even, highlighting professional approachability while maintaining a minimal, luxury aesthetic consistent with the enterprise theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGlyMEQNy4zeKBlSqda6NnZ9mb-lWjOc38uACYNQVlIx_1GoZUzcg2gaWgxOTACLpaB-fm4z4OgM7Vf-MucgHLcwQh77qsvDdTf2wulp4OVHtmrX4ycYOwsqW_mVLlLN6PWVoGdHuLcyJEpg6VrTIf0dqx1RlE6Gz6THIeYXq6MivLgipZ7Q8Ut5xgtXgKkEE7584N81EhB_Jo257S42M5L6Brshg90Ro46RA_4oF_7lThFUojO_hzIpcO1sNotQcEE4Df3ArsTxo">
+</div>
+<div>
+<p class="font-body-md text-sm font-semibold">Alex Sterling</p>
+<p class="font-label-sm text-[10px] text-on-secondary-container">Region Manager</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="h-[80px] fixed top-0 right-0 left-[260px] bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-gutter z-40">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-0 focus:border-primary font-body-md text-sm outline-none transition-all" placeholder="Search orders, SKU or customers..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="relative text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-enterprise-blue rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<div class="h-6 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-2">
+<div class="text-right hidden xl:block">
+<p class="text-xs font-semibold leading-tight">NexaCart Global</p>
+<p class="text-[10px] text-on-secondary-container">Merchant ID: 884920</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[260px] pt-[80px] p-gutter">
+<div class="max-w-container-max mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<nav class="flex items-center gap-2 mb-2">
+<span class="font-label-sm text-xs text-on-secondary-container">ORDERS</span>
+<span class="material-symbols-outlined text-xs text-on-secondary-container">chevron_right</span>
+<span class="font-label-sm text-xs text-primary font-bold">RETURNS</span>
+</nav>
+<h2 class="font-display-lg text-display-lg text-primary">Returns Management</h2>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant bg-white rounded-lg font-body-md text-sm hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export Report
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-full font-body-md text-sm font-semibold shadow-lg hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+                        Bulk Action
+                    </button>
+</div>
+</div>
+<!-- Stats Overview - Bento Grid style -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-8">
+<div class="bg-white p-6 border border-outline-variant rounded-lg">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-container rounded-lg">
+<span class="material-symbols-outlined text-secondary">assignment_return</span>
+</div>
+<span class="text-enterprise-blue font-label-sm text-xs">+12.5%</span>
+</div>
+<p class="text-on-secondary-container font-label-sm text-xs mb-1">OPEN REQUESTS</p>
+<h3 class="font-headline-md text-2xl font-bold">142</h3>
+</div>
+<div class="bg-white p-6 border border-outline-variant rounded-lg">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-container rounded-lg">
+<span class="material-symbols-outlined text-secondary">pending_actions</span>
+</div>
+<span class="text-error font-label-sm text-xs">+3.2%</span>
+</div>
+<p class="text-on-secondary-container font-label-sm text-xs mb-1">PENDING REVIEW</p>
+<h3 class="font-headline-md text-2xl font-bold">48</h3>
+</div>
+<div class="bg-white p-6 border border-outline-variant rounded-lg">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-container rounded-lg">
+<span class="material-symbols-outlined text-secondary">verified</span>
+</div>
+<span class="text-enterprise-blue font-label-sm text-xs">98.2%</span>
+</div>
+<p class="text-on-secondary-container font-label-sm text-xs mb-1">RESOLUTION RATE</p>
+<h3 class="font-headline-md text-2xl font-bold">24h Avg</h3>
+</div>
+<div class="bg-white p-6 border border-outline-variant rounded-lg overflow-hidden relative">
+
+<div class="relative z-10">
+<p class="text-on-secondary-container font-label-sm text-xs mb-1">TOTAL REFUNDED</p>
+<h3 class="font-headline-md text-2xl font-bold">$12,490.50</h3>
+<p class="text-[10px] text-on-secondary-container mt-2">Fiscal Month: October</p>
+</div>
+</div>
+</div>
+<!-- Tabbed Navigation & Table Filter -->
+<div class="bg-white border border-outline-variant rounded-lg overflow-hidden">
+<div class="border-b border-outline-variant px-6 flex items-center justify-between">
+<div class="flex gap-8">
+<button class="py-4 border-b-2 border-primary font-body-md text-sm font-semibold text-primary">Return Requests</button>
+<button class="py-4 border-b-2 border-transparent font-body-md text-sm text-on-secondary-container hover:text-primary transition-colors">In-Transit</button>
+<button class="py-4 border-b-2 border-transparent font-body-md text-sm text-on-secondary-container hover:text-primary transition-colors">Completed</button>
+<button class="py-4 border-b-2 border-transparent font-body-md text-sm text-on-secondary-container hover:text-primary transition-colors">Disputed</button>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 font-body-md text-xs text-on-secondary-container hover:text-primary">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                            Filter
+                        </button>
+<button class="flex items-center gap-2 font-body-md text-xs text-on-secondary-container hover:text-primary">
+<span class="material-symbols-outlined text-sm">sort</span>
+                            Sort
+                        </button>
+</div>
+</div>
+<!-- Table Content -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-4 font-label-sm text-[11px] uppercase tracking-wider text-on-secondary-container">Order ID</th>
+<th class="px-6 py-4 font-label-sm text-[11px] uppercase tracking-wider text-on-secondary-container">Product</th>
+<th class="px-6 py-4 font-label-sm text-[11px] uppercase tracking-wider text-on-secondary-container">Return Reason</th>
+<th class="px-6 py-4 font-label-sm text-[11px] uppercase tracking-wider text-on-secondary-container">Condition</th>
+<th class="px-6 py-4 font-label-sm text-[11px] uppercase tracking-wider text-on-secondary-container">Status</th>
+<th class="px-6 py-4 font-label-sm text-[11px] uppercase tracking-wider text-on-secondary-container text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<span class="font-label-sm text-sm text-primary">#ORD-99201</span>
+<p class="text-[10px] text-on-secondary-container">2 hours ago</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-surface-container rounded-sm flex-shrink-0 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A clean product shot of a high-end minimalist mechanical keyboard in matte black with subtle blue LED backlighting. The image is taken on a white marble surface in a bright, modern studio. The perspective is a shallow depth of field shot, emphasizing industrial design quality and premium manufacturing details consistent with professional technology hardware." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ1A_CKxFmxPGZm_yHZEvinaAZpFD0wZpsmQb13RueOyi4YuA3qdxggimChNkp4Mh1U0_1hPmJLxvKUHwIc87WWwKaZqy3DM_OL0kKQ1IXn3vGuQy7mc2vhzJAwrtOLoP8ZZhQOc_h8us8wgvaHP3r3MPtoU_yDN-fYp0ByV2vTWZ4j2krpfe7nMgsHdPNPI9aGcpsChslfpD298phueG4hQGSRSxitjnygq57SeG2l2d_6NNEGbeJv6OBM05wAFv6KoS_aQUenkk">
+</div>
+<div>
+<p class="text-sm font-medium">Lumina Pro Keyboard</p>
+<p class="text-[10px] text-on-secondary-container">SKU: KBD-BLK-MX</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm">Item defective / Won't turn on</p>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-surface-container text-on-secondary-container rounded text-[10px] font-label-sm">UNOPENED</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-enterprise-blue/10 text-enterprise-blue border border-enterprise-blue/20">
+<span class="w-1.5 h-1.5 rounded-full bg-enterprise-blue"></span>
+                                        Pending Review
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="px-3 py-1 bg-primary text-white text-[11px] font-semibold rounded hover:bg-opacity-80">Approve</button>
+<button class="px-3 py-1 border border-outline-variant text-[11px] font-semibold rounded hover:bg-surface-container">Reject</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<span class="font-label-sm text-sm text-primary">#ORD-99184</span>
+<p class="text-[10px] text-on-secondary-container">5 hours ago</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-surface-container rounded-sm flex-shrink-0 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A macro studio shot of a premium obsidian glass smartphone screen, showcasing high-definition clarity and structural integrity. The device is placed on a minimalist dark surface with architectural lighting that creates subtle gradients. The overall aesthetic is sleek, expensive, and professional, focused on high-quality material textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8ArP9W1iHUyJkpZkzs2-iIqeaAZb-yVsHeUtFVmm7SNYack5ZIx1YzhpBETepfSckZor9anrrlBUzIDGLv--XNmy6KONk6tzabsGY9FuSN0YB23_wMDovKAXof63nvBnkiUIfNWzi3YCRDixhvir6mb9eSv8r9DM6y6EW9cETzDCEpOI2UzFaGnjKs5jdLCs5rvFL11KC_SFKsKviBR20ZXzFgvXLYUHVB2XAtuoM_EEmFK74Zg6Kk81img4KrGoizrYVmPFHfxA">
+</div>
+<div>
+<p class="text-sm font-medium">Edge X Smartphone</p>
+<p class="text-[10px] text-on-secondary-container">SKU: PHN-X-256</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm">Incompatible with software</p>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-surface-container text-on-secondary-container rounded text-[10px] font-label-sm">OPENED</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-enterprise-blue/10 text-enterprise-blue border border-enterprise-blue/20">
+<span class="w-1.5 h-1.5 rounded-full bg-enterprise-blue"></span>
+                                        Pending Review
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="px-3 py-1 bg-primary text-white text-[11px] font-semibold rounded hover:bg-opacity-80">Approve</button>
+<button class="px-3 py-1 border border-outline-variant text-[11px] font-semibold rounded hover:bg-surface-container">Reject</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<span class="font-label-sm text-sm text-primary">#ORD-99150</span>
+<p class="text-[10px] text-on-secondary-container">12 hours ago</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-surface-container rounded-sm flex-shrink-0 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional product photograph of studio-quality noise-canceling headphones in matte silver and premium white leather. The product is captured in a minimalist, airy studio setting with soft directional lighting. The composition highlights the premium craftsmanship and ergonomic design, utilizing a clean and corporate visual style with no distractions." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAUynS4ObWBkoqkLC2Mtvmz94TRFhqSbxuq8Z-FYxOFuQoJp6lKnt9wCFdOmEgpApLD8SweBLNTeIlVUQkRhBbnrZv2FCE0AUyp5caK6_OZvdi9fv_GliIu3K8dLq2gJSS3HC9WdhueRpXig_YKnv-Qnlp-T3zEwfFTVjpPK-vEjQT57q0fVZI-IpnpVVRddWlfG9QTYPB9wcpDfqFKQD0PrhHDdyV6ZDsvLNM7vqsKU_CNpdu1ZMrEQnNNsU3kOmehct2-8khyVE">
+</div>
+<div>
+<p class="text-sm font-medium">Sonic-Flow Headset</p>
+<p class="text-[10px] text-on-secondary-container">SKU: AUD-SF-WHT</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm">Changed mind / Better price found</p>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-surface-container text-on-secondary-container rounded text-[10px] font-label-sm">DAMAGED BOX</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-tertiary-container/20 text-tertiary border border-outline">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                                        Returned
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-secondary-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<span class="font-label-sm text-sm text-primary">#ORD-99102</span>
+<p class="text-[10px] text-on-secondary-container">Yesterday</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-surface-container rounded-sm flex-shrink-0 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A sharp, minimalist architectural shot of a sleek desktop computer workstation, featuring a high-resolution curved monitor and brushed aluminum components. The setting is a modern, high-tech office with cool, professional lighting. The image emphasizes high-end enterprise equipment and precision engineering in a corporate context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2qzOB2Y9PngiAUy8PCGhLDj7kc6b9hbuT-bTROyDfxibRntuP-LPCQ8CUTQkXoO1-RBpvZKhTuzm7rYg8hbvZbeMUbiXXKv8OCkASN219IZ_YMgq_GiZ51PZ5VgIKJWXaU0f6ezJIPkMi-RR3oRBVT_MuB0fCh6voEfbwtbJPCnvhPxvB1CbH25BXW2Ql2JEgROZ41cDQEN-bayrZGoFm1mo9dvd__xhq23QupPwRnPsK7HEZfs6i4KXISApgF7_tadsBxHx6nxI">
+</div>
+<div>
+<p class="text-sm font-medium">Ultra-Wide 34" Monitor</p>
+<p class="text-[10px] text-on-secondary-container">SKU: MON-UW-34</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm">Arrived damaged (Screen crack)</p>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-error-container text-on-error-container rounded text-[10px] font-label-sm">DAMAGED</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-enterprise-blue/10 text-enterprise-blue border border-enterprise-blue/20">
+<span class="w-1.5 h-1.5 rounded-full bg-enterprise-blue"></span>
+                                        Pending Review
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="px-3 py-1 bg-primary text-white text-[11px] font-semibold rounded hover:bg-opacity-80">Approve</button>
+<button class="px-3 py-1 border border-outline-variant text-[11px] font-semibold rounded hover:bg-surface-container">Reject</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 border-t border-outline-variant flex items-center justify-between bg-surface-container-low">
+<p class="font-label-sm text-xs text-on-secondary-container">Showing 4 of 142 results</p>
+<div class="flex items-center gap-2">
+<button class="p-1 border border-outline-variant rounded hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<div class="flex gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container text-xs">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container text-xs">3</button>
+</div>
+<button class="p-1 border border-outline-variant rounded hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Focused Detail / Insights Area -->
+<div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<div class="lg:col-span-2 bg-white border border-outline-variant rounded-lg p-6">
+<h4 class="font-headline-md text-lg mb-4">Return Policy Effectiveness</h4>
+<div class="h-48 flex items-end gap-4 px-4 pb-8 border-b border-outline-variant relative">
+<!-- Simulated Bar Chart -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-t h-3/4 relative group">
+<div class="absolute bottom-0 w-full bg-enterprise-blue rounded-t transition-all duration-500" style="height: 65%"></div>
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] py-1 px-2 rounded whitespace-nowrap">Electronics: 65%</div>
+</div>
+<span class="font-label-sm text-[10px]">ELEC</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-t h-full relative group">
+<div class="absolute bottom-0 w-full bg-enterprise-blue rounded-t transition-all duration-500" style="height: 40%"></div>
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] py-1 px-2 rounded whitespace-nowrap">Apparel: 40%</div>
+</div>
+<span class="font-label-sm text-[10px]">APRL</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-t h-full relative group">
+<div class="absolute bottom-0 w-full bg-enterprise-blue rounded-t transition-all duration-500" style="height: 85%"></div>
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] py-1 px-2 rounded whitespace-nowrap">Home: 85%</div>
+</div>
+<span class="font-label-sm text-[10px]">HOME</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-t h-full relative group">
+<div class="absolute bottom-0 w-full bg-enterprise-blue rounded-t transition-all duration-500" style="height: 25%"></div>
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] py-1 px-2 rounded whitespace-nowrap">Beauty: 25%</div>
+</div>
+<span class="font-label-sm text-[10px]">BEAU</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-t h-full relative group">
+<div class="absolute bottom-0 w-full bg-enterprise-blue rounded-t transition-all duration-500" style="height: 55%"></div>
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] py-1 px-2 rounded whitespace-nowrap">Tools: 55%</div>
+</div>
+<span class="font-label-sm text-[10px]">TOOL</span>
+</div>
+</div>
+<div class="mt-4 flex justify-between">
+<p class="text-xs text-on-secondary-container">Trends indicate a 5% drop in "defective" claims this month.</p>
+<button class="text-enterprise-blue text-xs font-semibold hover:underline">View detailed analytics</button>
+</div>
+</div>
+<div class="glass-premium p-6 rounded-lg border border-outline-variant">
+<h4 class="font-headline-md text-lg mb-4">Quick Insights</h4>
+<ul class="space-y-4">
+<li class="flex gap-3">
+<div class="p-2 bg-enterprise-blue/10 rounded">
+<span class="material-symbols-outlined text-enterprise-blue text-sm">trending_up</span>
+</div>
+<div>
+<p class="text-sm font-semibold">High Return SKU</p>
+<p class="text-xs text-on-secondary-container">SKU: KBD-BLK-MX has 14% higher return rate than average.</p>
+</div>
+</li>
+<li class="flex gap-3">
+<div class="p-2 bg-enterprise-blue/10 rounded">
+<span class="material-symbols-outlined text-enterprise-blue text-sm">info</span>
+</div>
+<div>
+<p class="text-sm font-semibold">Refund Delay</p>
+<p class="text-xs text-on-secondary-container">Finance processing is currently 4h slower than SLA.</p>
+</div>
+</li>
+<li class="flex gap-3">
+<div class="p-2 bg-enterprise-blue/10 rounded">
+<span class="material-symbols-outlined text-enterprise-blue text-sm">auto_awesome</span>
+</div>
+<div>
+<p class="text-sm font-semibold">AI Recommendation</p>
+<p class="text-xs text-on-secondary-container">Suggest updating product description for Edge X Smartphone.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple micro-interaction for table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', () => {
+                // In a real app, this would open detail view
+                console.log('Row clicked');
+            });
+        });
+
+        // Tab switching logic
+        const tabs = document.querySelectorAll('.py-4.border-b-2');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('border-primary', 'font-semibold', 'text-primary');
+                    t.classList.add('border-transparent', 'text-on-secondary-container');
+                });
+                tab.classList.remove('border-transparent', 'text-on-secondary-container');
+                tab.classList.add('border-primary', 'font-semibold', 'text-primary');
+            });
+        });
+    </script>
+
+
+</body></html>
