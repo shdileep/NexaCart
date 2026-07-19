@@ -92,3 +92,238 @@ This project adheres to professional git branch workflows:
 2. Committed isolated backend changes.
 3. Connected frontend layouts with async REST endpoints.
 4. Merged `feature/full-stack-fixes` branch back into `main` using fast-forward merge.
+
+# NexaCart Role-Based E-Commerce Platform
+
+## 🎥 Project Demo
+
+> **Watch the complete demo below:**
+
+https://github.com/user-attachments/assets/REPLACE_WITH_YOUR_VIDEO_ID
+
+---
+
+A production-grade, full-stack, role-based e-commerce platform built in React, Node.js, Express, and PostgreSQL. It demonstrates secure JWT authentication, role-based access control (RBAC), PostgreSQL persistence, Razorpay sandbox payment integration, Cloudinary image uploads, and real-time activity tracking.
+
+---
+
+## 🚀 Key Features
+
+### 1. Role-Based Access Control (RBAC)
+
+- **Admin**
+  - Approve or reject seller products
+  - Block/Unblock sellers and customers
+  - View marketplace analytics
+  - Monitor real-time activity logs
+
+- **Seller**
+  - Add, edit, and delete products
+  - Products require admin approval
+  - Track orders
+  - View customer ratings
+  - Receive approval notifications
+
+- **Customer**
+  - Register/Login securely
+  - Browse approved products
+  - Search & Filter
+  - Wishlist
+  - Shopping Cart
+  - Delivery Address Management
+  - Razorpay Sandbox Checkout
+  - Product Ratings & Reviews
+
+---
+
+## ✅ Product Approval Workflow
+
+- Seller uploads product
+- Product status becomes **Pending**
+- Admin reviews the product
+- After approval, the product appears instantly in **New Arrivals**
+- Rejected products remain hidden from customers
+
+---
+
+## 📦 Customer Features
+
+- Wishlist
+- Shopping Cart
+- Add/Edit/Delete Addresses
+- Default Address Selection
+- Secure Checkout
+- Order History
+- Product Ratings
+
+---
+
+## 💳 Razorpay Payment Integration
+
+- Backend creates Razorpay Order
+- Frontend opens Razorpay Checkout
+- Secure Signature Verification
+- Order saved only after successful verification
+
+---
+
+## ☁️ Cloudinary Image Upload
+
+- Base64 Image Upload
+- Secure Cloudinary Storage
+- Optimized Product Images
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+- React (Vite)
+- Tailwind CSS
+- React Router
+- Axios
+- Google Fonts
+- Material Symbols
+
+### Backend
+
+- Node.js
+- Express.js
+- PostgreSQL
+- JWT Authentication
+- bcryptjs
+- Razorpay SDK
+- Cloudinary SDK
+
+### Database
+
+- PostgreSQL
+
+---
+
+## 📁 Project Structure
+
+```text
+NexaCart
+├── src/
+├── server/
+├── public/
+├── README.md
+└── package.json
+```
+
+---
+
+## ⚙️ Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/shdileep/NexaCart.git
+
+cd NexaCart
+```
+
+### Backend
+
+```bash
+cd server
+
+npm install
+```
+
+Configure your `.env` file:
+
+```env
+DATABASE_URL=your_database_url
+
+JWT_SECRET=your_secret
+
+RAZORPAY_KEY_ID=your_key
+
+RAZORPAY_KEY_SECRET=your_secret
+
+CLOUDINARY_CLOUD_NAME=your_cloud
+
+CLOUDINARY_API_KEY=your_key
+
+CLOUDINARY_API_SECRET=your_secret
+```
+
+Run the backend:
+
+```bash
+node server.js
+```
+
+---
+
+### Database Setup
+
+```bash
+psql -U postgres -d nexacart -f schema.sql
+```
+
+---
+
+### Frontend
+
+```bash
+npm install
+
+npm run dev
+```
+
+Open:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 🔐 Demo Credentials
+
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | admin@nexacart.com | admin123 |
+| Seller | seller@nexacart.com | seller123 |
+| Customer | customer@nexacart.com | customer123 |
+
+---
+
+## 🔄 Git Workflow
+
+- Feature branch development
+- Backend API implementation
+- Frontend integration
+- Fast-forward merge into `main`
+
+---
+
+## ⭐ Highlights
+
+- JWT Authentication
+- Role-Based Authorization
+- PostgreSQL
+- Razorpay Integration
+- Cloudinary Uploads
+- Admin Approval Workflow
+- Wishlist
+- Cart
+- Address CRUD
+- Product Ratings
+- Responsive UI
+- Production-ready Architecture
+- REST APIs
+
+---
+
+## 📄 License
+
+This project is developed for educational and portfolio purposes.
+
+---
+
+⭐ If you like this project, don't forget to **Star** the repository.
