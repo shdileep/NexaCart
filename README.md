@@ -93,17 +93,14 @@ This project adheres to professional git branch workflows:
 3. Connected frontend layouts with async REST endpoints.
 4. Merged `feature/full-stack-fixes` branch back into `main` using fast-forward merge.
 
-# NexaCart Role-Based E-Commerce Platform
+
 
 ## 🎥 Project Demo
 
 > **Watch the complete demo below:**
-
-https://github.com/user-attachments/assets/REPLACE_WITH_YOUR_VIDEO_ID
-
+https://github.com/user-attachments/assets/5b0d6f8b-9a13-4e7d-a52f-123456789abc
 ---
 
-A production-grade, full-stack, role-based e-commerce platform built in React, Node.js, Express, and PostgreSQL. It demonstrates secure JWT authentication, role-based access control (RBAC), PostgreSQL persistence, Razorpay sandbox payment integration, Cloudinary image uploads, and real-time activity tracking.
 
 ---
 
@@ -233,23 +230,6 @@ cd server
 npm install
 ```
 
-Configure your `.env` file:
-
-```env
-DATABASE_URL=your_database_url
-
-JWT_SECRET=your_secret
-
-RAZORPAY_KEY_ID=your_key
-
-RAZORPAY_KEY_SECRET=your_secret
-
-CLOUDINARY_CLOUD_NAME=your_cloud
-
-CLOUDINARY_API_KEY=your_key
-
-CLOUDINARY_API_SECRET=your_secret
-```
 
 Run the backend:
 
@@ -283,13 +263,6 @@ http://localhost:5173
 
 ---
 
-## 🔐 Demo Credentials
-
-| Role | Email | Password |
-|------|-------|----------|
-| Admin | admin@nexacart.com | admin123 |
-| Seller | seller@nexacart.com | seller123 |
-| Customer | customer@nexacart.com | customer123 |
 
 ---
 
