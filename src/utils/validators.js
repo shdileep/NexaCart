@@ -23,3 +23,30 @@ export const validatePhone = (phone) => {
   const cleanPhone = String(phone).replace(/\D/g, '');
   return cleanPhone.length === 10;
 };
+
+export const validatePostalCode = (postalCode) => {
+  if (!postalCode) return false;
+  const cleanCode = String(postalCode).trim();
+  // Validates standard 6-digit Indian PIN code
+  return /^\d{6}$/.test(cleanCode);
+};
+
+export const validateProductInput = (product) => {
+  const errors = {};
+  if (!product.title || product.title.trim().length < 3) {
+    errors.title = 'Title must be at least 3 characters';
+  }
+  if (!product.price || Number(product.price) <= 0) {
+    errors.price = 'Price must be greater than zero';
+  }
+  if (!product.category || product.category.trim() === '') {
+    errors.category = 'Category selection is required';
+  }
+  if (!product.description || product.description.trim().length < 10) {
+    errors.description = 'Description must be at least 10 characters';
+  }
+  return {
+    isValid: Object.keys(errors).length === 0,
+    errors,
+  };
+};
