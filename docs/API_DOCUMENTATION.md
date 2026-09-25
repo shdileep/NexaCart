@@ -56,3 +56,35 @@ Authorization: Bearer <your_jwt_token>
   "user": { "id": 1, "name": "Jane Doe", "email": "jane@example.com", "role": "customer" }
 }
 ```
+
+---
+
+## 2. Product Management Endpoints
+
+### Get Approved Products (Customer Browse)
+`GET /products`
+- **Query Parameters:** `page`, `limit`, `category`, `search`, `minPrice`, `maxPrice`
+- **Response (200 OK):**
+```json
+{
+  "success": true,
+  "products": [...],
+  "total": 45
+}
+```
+
+### Create Product (Seller Only)
+`POST /products`
+- **Headers:** `Authorization: Bearer <seller_token>`
+- **Request Body:**
+```json
+{
+  "title": "Wireless Noise Cancelling Headphones",
+  "description": "High fidelity audio with 30h battery life",
+  "price": 4999.00,
+  "category": "Electronics",
+  "image": "https://res.cloudinary.com/...",
+  "stock": 50
+}
+```
+- **Status:** Automatically marked as `pending` for Admin review.
