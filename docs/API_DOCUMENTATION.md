@@ -29,15 +29,6 @@ Authorization: Bearer <your_jwt_token>
   "role": "customer"
 }
 ```
-- **Response (201 Created):**
-```json
-{
-  "success": true,
-  "message": "User registered successfully",
-  "token": "<jwt_token>",
-  "user": { "id": 1, "name": "Jane Doe", "email": "jane@example.com", "role": "customer" }
-}
-```
 
 ### User Login
 `POST /auth/login`
@@ -48,14 +39,6 @@ Authorization: Bearer <your_jwt_token>
   "password": "Password123"
 }
 ```
-- **Response (200 OK):**
-```json
-{
-  "success": true,
-  "token": "<jwt_token>",
-  "user": { "id": 1, "name": "Jane Doe", "email": "jane@example.com", "role": "customer" }
-}
-```
 
 ---
 
@@ -64,27 +47,55 @@ Authorization: Bearer <your_jwt_token>
 ### Get Approved Products (Customer Browse)
 `GET /products`
 - **Query Parameters:** `page`, `limit`, `category`, `search`, `minPrice`, `maxPrice`
-- **Response (200 OK):**
-```json
-{
-  "success": true,
-  "products": [...],
-  "total": 45
-}
-```
 
 ### Create Product (Seller Only)
 `POST /products`
 - **Headers:** `Authorization: Bearer <seller_token>`
+
+---
+
+## 3. Order & Razorpay Payment Endpoints
+
+### Create Razorpay Order
+`POST /orders/create-razorpay-order`
 - **Request Body:**
 ```json
 {
-  "title": "Wireless Noise Cancelling Headphones",
-  "description": "High fidelity audio with 30h battery life",
-  "price": 4999.00,
-  "category": "Electronics",
-  "image": "https://res.cloudinary.com/...",
-  "stock": 50
+  "amount": 4999.00,
+  "currency": "INR",
+  "items": [
+    { "productId": 12, "quantity": 1, "price": 4999.00 }
+  ]
 }
 ```
-- **Status:** Automatically marked as `pending` for Admin review.
+- **Response (200 OK):**
+```json
+{
+  "success": true,
+  "orderId": "order_Hk829Jz091k",
+  "amount": 499900,
+  "currency": "INR",
+  "keyId": "rzp_test_..."
+}
+```
+
+### Verify Payment & Persist Order
+`POST /orders/verify-payment`
+- **Request Body:**
+```json
+{
+  "razorpay_order_id": "order_Hk829Jz091k",
+  "razorpay_payment_id": "pay_98273hjs",
+  "razorpay_signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "addressId": 4,
+  "items": [...]
+}
+```
+- **Response (201 Created):**
+```json
+{
+  "success": true,
+  "message": "Payment verified and order placed",
+  "order": { "id": 105, "status": "placed", "total": 4999.00 }
+}
+```
