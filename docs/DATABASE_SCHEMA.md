@@ -32,3 +32,29 @@ Manages the marketplace product inventory.
 | `status` | VARCHAR(20) | DEFAULT 'pending' | 'pending', 'approved', 'rejected' |
 | `stock` | INT | DEFAULT 0 | Inventory quantity |
 | `created_at` | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | Product submission date |
+
+### 3. `orders` & `order_items` Tables
+Stores customer checkouts and itemized lines.
+- `orders`: `id`, `user_id`, `address_id`, `total_amount`, `payment_id`, `status`, `created_at`
+- `order_items`: `id`, `order_id`, `product_id`, `quantity`, `unit_price`
+
+---
+
+## Recommended Database Indexes
+
+To maintain sub-50ms query response times under high concurrency:
+```sql
+CREATE INDEX idx_products_status ON products(status);
+CREATE INDEX idx_products_seller ON products(seller_id);
+CREATE INDEX idx_orders_user ON orders(user_id);
+CREATE INDEX idx_reviews_product ON reviews(product_id);
+CREATE INDEX idx_addresses_user ON addresses(user_id);
+```
+
+---
+
+## Connection Pooling Strategy
+- Driver: `pg` (node-postgres)
+- Max Pool Size: 20 active connections
+- Idle Timeout: 30,000 ms
+- Connection Timeout: 2,000 ms
