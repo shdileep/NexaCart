@@ -19,12 +19,29 @@ Instructions for deploying NexaCart frontend and backend services to cloud envir
 3. Set the Root Directory to: `server`
 4. Set Build Command: `npm install`
 5. Set Start Command: `node server.js`
-6. Add the Environment Variables:
+6. Configure Environment Variables:
    - `PORT`: `5000`
    - `DATABASE_URL`: `postgres://...`
    - `JWT_SECRET`: `...`
    - `RAZORPAY_KEY_ID`: `...`
    - `RAZORPAY_KEY_SECRET`: `...`
-   - `CLOUDINARY_CLOUD_NAME`: `...`
-   - `CLOUDINARY_API_KEY`: `...`
-   - `CLOUDINARY_API_SECRET`: `...`
+
+---
+
+## 2. Frontend Deployment (Vercel)
+
+1. Import repository on Vercel.
+2. Build Settings:
+   - Framework Preset: `Vite`
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+3. Environment Variables:
+   - `VITE_API_BASE_URL`: `https://your-render-service.onrender.com/api`
+   - `VITE_RAZORPAY_KEY_ID`: `rzp_test_...`
+
+---
+
+## 3. Post-Deployment Verification
+- Run database schema migration: `psql $DATABASE_URL -f server/schema.sql`
+- Check health status endpoint: `GET /health` -> `200 OK`
+- Verify CORS headers allow requests from the Vercel frontend domain.
