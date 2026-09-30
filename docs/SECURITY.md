@@ -14,3 +14,17 @@ Security best practices, authorization boundaries, and vulnerability mitigation 
 - **Admin**: Can approve/reject products and block abusive accounts.
 - **Seller**: Isolated to editing and deleting their own products.
 - **Customer**: Can only read their own orders, addresses, and wishlist.
+
+## 3. Razorpay Payment Verification
+- Client-submitted totals are never trusted blindly.
+- Backend computes checkout amounts directly from database product prices.
+- Payment callbacks are validated against HMAC-SHA256 signature:
+```javascript
+const generatedSignature = crypto
+  .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
+  .update(`${razorpay_order_id}|${razorpay_payment_id}`)
+  .digest('hex');
+```
+
+## 4. SQL Injection Mitigation
+- 100% of SQL queries executed through PostgreSQL parameterized queries (`$1, $2, ...`) via node-postgres.
