@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.2.0] - 2026-10-06
+
+### Added
+- Comprehensive REST API documentation (`docs/API_DOCUMENTATION.md`).
+- Relational database schema reference and indexing guidelines (`docs/DATABASE_SCHEMA.md`).
+- Production deployment guide for Render and Vercel (`docs/DEPLOYMENT_GUIDE.md`).
+- Application security policy and payment integrity specifications (`docs/SECURITY.md`).
+- Quality assurance manual test scenarios and test vectors (`docs/TESTING.md`).
+- Modular frontend utilities: currency formatters, date helpers, form validators, safe storage.
+- Reusable UI component library: `LoadingSpinner`, `EmptyState`, `StatusBadge`, `Modal`.
+- Backend rate limiter middleware and centralized error handler.
+
+---
+
 ## [1.1.0] - 2026-09-28
 
 ### Added
