@@ -304,6 +304,12 @@ http://localhost:5173
 
 - [System Dashboards & Tech Stack](DASHBOARDS.md) - In-depth breakdown of features, state management, and role-specific workflows.
 - [Task Compliance & Architecture Report](INTERNSHIP_TASK_COMPLIANCE.md) - Detailed breakdown of task criteria, schema design, and implementation matrix.
+- [REST API Endpoint Documentation](docs/API_DOCUMENTATION.md) - Comprehensive API specifications for auth, products, orders, and payments.
+- [Database Schema Reference](docs/DATABASE_SCHEMA.md) - Entity relationships, column constraints, and query indexing strategies.
+- [Security Architecture & Guidelines](docs/SECURITY.md) - JWT protection, RBAC boundaries, and payment signature verification.
+- [Production Deployment Guide](docs/DEPLOYMENT_GUIDE.md) - Step-by-step instructions for deploying to Render, Vercel, and PostgreSQL.
+- [Quality Assurance & Testing](docs/TESTING.md) - Role verification matrices and Razorpay sandbox testing vectors.
+- [Release Changelog](CHANGELOG.md) - Milestone notes and version release history.
 
 ---
 
