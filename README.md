@@ -314,3 +314,7 @@ This project is developed for educational and portfolio purposes.
 ---
 
 ⭐ If you like this project, don't forget to **Star** the repository.
+
+---
+
+<sub>Last updated: October 2026</sub>
