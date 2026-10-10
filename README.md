@@ -300,6 +300,13 @@ http://localhost:5173
 
 ---
 
+## 📚 Documentation & Architecture Guides
+
+- [System Dashboards & Tech Stack](DASHBOARDS.md) - In-depth breakdown of features, state management, and role-specific workflows.
+- [Task Compliance & Architecture Report](INTERNSHIP_TASK_COMPLIANCE.md) - Detailed breakdown of task criteria, schema design, and implementation matrix.
+
+---
+
 ## 📄 License
 
 This project is developed for educational and portfolio purposes.
