@@ -307,6 +307,12 @@ http://localhost:5173
 
 ---
 
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Please check out our [Contributing Guidelines](CONTRIBUTING.md) to get started with development and submit pull requests.
+
+---
+
 ## 📄 License
 
 This project is developed for educational and portfolio purposes.
@@ -318,3 +324,4 @@ This project is developed for educational and portfolio purposes.
 ---
 
 <sub>Last updated: October 2026</sub>
+
